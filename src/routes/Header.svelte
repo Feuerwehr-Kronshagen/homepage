@@ -5,7 +5,7 @@
 <header>
 	<img class="headerLogo" src={codeOfArms} alt="Wappen von Kronshagen" aria-hidden="true" />
 
-	<p>FEUERWEHR KRONSHAGEN</p>
+	<h1>FEUERWEHR KRONSHAGEN</h1>
 </header>
 
 <style>

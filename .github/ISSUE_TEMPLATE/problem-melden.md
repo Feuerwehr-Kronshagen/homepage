@@ -2,7 +2,7 @@
 name: Problem melden
 about: Erstellen Sie einen Bericht, der uns hilft, uns zu verbessern.
 title: ''
-labels: bug, help wanted
+labels: Bug, Hilfe
 assignees: ''
 
 ---

@@ -1,8 +1,8 @@
 ---
-name: Feature request
+name: Funktionalität anfragen
 about: Schlage eine Idee für dieses Projekt vor.
 title: ''
-labels: enhancement, help wanted
+labels: Verbesserung, Hilfe
 assignees: ''
 
 ---

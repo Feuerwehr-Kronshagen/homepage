@@ -8,11 +8,15 @@ Möglichkeit bietet, frühzeitig Verantwortung zu übernehmen und sich aktiv fü
 regelmäßige Übungen und spannende Aktivitäten fördern wir Teamgeist und Engagement und bereiten die nächste Generation
 auf ihre zukünftigen Aufgaben vor.
 
+## Erste Schritte (für Kameradinnen und Kameraden)
+
+1. [Grundbegriffe](./docs/erste-schritte/Grundbegriffe.md)
+
 ## Design
 
-[Designvorgabe (design brief)](./docs/design_brief.md)
+[Designvorgabe (design brief)](docs/design/design_brief.md)
 
-[Wireframes (erste Skizzen)](./docs/wireframes.md)
+[Wireframes (erste Skizzen)](docs/design/wireframes.md)
 
 ## Entwicklung
 

@@ -10,7 +10,8 @@ auf ihre zukünftigen Aufgaben vor.
 
 ## Erste Schritte (für Kameradinnen und Kameraden)
 
-1. [Grundbegriffe](./docs/erste-schritte/Grundbegriffe.md)
+1. [Warum das alles?](./docs/erste-schritte/Warum-das-alles.md)
+2. [Grundbegriffe](./docs/erste-schritte/Grundbegriffe.md)
 
 ## Design
 

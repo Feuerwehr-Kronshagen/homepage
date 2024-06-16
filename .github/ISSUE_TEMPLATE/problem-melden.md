@@ -1,6 +1,6 @@
 ---
 name: Problem melden
-about: Erstellen Sie einen Bericht, der uns hilft, uns zu verbessern.
+about: Erstelle einen Bericht, der uns hilft, uns zu verbessern.
 title: ''
 labels: Bug, Hilfe
 assignees: ''

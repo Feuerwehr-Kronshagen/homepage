@@ -7,7 +7,7 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section class="align-items-start">
+<section class="align-items-start columns frame">
 	<h1>Wir suchen Dich!</h1>
 	<p> Du lebst oder arbeitest in Kronshagen? Dann sind wir rund um die Uhr ehrenamtlich für Dich in Bereitschaft,
 		um dir im Notfall zu helfen.</p>
@@ -23,13 +23,56 @@
 </section>
 
 <style lang="css">
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-	}
 
-	h1 {
-		width: 100%;
-	}
+  h1 {
+    grid-column: span var(--columns);
+  }
+
+  h2 {
+    grid-column: span var(--columns);
+  }
+
+  p {
+    grid-column: span var(--columns);
+    @media screen and (min-width: 600px) {
+      grid-column: span calc(var(--columns) / 2);
+    }
+  }
+
+  /*
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+
+
+.main {
+  font-weight: 400;
+  padding: 16px;
+  @include for-size(tablet-portrait-up) {
+    padding: 20px 50px;
+    display: grid;
+  }
+
+  @include for-size(tablet-landscape-up) {
+    display: grid;
+    grid-template-columns: 1fr minmax(auto, $tablet-landscape) 1fr;
+    grid-template-areas:
+      '. headline .'
+      '. decorator .'
+      '. content .';
+  }
+}
+
+.headline {
+  grid-area: headline;
+}
+
+.content {
+  grid-area: content;
+}
+
+ */
 </style>

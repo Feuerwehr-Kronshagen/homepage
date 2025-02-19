@@ -16,6 +16,7 @@
   img {
     width: 100%;
     height: auto;
+    margin-bottom: var(--space-end-of-part);
   }
 
   .container {

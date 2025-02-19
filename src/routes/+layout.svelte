@@ -94,6 +94,7 @@
 
     /* SPACING */
     --space-end-of-section: 1rem;
+    --space-end-of-part: 1rem;
 
     /* COLUMNS AND MARGIN https://m2.material.io/design/layout/responsive-layout-grid.html#breakpoints */
     --columns: 4;

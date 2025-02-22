@@ -1,14 +1,15 @@
+# OS and IDE
 .DS_Store
-node_modules
-build
-.svelte-kit
-package
-.env
-.env.*
-!.env.example
-.vercel
-.output
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
 .idea
-**.bkp
+.vscode
+
+# generated files
+dist
+public
+resources
+*.css
+*.css.map
+
+# Hugo
+.hugo_build.lock
+hugo_stats.json

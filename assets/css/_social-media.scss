@@ -1,0 +1,42 @@
+#social-media {
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 8rem);
+    justify-items: center;
+    gap: 1rem;
+  }
+
+  .social-media-card {
+
+    display: flex;
+    flex-wrap: wrap;
+    width: 8rem;
+
+    background-color: var(--color-background-3);
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+
+    img {
+      width: 4rem;
+      margin: 0.5rem auto;
+      display: block;
+    }
+
+    h3 {
+      text-decoration: underline;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    p {
+      margin: 0.5rem;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<section id="hero">
+  {{- $image := resources.Get "images/hero.jpg" }}
+  {{- $image := $image.Resize "7152x2480 q10" }}
+  <img class="hero-image" src="{{ $image.RelPermalink }}" alt="">
+  <div class="hero-content">
+    <h1>Wir suchen Dich!</h1>
+    <p>Du lebst oder arbeitest in Kronshagen?</p>
+    <p>Komm vorbei und lerne uns kennen.</p>
+  </div>
+</section>

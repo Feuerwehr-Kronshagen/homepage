@@ -1,0 +1,26 @@
+<section id="social-media">
+
+  <h2>Social Media</h2>
+
+  <section class="grid">
+    <a href="https://www.facebook.com/feuerwehr.kronshagen" target="_blank" rel="noopener noreferrer"
+       class="card-link">
+      <article class="social-media-card">
+        {{- $facebook := resources.Get "images/Facebook_Logo_Primary.png" }}
+        <img class="headerLogo" src="{{ $facebook.RelPermalink }}" alt="Facebook">
+        <h3>Facebook</h3>
+        <p>Aktuelle Veranstaltungen und Einblicke in unsere Arbeit</p>
+      </article>
+    </a>
+
+    <a href="https://www.instagram.com/feuerwehr.kronshagen" target="_blank" rel="noopener noreferrer"
+       class="card-link">
+      <article class="social-media-card">
+        {{- $instagram := resources.Get "images/Instagram_Glyph_Gradient.png" }}
+        <img class="headerLogo" src="{{ $instagram.RelPermalink }}" alt="Facebook">
+        <h3>Instagram</h3>
+        <p>Einsätze, Bilder und Einblicke direkt aus dem Feuerwehralltag</p>
+      </article>
+    </a>
+  </section>
+</section>

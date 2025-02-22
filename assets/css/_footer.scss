@@ -1,0 +1,32 @@
+footer {
+  background-color: var(--color-background-3);
+  box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.08);
+
+  color: inherit;
+
+  nav {
+    padding: 1rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    margin-top: 0;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li > a {
+    display: block;
+    padding: 0.5rem;
+    text-decoration: underline;
+  }
+}

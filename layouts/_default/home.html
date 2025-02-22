@@ -1,0 +1,5 @@
+{{- define "main" }}
+  {{- partial "hero.html" . }}
+  <section class="content">{{ .Content }}</section>
+  {{- partial "social-media.html" . }}
+{{ end }}

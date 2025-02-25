@@ -1,0 +1,8 @@
+
+{{- $image := .Resources.GetMatch "images/logo.jpg" }}
+{{- with $image }}
+  {{- $image.Resize "q25" }}
+  <img src="{{ .RelPermalink }}" alt="Logo" aria-hidden="true">
+{{ end }}
+<h1>{{ site.Title }}</h1>
+{{ partial "menu.html" (dict "menuID" "main" "page" .) }}

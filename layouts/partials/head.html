@@ -1,0 +1,38 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<title>
+  {{- if .IsHome }}
+    {{- site.Title }}
+  {{- else }}
+    {{- printf "%s | %s" .Title site.Title }}
+  {{- end -}}
+</title>
+
+{{- $description := "" }}
+{{- with .Description }}
+  {{- $description := . }}
+{{- else }}
+  {{- if .IsPage }}
+    {{- $description := .Summary }}
+  {{- else }}
+    {{- with .Site.Params.description }}
+      {{- $description := . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+<meta name="description" content="{{ $description }}">
+
+{{- $robots := "noindex, nofollow" }}
+{{- if and hugo.IsProduction (not .Params.private)}}
+  {{- $robots = "index, follow" }}
+{{- end }}
+<meta name="robots" content="{{ $robots }}">
+
+{{- $canonical := .Permalink }}
+{{- if .Params.canonicalUrl }}
+  {{- $canonical := .Params.canonicalUrl }}
+{{- end }}
+<link rel="canonical" href="{{ $canonical }}">
+
+{{- partialCached "head/css.html" . }}
+{{- partialCached "head/js.html" . }}

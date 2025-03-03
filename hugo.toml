@@ -1,6 +1,6 @@
 baseURL = ''
 languageCode = 'de-de'
-title = 'Feuerwehr Kronshagen'
+title = 'FEUERWEHR KRONSHAGEN'
 
 [[menus.main]]
 name = 'Home'

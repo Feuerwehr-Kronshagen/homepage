@@ -1,0 +1,29 @@
+header {
+  background-color: var(--color-background-3);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.08);
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    @media (max-width: 250px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .headerLogo {
+    margin: 0 0 0 auto;
+    height: 4rem;
+    width: auto;
+    padding: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    vertical-align: middle;
+    text-decoration: none;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+  }
+
+}

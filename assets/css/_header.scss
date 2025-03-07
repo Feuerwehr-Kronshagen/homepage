@@ -11,19 +11,17 @@ header {
     }
   }
 
+  .title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+  }
+
   .headerLogo {
     margin: 0 0 0 auto;
     height: 4rem;
     width: auto;
     padding: 0.5rem;
   }
-
-  .title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    vertical-align: middle;
-    text-decoration: none;
-    padding: 0.5rem 0.5rem 0.5rem 0;
-  }
-
 }

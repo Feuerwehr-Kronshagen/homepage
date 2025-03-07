@@ -1,0 +1,25 @@
+#hero {
+  .hero-image {
+    width: 100%;
+  }
+
+  .hero-content {
+    margin: 0.5rem auto;
+    width: max-content;
+    text-align: center;
+    letter-spacing: -0.5%;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      text-decoration: none;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 1rem;
+      text-decoration: none;
+      margin-bottom: 0;
+    }
+  }
+}

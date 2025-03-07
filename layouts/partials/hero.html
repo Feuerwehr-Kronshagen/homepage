@@ -1,0 +1,13 @@
+{{/* Hero with Image on top and Heading with CTA buttons below */}}
+<section id="hero" class="frame">
+  {{- $image := resources.Get "images/hero.jpg" }}
+  {{- $image := $image.Resize "7152x2480 q1" }}
+  <img class="hero-image" src="{{ $image.RelPermalink }}" alt="">
+  <div class="hero-content">
+    <h1>Wir suchen Dich!</h1>
+    <p>Du lebst oder arbeitest in Kronshagen?</p>
+    <p>Komm vorbei und lerne uns kennen.</p>
+    <button>Test 1</button>
+    <button>Test 2</button>
+  </div>
+</section>

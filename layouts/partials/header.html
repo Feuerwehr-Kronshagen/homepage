@@ -1,9 +1,9 @@
 <header>
   <div class="frame container">
-    {{- $image := resources.Get "images/logo.png" }}
     <p class="title">{{ site.Title }}</p>
-    {{- with $image }}
-      <img class="headerLogo" src="{{ $image.RelPermalink }}" alt="Wappen von Kronshagen" aria-hidden="true">
-    {{ end }}
+    {{- $image := resources.Get "images/logo.png" }}
+    {{- $image := $image.Process "jpg" }}
+    {{- $image := $image.Resize "1035x1198 q10" }}
+    <img class="headerLogo" src="{{ $image.RelPermalink }}" alt="Wappen von Kronshagen" aria-hidden="true">
   </div>
 </header>

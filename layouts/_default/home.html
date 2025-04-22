@@ -1,8 +1,13 @@
 {{- define "main" }}
-  {{- partial "hero.html" . }}
-{{/*  {{ .Content }}*/}}
-{{/*  {{ range site.RegularPages }}*/}}
-{{/*    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>*/}}
-{{/*    {{ .Summary }}*/}}
-{{/*  {{ end }}*/}}
+  <section>{{- partial "hero.html" . }}</section>
+  <section>{{ .Content }}</section>
+  <section>
+    {{ range site.RegularPages }}
+    <!-- TODO: move into partial: card with image and summary   -->
+      <article>
+        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+        {{ .Summary }}
+      </article>
+    {{ end }}
+  </section>
 {{ end }}

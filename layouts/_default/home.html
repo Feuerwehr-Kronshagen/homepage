@@ -1,13 +1,5 @@
 {{- define "main" }}
-  <section>{{- partial "hero.html" . }}</section>
-  <section>{{ .Content }}</section>
-  <section>
-    {{ range site.RegularPages }}
-    <!-- TODO: move into partial: card with image and summary   -->
-      <article>
-        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-        {{ .Summary }}
-      </article>
-    {{ end }}
-  </section>
+  {{- partial "hero.html" . }}
+  {{ .Content }}
+  {{- partial "social-media.html" . }}
 {{ end }}

@@ -1,0 +1,41 @@
+#social-media {
+
+  max-width: 18rem;
+
+  h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    justify-items: center;
+    gap: 1rem;
+  }
+
+  .social-media-card {
+
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 8rem;
+    width: auto;
+
+    background-color: var(--color-background-3);
+    border-style: solid;
+    border-width: 0.125px;
+    border-color: var(--color-color-4);
+    border-radius: var(--card-border-radius);
+
+    img {
+      width: 100%;
+      padding: 0.5rem;
+      display: block;
+    }
+
+    h3, p {
+      padding: 0.5rem;
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
+}

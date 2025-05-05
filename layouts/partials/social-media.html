@@ -1,0 +1,20 @@
+<section id="social-media">
+
+  <h2>Social Media</h2>
+
+  <section class="grid">
+    <article class="social-media-card">
+      {{- $facebook := resources.Get "images/Facebook_Logo_Primary.png" }}
+      <img class="headerLogo" src="{{ $facebook.RelPermalink }}" alt="Facebook">
+      <h3>Facebook</h3>
+      <p>Entdecke uns auf Facebook!</p>
+    </article>
+
+    <article class="social-media-card">
+      {{- $instagram := resources.Get "images/Instagram_Glyph_Gradient.png" }}
+      <img class="headerLogo" src="{{ $instagram.RelPermalink }}" alt="Facebook">
+      <h3>Instagram</h3>
+      <p>Entdecke uns auf Instagram!</p>
+    </article>
+  </section>
+</section>

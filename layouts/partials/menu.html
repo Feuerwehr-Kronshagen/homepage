@@ -4,14 +4,17 @@ Renders a menu for the given menu ID.
 @context {page} page The current page.
 @context {string} menuID The menu ID.
 
-@example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+@example: {{ partial "menu.html" (dict "menuID" "main" "page" . "ariaLabel" "Hauptnavigation" "groupTitle" "Inhalt") }}
 */}}
 
 {{- $page := .page }}
 {{- $menuID := .menuID }}
+{{- $ariaLabel := .ariaLabel }}
+{{- $groupTitle := .groupTitle }}
 
 {{- with index site.Menus $menuID }}
-  <nav>
+  <nav aria-label="{{ $ariaLabel }}">
+    <h2>{{ $groupTitle }}</h2>
     <ul>
       {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
     </ul>

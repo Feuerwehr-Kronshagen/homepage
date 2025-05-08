@@ -3,16 +3,32 @@ languageCode = 'de-de'
 title = 'FEUERWEHR KRONSHAGEN'
 
 [[menus.main]]
-name = 'Home'
+name = 'Startseite'
 pageRef = '/'
-weight = 10
+weight = 1
 
 [[menus.main]]
 name = 'Posts'
 pageRef = '/posts'
-weight = 20
+weight = 2
 
 [[menus.main]]
 name = 'Tags'
 pageRef = '/tags'
-weight = 30
+weight = 3
+
+
+[[menus.footer]]
+name = 'Impressum'
+pageRef = 'impressum'
+weight = 4
+
+[[menus.footer]]
+name = 'Barrierefreiheit'
+pageRef = 'accessibility'
+weight = 5
+
+[[menus.footer]]
+name = 'Datenschutz'
+pageRef = 'privacy'
+weight = 6

@@ -1,13 +1,14 @@
 #social-media {
 
-  max-width: 18rem;
-
   a {
     text-decoration: none;
     color: inherit;
   }
 
   .grid {
+
+    max-width: 18rem;
+
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
     justify-items: center;

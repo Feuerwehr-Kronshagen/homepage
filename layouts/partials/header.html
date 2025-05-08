@@ -1,6 +1,6 @@
 <header>
   <div class="frame container">
-    <p class="title">{{ site.Title }}</p>
+    <a href="/" class="title">{{ site.Title }}</a>
     {{- $image := resources.Get "images/logo.png" }}
     <img class="headerLogo" src="{{ $image.RelPermalink }}" alt="Wappen von Kronshagen" aria-hidden="true">
   </div>

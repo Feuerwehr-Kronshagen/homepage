@@ -1,6 +1,6 @@
-baseURL = ''
-languageCode = 'de-de'
 title = 'FEUERWEHR KRONSHAGEN'
+defaultContentLanguage = 'de'
+
 
 [[menus.main]]
 name = 'Startseite'

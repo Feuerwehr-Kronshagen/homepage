@@ -6,11 +6,8 @@
   }
 
   .grid {
-
-    max-width: 18rem;
-
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    grid-template-columns: repeat(auto-fit, 8rem);
     justify-items: center;
     gap: 1rem;
   }
@@ -19,27 +16,27 @@
 
     display: flex;
     flex-wrap: wrap;
-    max-width: 8rem;
-    width: auto;
+    width: 8rem;
 
     background-color: var(--color-background-3);
     border-radius: var(--card-border-radius);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
 
     img {
-      width: 100%;
-      padding: 1rem;
+      width: 4rem;
+      margin: 0.5rem auto;
       display: block;
     }
 
     h3 {
       text-decoration: underline;
-    }
-
-    h3, p {
-      padding: 0.5rem;
       text-align: center;
       margin: 0 auto;
+    }
+
+    p {
+      margin: 0.5rem;
+      text-align: center;
     }
   }
 }

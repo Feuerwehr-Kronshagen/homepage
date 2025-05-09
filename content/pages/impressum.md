@@ -1,6 +1,6 @@
 +++
 title = 'Impressum'
-date = 2015-03-05T00:00:00-00:00
+date = 2021-08-28T00:00:00-00:00
 draft = false
 +++
 

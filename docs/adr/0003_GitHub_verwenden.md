@@ -1,32 +1,37 @@
-# ADR 0003: GitHub verwenden
+# ADR 0003: Inhalte, Seitengenerierungs-Framework und Hosting trennen
 
 ## Kontext
 
-Die bisherige Homepage wurde mit einem CMS (Content-Management-System, Joomla) erstellt. Über die Jahre gingen wichtige
-Informationen, die zur Wartung und Weiterentwicklung notwendig waren, verloren. Diese Github-Organisation ist der
-Versuch, die Homepage resilient gegen Abhängigkeiten einzelner Personen zu machen.
+Die bisherige Homepage wurde mit einem Redaktionssystem (auch "Content-Management-System" oder kurz "CMS" genannt)
+namens Joomla erstellt. Über die Jahre gingen wichtige Informationen verloren, die für die Pflege und Weiterentwicklung
+der Website notwendig waren. Oft wusste nur eine Person, wie bestimmte Änderungen vorgenommen werden konnten.
 
-Die Homepage wird auf eine Github-Organisation umgestellt, um die Wartung und Weiterentwicklung zu erleichtern und die
-Abhängigkeit von einzelnen Personen zu reduzieren.
+Wir suchen nach einer Lösung, bei der die Website nicht mehr von einzelnen Personen abhängig ist und bei der alle
+wichtigen Informationen für alle Beteiligten zugänglich sind.
 
 ## Entscheidung
 
-Die Homepage wird auf eine Github-Organisation umgestellt, um die Wartung und Weiterentwicklung zu erleichtern und die
-Abhängigkeit von einzelnen Personen zu reduzieren.
+Wir werden GitHub als Plattform für unsere Website nutzen. GitHub ist eine Online-Plattform, auf der viele Menschen
+gemeinsam an Projekten arbeiten können.
 
-Diese Github-Organisation wird die CMS-Datenbank, die Benutzerverwaltung und Zugriffskontrolle, Updates des CMS sowie
-der Plugins, Backups aller Systeme und die Haltung der Inhalte ersetzen.
+Mit GitHub können wir:
+
+- Alle Dateien und Inhalte unserer Website an einem Ort speichern
+- Nachverfolgen, wer welche Änderungen vorgenommen hat
+- Mehreren Personen Zugriff auf die Website geben
+- Automatische Sicherungskopien erstellen
+- Die Website einfach aktualisieren
 
 ## Konsequenzen
 
 Vorteile:
 
-- Resilienz gegen Abhängigkeiten einzelner Personen.
-- Offene Dokumentation und Nachvollziehbarkeit aller Inhalte.
-- Möglichkeit, das Framework und die Infrastruktur jederzeit zu ändern.
+- Die Website ist nicht mehr von einzelnen Personen abhängig - wenn jemand ausscheidet, können andere weitermachen.
+- Alle Informationen sind offen dokumentiert und für alle Beteiligten nachvollziehbar.
+- Wir können die technische Grundlage der Website jederzeit ändern, ohne die Inhalte zu verlieren.
 
-Nachteile
+Nachteile:
 
-- Anfangs mehr Aufwand als ein CMS.
-- Neue Begriffe und ein neuer Account sind notwendig.
-- Alles auf Github ist öffentlich einsehbar.
+- Am Anfang ist mehr Arbeit nötig als bei einem fertigen Redaktionssystem.
+- Teammitglieder müssen neue Begriffe lernen und einen GitHub-Account erstellen.
+- Alle Inhalte auf GitHub sind öffentlich sichtbar (was aber für eine öffentliche Website kein großes Problem ist).

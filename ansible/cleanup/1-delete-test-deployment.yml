@@ -1,0 +1,13 @@
+---
+- name: Delete feature deployment for given branch
+  hosts: all
+  become: true
+  tasks:
+    - name: Get current git branch
+      ansible.builtin.set_fact:
+        branch: "{{ lookup('pipe', 'git rev-parse --abbrev-ref HEAD') }}"
+    - name: Remove feature deployment directory
+      ansible.builtin.file:
+        path: "/var/www/features/{{ branch }}"
+        state: absent
+      when: branch != "" and branch != "main"

@@ -1,14 +1,14 @@
-# ADR 0003: Inhalte, Seitengenerierungs-Framework und Hosting trennen
+# ADR 0004: Die Website in drei Teile aufteilen
 
 ## Kontext
 
-Die bisherige Struktur der Homepage basiert auf einem CMS, was zum Verlust wichtiger Informationen für die Wartung und
-Weiterentwicklung geführt hat. Es wurde entschieden, die Homepage auf eine Github-Organisation umzustellen, um die
-Wartung und Weiterentwicklung zu erleichtern und die Abhängigkeit von einzelnen Personen zu reduzieren.
+Die bisherige Website wurde mit einem Redaktionssystem (CMS) erstellt, was dazu geführt hat, dass wichtige Informationen
+für die Pflege und Weiterentwicklung verloren gegangen sind. Wie in ADR 0003 beschrieben, haben wir uns entschieden,
+GitHub zu nutzen, um die Abhängigkeit von einzelnen Personen zu verringern.
 
 ## Entscheidung
 
-Die Architektur der Homepage wird wie folgt gestaltet:
+Wir werden die Website in drei getrennte Teile schneiden:
 
 ```mermaid
 flowchart LR
@@ -16,29 +16,31 @@ flowchart LR
   Seitengenerierungs-Framework --> Hosting
 ```
 
-- **Inhalte**: Die Inhalte der Homepage werden in Markdown-Dateien gespeichert. Diese Dateien sind leicht zu bearbeiten
-  und können von jedem Teammitglied ohne technische Kenntnisse hinzugefügt oder geändert werden.
-- **Seitengenerierungs-Framework**: Die Markdown-Dateien werden durch einen statischen Site-Generator in HTML-Dateien
-  umgewandelt. Dies ermöglicht eine effiziente und skalierbare Generierung der Homepage.
-- **Hosting**: Die generierten HTML- CSS- und JS-Dateien werden auf einem Hosting-Service bereitgestellt. Dabei wird
-  kein dynamischer Servercode benötigt, was die Wartung und Sicherheit der Homepage verbessert.
+- **Inhalte**: Die Texte und Informationen der Website werden in einfachen Textdateien gespeichert. Diese Dateien sind
+  leicht zu bearbeiten und können von jedem Teammitglied ohne besondere technische Kenntnisse hinzugefügt oder geändert
+  werden.
+
+- **Umwandlung in Website**: Ein spezielles Programm wandelt diese Textdateien automatisch in eine vollständige Website
+  um. Dabei werden die Texte mit dem Design kombiniert und in das richtige Format für Webbrowser gebracht.
+
+- **Veröffentlichung im Internet**: Die fertige Website wird auf einem Server im Internet bereitgestellt, so dass sie
+  für alle Besucher zugänglich ist.
 
 ## Konsequenzen
 
 Vorteile:
 
-- **Möglichkeit, das Framework und die Infrastruktur jederzeit zu ändern, ohne dass die Inhalte geändern werden
-  müssen.**
-- Resilienz gegen Abhängigkeiten einzelner Personen.
-- Offene Dokumentation und Nachvollziehbarkeit aller Inhalte.
+- **Wir können die technische Grundlage der Website jederzeit ändern, ohne die Inhalte neu erstellen zu müssen.**
+- Die Website ist nicht mehr von einzelnen Personen abhängig - wenn jemand ausscheidet, können andere weitermachen.
+- Alle Informationen sind offen dokumentiert und für alle Beteiligten nachvollziehbar.
 
 Nachteile:
 
-- Anfangs mehr Aufwand als ein CMS.
-- Neue Begriffe und ein neuer Account sind notwendig.
-- Alles auf Github ist öffentlich einsehbar.
+- Am Anfang ist mehr Arbeit nötig als bei einem fertigen Redaktionssystem.
+- Teammitglieder müssen neue Begriffe lernen und einen GitHub-Account erstellen.
+- Alle Inhalte auf GitHub sind öffentlich sichtbar (was aber für eine öffentliche Website kein großes Problem ist).
 
-### Alternativen
+### Andere Möglichkeiten, die wir nicht gewählt haben
 
-- Fortsetzung der Verwendung des CMS.
-- Verwendung eines anderen CMS mit besserer Dokumentation und Wartbarkeit.
+- Weitermachen mit dem bisherigen Redaktionssystem (Joomla).
+- Ein anderes, besser dokumentiertes Redaktionssystem verwenden.

@@ -1,0 +1,67 @@
+---
+- name: "Certificates-vserver"
+  hosts: vserver
+  become: true
+  vars:
+    ssl_dir: /etc/letsencrypt/live/feuerwehr-kronshagen.de
+    cert_file: "{{ ssl_dir }}/localhost.crt"
+    key_file: "{{ ssl_dir }}/localhost.key"
+  tasks:
+    - name: Install certbot
+      ansible.builtin.apt:
+        name: certbot
+        state: present
+        update_cache: true
+    - name: Install Certbot Nginx plugin (Debian/Ubuntu)
+      become: true
+      ansible.builtin.apt:
+        name: python3-certbot-nginx
+        state: present
+        update_cache: true
+    - name: Obtain certificate using the nginx plugin
+      become: true
+      ansible.builtin.command: >
+        certbot --nginx
+        --non-interactive
+        --agree-tos
+        --email homepage@feuerwehr-kronshagen.de
+        -d feuerwehr-kronshagen.de
+        -d test.feuerwehr-kronshagen.de
+      register: certbot_output
+      changed_when: "'Congratulations!' in certbot_output.stdout"
+    - name: Test automatic certificate renewal
+      ansible.builtin.command: certbot renew --dry-run
+      register: renew_test
+      changed_when: "false"
+    - name: Ensure auto-renew cron job is present
+      ansible.builtin.cron:
+        name: "Auto-renew Let's Encrypt certs"
+        job: "certbot renew --quiet --nginx && systemctl reload nginx"
+        minute: 0
+        hour: 3
+
+- name: "Certificates-local"
+  hosts: local
+  become: true
+  vars:
+    ssl_dir: /etc/letsencrypt/live/localhost
+    cert_file: "{{ ssl_dir }}/localhost.crt"
+    key_file: "{{ ssl_dir }}/localhost.key"
+  tasks:
+    - name: Ensure SSL directory exists
+      ansible.builtin.file:
+        path: "{{ ssl_dir }}"
+        state: directory
+        mode: "644"
+    - name: Generate self-signed certificate
+      ansible.builtin.command: >
+        openssl req
+        -x509
+        -newkey rsa:4096
+        -sha512
+        -nodes
+        -keyout {{ key_file }}
+        -out {{ cert_file }}
+        -subj "/CN=localhost"
+      args:
+        creates: "{{ cert_file }}"

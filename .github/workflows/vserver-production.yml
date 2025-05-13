@@ -1,0 +1,23 @@
+name: vserver
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  ansible-deployment-production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install Hugo CLI
+        run: sudo snap install hugo
+      - name: Install Dart Sass
+        run: sudo snap install dart-sass
+      - name: Install dependencies
+        run: make 81-dev-dependencies-ubuntu
+      - name: Ansible deployment
+        run: make 30-deploy-vserver-prod

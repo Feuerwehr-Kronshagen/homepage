@@ -1,0 +1,33 @@
+- name: "linux server hardening"
+  hosts: all
+  become: yes
+
+  handlers:
+    - name: restartSSH
+      service:
+        name: ssh
+        state: restarted
+
+  tasks:
+    - name: Stelle sicher, dass PubkeyAuthentication aktiv ist
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PubkeyAuthentication'
+        line: 'PubkeyAuthentication yes'
+        state: present
+      notify: restartSSH
+    - name: Deaktiviere Passwort-Authentifizierung
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication'
+        line: 'PasswordAuthentication no'
+        state: present
+        backup: yes
+      notify: restartSSH
+    - name: Deaktiviere ChallengeResponseAuthentication
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^ChallengeResponseAuthentication'
+        line: 'ChallengeResponseAuthentication no'
+        state: present
+      notify: restartSSH

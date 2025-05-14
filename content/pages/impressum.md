@@ -12,9 +12,8 @@ Nußbaumkoppel 1
 
 Deutschland
 
-- +49 (0) 431 5866222
-- +49 (0) 171 7014872
-- +49 (0) 431 5866201
+- Tel: +49 (0) 431 5866222
+- Fax: +49 (0) 431 5866201
 - www.feuerwehr-kronshagen.de
 - info@feuerwehr-kronshagen.de
 

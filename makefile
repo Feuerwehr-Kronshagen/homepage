@@ -7,7 +7,7 @@ test-build:
 prod-build:
 	hugo build
 
-docker-start-local-server:
+docker-start-local-server-with-30-second-sleep:
 	docker rm -f ubuntu-ssh 2>/dev/null || true \
 	&& (docker run \
 		-d \

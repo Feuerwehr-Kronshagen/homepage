@@ -42,7 +42,7 @@ zu erstellen und zu ändern. Alle Mitglieder der Organisation können die Homepa
 
 Möchte ein Mitglied bei der Homepage helfen, muss es
 [einen Github-Account erstellen](https://docs.github.com/de/get-started/start-your-journey/creating-an-account-on-github)
-und 
+und
 [in die Github-Organisation aufgenommen](https://docs.github.com/de/organizations/managing-membership-in-your-organization/inviting-users-to-join-your-organization)
 werden.
 
@@ -50,10 +50,15 @@ Verlässt ein Mitglied die Feuerwehr, muss es lediglich
 [aus der Github-Organisation entfernt](https://docs.github.com/de/organizations/managing-membership-in-your-organization/removing-a-member-from-your-organization)
 werden und hat keine Berechtigung zur direkten Änderung der Homepage mehr.
 
-## Repository (Repo, Projekt)
+## Was ist ein Repository (Projektordner)?
 
-Ein Repository ist wie ein Ordner. Es enthält alle Dateien und die
+Ein Repository ist ein Projektordner im Internet. Es enthält alle Dateien der Homepage und speichert jede Änderung, die
+daran gemacht wurde – wie eine Zeitmaschine. Es enthält alle Dateien und die
 [Historie der Änderungen](Versionskontrolle.md).
+
+Versionskontrolle bedeutet, dass jede Änderung an einer Datei gespeichert wird. Wenn also jemand versehentlich etwas
+löscht, kann man einfach zu einer früheren Version zurückkehren – wie bei einer Sicherung.
+
 In unserem [Repository](https://github.com/Feuerwehr-Kronshagen/homepage) kannst du:
 
 - Dateien hinzufügen, ändern oder löschen
@@ -72,16 +77,6 @@ Du kannst unsere aktuellen Issues ansehen, indem du in
 Nun kannst du ein neues Issue anlegen, indem du auf
 [New Issue](https://github.com/Feuerwehr-Kronshagen/homepage/issues/new/choose) klickst. Hier wird dir eine Auswahl
 an Vorlagen zur Verfügung gestellt.
-
-## Meilensteine
-
-Meilensteine (Milestones) sind eine Möglichkeit, größere Ziele in einem Projekt zu definieren. Sie können mehrere Issues
-umfassen und helfen uns, den Fortschritt zu verfolgen.
-
-Du kannst unsere aktuellen Meilensteine ansehen, indem du in
-[unserem Repository](https://github.com/Feuerwehr-Kronshagen/homepage) auf
-[Issues](https://github.com/Feuerwehr-Kronshagen/homepage/issues) und dann oben in der Leiste auf
-[Milestones](https://github.com/Feuerwehr-Kronshagen/homepage/milestones) klickst.
 
 # Zusammenfassung
 

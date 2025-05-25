@@ -1,4 +1,4 @@
-# vServer Deaktivierung der Passwort-Authentifizierung mit SSH
+# ADR 0012: vServer Deaktivierung der Passwort-Authentifizierung mit SSH
 
 ## Kontext
 

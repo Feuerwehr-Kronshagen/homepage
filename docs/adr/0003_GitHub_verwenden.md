@@ -1,4 +1,4 @@
-# ADR 0001: GitHub verwenden
+# ADR 0003: GitHub verwenden
 
 ## Kontext
 

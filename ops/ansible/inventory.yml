@@ -1,6 +1,11 @@
 all:
   vars:
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    domain: feuerwehr-kronshagen.de
+    letsencrypt_email: homepage@feuerwehr-kronshagen.de
+    subdomains:
+      - subdomain: www
+      - subdomain: test
 
   children:
     localTest:

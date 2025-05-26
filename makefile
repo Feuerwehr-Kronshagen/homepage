@@ -34,4 +34,4 @@ docker-start-local-server-with-30-second-sleep:
 			root@localhost
 
 ansible-local-server:
-	ansible-playbook -i ansible/inventory.yml ansible/playbooks/*.yml
+	ansible-playbook -i ops/ansible/inventory.yml ops/ansible/playbooks/*.yml

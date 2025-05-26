@@ -1,0 +1,55 @@
+- name: "certificates"
+  hosts: none
+  become: yes
+  handlers:
+    - name: restartNGINX
+      service:
+        name: ssh
+        state: restarted
+  tasks:
+    - name: Install dependencies
+      apt:
+        name:
+          - python3-certbot
+          - python3-pip
+        state: present
+        update_cache: yes
+    - name: Install Certbot DNS plugin for Cloudflare
+      pip:
+        name: certbot-dns-cloudflare
+    - name: Create Cloudflare credentials
+      copy:
+        dest: /root/.cloudflare.ini
+        content: |
+          dns_cloudflare_api_token = {{ cloudflare_api_token }}
+        owner: root
+        group: root
+        mode: '0600'
+    - name: Obtain wildcard certificate using Certbot
+      command: >
+        certbot certonly
+        --dns-cloudflare
+        --dns-cloudflare-credentials /root/.cloudflare.ini
+        --non-interactive
+        --agree-tos
+        --email {{ letsencrypt_email }}
+        -d "{{ domain }}"
+        -d "*.{{ domain }}"
+      args:
+        creates: "/etc/letsencrypt/live/{{ domain }}/fullchain.pem"
+    - name: Create Nginx config for subdomains
+      template:
+        src: nginx_subdomain.conf.j2
+        dest: "/etc/nginx/sites-available/{{ item.subdomain }}"
+      loop: "{{ subdomains }}"
+    - name: Enable Nginx sites
+      file:
+        src: "/etc/nginx/sites-available/{{ item.subdomain }}"
+        dest: "/etc/nginx/sites-enabled/{{ item.subdomain }}"
+        state: link
+        force: yes
+      loop: "{{ subdomains }}"
+    - name: Reload Nginx
+      service:
+        name: nginx
+        state: reloaded

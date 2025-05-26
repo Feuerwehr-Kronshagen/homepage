@@ -1,0 +1,54 @@
+- name: "webserver"
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+    - name: Ensure Nginx is started and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+    - name: Ensure production directory exists
+      file:
+        path: /var/www/production
+        state: directory
+    - name: Ensure features directory exists
+      file:
+        path: /var/www/features
+        state: directory
+    - name: Remove default site from sites-enabled
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+    - name: Copy nginx main config
+      copy:
+        src: nginx/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        owner: root
+        group: root
+        mode: '0644'
+    - name: Copy sites-enabled config
+      copy:
+        src: nginx/sites-enabled/
+        dest: /etc/nginx/sites-enabled/
+        owner: root
+        group: root
+        mode: '0644'
+    - name: Reload nginx
+      service:
+        name: nginx
+        state: reloaded
+# copy to production if main branch
+# https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#jinja2-simple
+# https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_conditionals.html
+#    - name: Copy production config
+#      copy:
+#        src: nginx/sites-enabled/
+#        dest: /etc/nginx/sites-enabled/
+#        owner: root
+#        group: root
+#        mode: '0644'

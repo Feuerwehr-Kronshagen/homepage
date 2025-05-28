@@ -8,7 +8,7 @@ all:
       - subdomain: test
 
   children:
-    localTest:
+    local:
       hosts:
         localDocker:
           ansible_host: localhost

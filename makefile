@@ -10,10 +10,13 @@
 05-docker-local-server-start:
 	docker rm -f ubuntu-ssh 2>/dev/null || true \
 	&& docker run \
+		-it \
 		--name ubuntu-ssh \
 		-p 2222:22 \
 		-p 8080:80 \
-		-e TZ="Europe/Berlin" \
+		-p 8443:443 \
+		-e TZ=Europe/Berlin \
+		-e DEBIAN_FRONTEND=noninteractive \
 		ubuntu:latest \
 		bash -c "\
 			apt-get update \
@@ -34,5 +37,13 @@
 			-p 2222 \
 			root@localhost
 
-07-ansible-local-server:
-	ansible-playbook -v -i ansible/inventory.yml ansible/playbooks/2-webserver.yml
+07-docker-local-server-shell:
+	ssh-keygen -R localhost
+	ssh \
+		-p 2222 \
+		-o StrictHostKeyChecking=no \
+		-o UserKnownHostsFile=/dev/null \
+		root@localhost
+
+08-ansible-local-server:
+	ansible-playbook -v -i ansible/inventory.yml ansible/playbooks/2-webserver.yml --

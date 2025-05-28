@@ -1,4 +1,4 @@
-- name: "webserver"
+- name: "webserver-config"
   hosts: all
   become: yes
   handlers:
@@ -38,26 +38,62 @@
         mode: '0644'
       notify:
         - Reload nginx
-    - name: Copy sites-enabled config
-      copy:
-        src: nginx/sites-enabled/
+- name: "webserver-local"
+  hosts: local
+  become: yes
+  handlers:
+    - name: Reload nginx
+      service:
+        name: nginx
+        state: reloaded
+  tasks:
+    - name: Install rsync
+      apt:
+        name: rsync
+        state: present
+    - name: Copy sites-enabled local config
+      ansible.posix.synchronize:
+        src: nginx/sites-enabled/local.conf
         dest: /etc/nginx/sites-enabled/
-        owner: root
-        group: root
-        mode: '0644'
+        delete: true
+        recursive: true
+        rsync_path: "rsync"
+        rsync_opts:
+          - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"
       notify:
         - Reload nginx
-# copy to production if main branch
-# https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#jinja2-simple
-# https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_conditionals.html
+    - name: Copy local certs
+      ansible.posix.synchronize:
+        src: certs/
+        dest: /etc/letsencrypt/live/localhost/
+        delete: true
+        recursive: true
+        rsync_path: "rsync"
+        rsync_opts:
+          - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"
+      notify:
+        - Reload nginx
     - name: get current git branch
       set_fact:
         branch: "{{ lookup('pipe', 'git rev-parse --abbrev-ref HEAD') }}"
-    - name: Copy production files
-      when: branch == "7-automatisiertes-deployment"
-      copy:
+    - name: Sync production files
+      when: branch == "main"
+      become: false
+      ansible.posix.synchronize:
         src: ../../../public/
         dest: /var/www/production/
-        owner: root
-        group: root
-        mode: '0644'
+        delete: true
+        recursive: true
+        rsync_path: "rsync"
+        rsync_opts:
+          - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"
+    - name: Sync feature files
+      when: branch != "main"
+      ansible.posix.synchronize:
+        src: ../../../public/
+        dest: "/var/www/features/{{ branch }}"
+        delete: true
+        recursive: true
+        rsync_path: "rsync"
+        rsync_opts:
+          - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"

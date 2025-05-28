@@ -1,6 +1,11 @@
 - name: "webserver"
   hosts: all
   become: yes
+  handlers:
+    - name: Reload nginx
+      service:
+        name: nginx
+        state: reloaded
   tasks:
     - name: Install Nginx
       apt:
@@ -31,6 +36,8 @@
         owner: root
         group: root
         mode: '0644'
+      notify:
+        - Reload nginx
     - name: Copy sites-enabled config
       copy:
         src: nginx/sites-enabled/
@@ -38,17 +45,19 @@
         owner: root
         group: root
         mode: '0644'
-    - name: Reload nginx
-      service:
-        name: nginx
-        state: reloaded
+      notify:
+        - Reload nginx
 # copy to production if main branch
 # https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#jinja2-simple
 # https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_conditionals.html
-#    - name: Copy production config
-#      copy:
-#        src: nginx/sites-enabled/
-#        dest: /etc/nginx/sites-enabled/
-#        owner: root
-#        group: root
-#        mode: '0644'
+    - name: get current git branch
+      set_fact:
+        branch: "{{ lookup('pipe', 'git rev-parse --abbrev-ref HEAD') }}"
+    - name: Copy production files
+      when: branch == "7-automatisiertes-deployment"
+      copy:
+        src: ../../../public/
+        dest: /var/www/production/
+        owner: root
+        group: root
+        mode: '0644'

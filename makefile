@@ -1,18 +1,18 @@
-dev-server:
+01-dev-server:
 	hugo serve --bind 0.0.0.0
 
-test-build:
+02-test-build:
 	hugo build -e test
 
-prod-build:
+04-prod-build:
 	hugo build
 
-docker-start-local-server-with-30-second-sleep:
+05-docker-local-server-start:
 	docker rm -f ubuntu-ssh 2>/dev/null || true \
-	&& (docker run \
-		-d \
+	&& docker run \
 		--name ubuntu-ssh \
 		-p 2222:22 \
+		-p 8080:80 \
 		-e TZ="Europe/Berlin" \
 		ubuntu:latest \
 		bash -c "\
@@ -22,10 +22,11 @@ docker-start-local-server-with-30-second-sleep:
 			&& echo 'root:password' | chpasswd \
 			&& echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config \
 			&& service ssh start \
-			&& echo 'waiting...' \
-			&& tail -f /dev/null") \
-	&& sleep 30 \
-	&& sshpass \
+			&& echo 'ready to authenticate...' \
+			&& tail -f /dev/null"
+
+06-docker-local-server-auth:
+	sshpass \
 		-p 'password' \
 		ssh-copy-id \
 			-o StrictHostKeyChecking=no \
@@ -33,5 +34,5 @@ docker-start-local-server-with-30-second-sleep:
 			-p 2222 \
 			root@localhost
 
-ansible-local-server:
-	ansible-playbook -i ops/ansible/inventory.yml ops/ansible/playbooks/*.yml
+07-ansible-local-server:
+	ansible-playbook -v -i ansible/inventory.yml ansible/playbooks/2-webserver.yml

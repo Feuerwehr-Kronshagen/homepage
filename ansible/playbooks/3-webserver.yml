@@ -62,17 +62,6 @@
           - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"
       notify:
         - Reload nginx
-    - name: Copy local certs
-      ansible.posix.synchronize:
-        src: certs/
-        dest: /etc/letsencrypt/live/localhost/
-        delete: true
-        recursive: true
-        rsync_path: "rsync"
-        rsync_opts:
-          - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"
-      notify:
-        - Reload nginx
     - name: get current git branch
       set_fact:
         branch: "{{ lookup('pipe', 'git rev-parse --abbrev-ref HEAD') }}"

@@ -1,0 +1,85 @@
+- name: "authentication hardening"
+  hosts: all
+  become: yes
+  handlers:
+    - name: restartSSH
+      service:
+        name: ssh
+        state: restarted
+  tasks:
+    - name: Ensure PubkeyAuthentication is enabled
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PubkeyAuthentication'
+        line: 'PubkeyAuthentication yes'
+        state: present
+      notify: restartSSH
+    - name: Disable password authentication
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication'
+        line: 'PasswordAuthentication no'
+        state: present
+        backup: yes
+      notify: restartSSH
+    - name: Disable ChallengeResponseAuthentication
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^ChallengeResponseAuthentication'
+        line: 'ChallengeResponseAuthentication no'
+        state: present
+      notify: restartSSH
+
+- name: "Unattended-Upgrades"
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install unattended-upgrades
+      apt:
+        name: unattended-upgrades
+        state: present
+    - name: Enable unattended upgrades
+      copy:
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        content: |
+          APT::Periodic::Update-Package-Lists "1";
+          APT::Periodic::Unattended-Upgrade "1";
+        owner: root
+        group: root
+        mode: '0644'
+
+- name: activate UFW
+  hosts: feature,production
+  become: yes
+  tasks:
+    - name: ensure ufw installed
+      apt:
+        name: ufw
+        update_cache: true
+    - name: set default allow outgoing
+      ufw:
+        direction: outgoing
+        proto: any
+        policy: allow
+    - name: set default deny incoming
+      ufw:
+        direction: incoming
+        proto: any
+        policy: deny
+    - name: allow SSH (OpenSSH)
+      ufw:
+        rule: allow
+        name: OpenSSH
+    - name: allow HTTP (port 80)
+      ufw:
+        rule: allow
+        port: 80
+        proto: tcp
+    - name: allow HTTPS (port 443)
+      ufw:
+        rule: allow
+        port: 443
+        proto: tcp
+    - name: enable ufw firewall
+      ufw:
+        state: enabled

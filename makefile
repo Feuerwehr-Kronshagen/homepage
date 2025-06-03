@@ -46,4 +46,4 @@
 		root@localhost
 
 08-ansible-local-server:
-	ansible-playbook -v -i ansible/inventory.yml ansible/playbooks/2-webserver.yml --
+	ansible-playbook -v -i ansible/inventory.yml ansible/playbooks/*.yml --

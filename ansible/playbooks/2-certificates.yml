@@ -1,11 +1,6 @@
 - name: "certificates"
   hosts: none
   become: yes
-  handlers:
-    - name: restartNGINX
-      service:
-        name: ssh
-        state: restarted
   tasks:
     - name: Install dependencies
       apt:
@@ -14,17 +9,6 @@
           - python3-pip
         state: present
         update_cache: yes
-    - name: Install Certbot DNS plugin for Cloudflare
-      pip:
-        name: certbot-dns-cloudflare
-    - name: Create Cloudflare credentials
-      copy:
-        dest: /root/.cloudflare.ini
-        content: |
-          dns_cloudflare_api_token = {{ cloudflare_api_token }}
-        owner: root
-        group: root
-        mode: '0600'
     - name: Obtain wildcard certificate using Certbot
       command: >
         certbot certonly
@@ -66,32 +50,25 @@
 - name: "certificates-local"
   hosts: local
   become: yes
+  vars:
+    ssl_dir: /etc/letsencrypt/live/localhost
+    cert_file: "{{ ssl_dir }}/localhost.crt"
+    key_file: "{{ ssl_dir }}/localhost.key"
   tasks:
-    - name: Install dependencies
-      apt:
-        name:
-          - python3-certbot
-          - python3-pip
-        state: present
-        update_cache: yes
-    - name: generate localhost certificates
+    - name: Ensure SSL directory exists
+      file:
+        path: "{{ ssl_dir }}"
+        state: directory
+        mode: '644'
+    - name: Generate self-signed certificate
       command: >
-        certbot certonly
-        --dns-cloudflare
-        --dns-cloudflare-credentials /root/.cloudflare.ini
-        --non-interactive
-        --agree-tos
-        --email {{ letsencrypt_email }}
-        -d "{{ domain }}"
-        -d "*.{{ domain }}"
+        openssl req
+        -x509
+        -newkey rsa:4096
+        -sha512
+        -nodes
+        -keyout {{ key_file }}
+        -out {{ cert_file }}
+        -subj "/CN=localhost"
       args:
-        creates: "/etc/letsencrypt/live/{{ domain }}/fullchain.pem"
-    - name: Copy local certs
-      ansible.posix.synchronize:
-        src: certs/
-        dest: /etc/letsencrypt/live/localhost/
-        delete: true
-        recursive: true
-        rsync_path: "rsync"
-        rsync_opts:
-          - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"
+        creates: "{{ cert_file }}"

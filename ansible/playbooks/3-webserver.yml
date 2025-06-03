@@ -1,4 +1,4 @@
-- name: "webserver-config"
+- name: "webserver-default-config"
   hosts: all
   become: yes
   handlers:
@@ -38,7 +38,8 @@
         mode: '0644'
       notify:
         - Reload nginx
-- name: "webserver-local"
+
+- name: "webserver-localhost-config"
   hosts: local
   become: yes
   handlers:
@@ -47,21 +48,24 @@
         name: nginx
         state: reloaded
   tasks:
+    - name: Copy sites-enabled local config
+      copy:
+        src: nginx/sites-enabled/localhost.conf
+        dest: /etc/nginx/sites-enabled/
+        owner: root
+        group: root
+        mode: '0644'
+      notify:
+        - Reload nginx
+
+- name: "webserver-upload-files"
+  hosts: all
+  become: yes
+  tasks:
     - name: Install rsync
       apt:
         name: rsync
         state: present
-    - name: Copy sites-enabled local config
-      ansible.posix.synchronize:
-        src: nginx/sites-enabled/local.conf
-        dest: /etc/nginx/sites-enabled/
-        delete: true
-        recursive: true
-        rsync_path: "rsync"
-        rsync_opts:
-          - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"
-      notify:
-        - Reload nginx
     - name: get current git branch
       set_fact:
         branch: "{{ lookup('pipe', 'git rev-parse --abbrev-ref HEAD') }}"

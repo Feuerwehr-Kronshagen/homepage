@@ -58,6 +58,34 @@
       notify:
         - Reload nginx
 
+- name: "webserver-vserver-config"
+  hosts: vserver
+  become: yes
+  handlers:
+    - name: Reload nginx
+      service:
+        name: nginx
+        state: reloaded
+  tasks:
+    - name: Copy sites-enabled production config
+      copy:
+        src: nginx/sites-enabled/production.conf
+        dest: /etc/nginx/sites-enabled/
+        owner: root
+        group: root
+        mode: '0644'
+      notify:
+        - Reload nginx
+    - name: Copy sites-enabled test config
+      copy:
+        src: nginx/sites-enabled/test.conf
+        dest: /etc/nginx/sites-enabled/
+        owner: root
+        group: root
+        mode: '0644'
+      notify:
+        - Reload nginx
+
 - name: "webserver-upload-files"
   hosts: all
   become: yes

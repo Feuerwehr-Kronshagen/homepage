@@ -1,51 +1,37 @@
-- name: "certificates"
-  hosts: none
+- name: "certificates-vserver"
+  hosts: vserver
   become: yes
+  vars:
+    ssl_dir: /etc/letsencrypt/live/feuerwehr-kronshagen.de
+    cert_file: "{{ ssl_dir }}/localhost.crt"
+    key_file: "{{ ssl_dir }}/localhost.key"
   tasks:
-    - name: Install dependencies
+    - name: Install certbot
       apt:
-        name:
-          - python3-certbot
-          - python3-pip
+        name: certbot
         state: present
         update_cache: yes
-    - name: Obtain wildcard certificate using Certbot
+    - name: Install Certbot Nginx plugin (Debian/Ubuntu)
+      become: true
+      apt:
+        name: python3-certbot-nginx
+        state: present
+        update_cache: yes
+    - name: Obtain certificate using the nginx plugin
+      become: true
       command: >
-        certbot certonly
-        --dns-cloudflare
-        --dns-cloudflare-credentials /root/.cloudflare.ini
+        certbot --nginx
         --non-interactive
         --agree-tos
-        --email {{ letsencrypt_email }}
-        -d "{{ domain }}"
-        -d "*.{{ domain }}"
-      args:
-        creates: "/etc/letsencrypt/live/{{ domain }}/fullchain.pem"
-    - name: Create Nginx config for subdomains
-      template:
-        src: nginx_subdomain.conf.j2
-        dest: "/etc/nginx/sites-available/{{ item.subdomain }}"
-      loop: "{{ subdomains }}"
-    - name: Enable Nginx sites
-      file:
-        src: "/etc/nginx/sites-available/{{ item.subdomain }}"
-        dest: "/etc/nginx/sites-enabled/{{ item.subdomain }}"
-        state: link
-        force: yes
-      loop: "{{ subdomains }}"
-    - name: Reload Nginx
-      service:
-        name: nginx
-        state: reloaded
-    - name: Copy local certs
-      ansible.posix.synchronize:
-        src: certs/
-        dest: /etc/letsencrypt/live/localhost/
-        delete: true
-        recursive: true
-        rsync_path: "rsync"
-        rsync_opts:
-          - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"
+        --email homepage@feuerwehr-kronshagen.de
+        -d feuerwehr-kronshagen.de
+        -d test.feuerwehr-kronshagen.de
+      register: certbot_output
+      changed_when: "'Congratulations!' in certbot_output.stdout"
+    - name: Test automatic certificate renewal
+      command: certbot renew --dry-run
+      register: renew_test
+      changed_when: "false"
 
 - name: "certificates-local"
   hosts: local

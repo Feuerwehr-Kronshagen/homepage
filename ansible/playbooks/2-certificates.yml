@@ -32,6 +32,12 @@
       command: certbot renew --dry-run
       register: renew_test
       changed_when: "false"
+    - name: Ensure auto-renew cron job is present
+      cron:
+        name: "Auto-renew Let's Encrypt certs"
+        job: "certbot renew --quiet --nginx && systemctl reload nginx"
+        minute: 0
+        hour: 3
 
 - name: "certificates-local"
   hosts: local

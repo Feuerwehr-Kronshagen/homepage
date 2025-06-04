@@ -7,7 +7,7 @@
 04-prod-build:
 	hugo build
 
-05-docker-local-server-start:
+10-docker-local-server-start:
 	docker rm -f ubuntu-ssh 2>/dev/null || true \
 	&& docker run \
 		-it \
@@ -26,9 +26,9 @@
 			&& echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config \
 			&& service ssh start \
 			&& echo 'ready to authenticate...' \
-			&& tail -f /dev/null"
+			&& exec bash"
 
-06-docker-local-server-auth:
+11-docker-local-server-auth:
 	sshpass \
 		-p 'password' \
 		ssh-copy-id \
@@ -37,7 +37,7 @@
 			-p 2222 \
 			root@localhost
 
-07-docker-local-server-shell:
+12-docker-local-server-shell:
 	ssh-keygen -R localhost
 	ssh \
 		-p 2222 \
@@ -45,5 +45,10 @@
 		-o UserKnownHostsFile=/dev/null \
 		root@localhost
 
-08-ansible-local-server:
-	ansible-playbook -v -i ansible/inventory.yml ansible/playbooks/*.yml --
+13-deploy-local-test: 99-build-test-with-branch-name 99-ansible-local-server
+
+99-build-test-with-branch-name:
+	hugo build -e test --baseURL="https://localhost:8443/features/$(shell git rev-parse --abbrev-ref HEAD)"
+
+99-ansible-local-server:
+	ansible-playbook -v -i ansible/inventory.yml ansible/playbooks/*.yml

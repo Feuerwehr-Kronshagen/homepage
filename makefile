@@ -7,6 +7,12 @@
 03-prod-build:
 	hugo build
 
+ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
+04-ansible-lint:
+	ansible-playbook -i ansible/inventory.yml ansible/playbooks/*.yml --syntax-check
+	ansible-lint ansible/*
+	yamllint ansible/*
+
 10-docker-local-server-start:
 	docker rm -f ubuntu-ssh 2>/dev/null || true \
 	&& docker run \
@@ -50,6 +56,11 @@
 20-deploy-vserver-test: 99-build-vserver-test-with-branch-name 99-ansible-vserver
 
 30-deploy-vserver-prod: 99-build-vserver-prod 99-ansible-vserver
+
+80-dev-dependencies-mac-os:
+	brew install hugo
+	brew install ansible-lint
+	brew install yamllint
 
 99-build-local-test-with-branch-name:
 	hugo build -e test --baseURL="https://localhost:8443/features/$(shell git rev-parse --abbrev-ref HEAD)"

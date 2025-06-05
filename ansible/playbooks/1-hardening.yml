@@ -1,85 +1,86 @@
-- name: "authentication hardening"
+---
+- name: "Authentication hardening"
   hosts: all
-  become: yes
+  become: true
   handlers:
-    - name: restartSSH
-      service:
+    - name: RestartSSH
+      ansible.builtin.service:
         name: ssh
         state: restarted
   tasks:
-    - name: Ensure PubkeyAuthentication is enabled
-      lineinfile:
+    - name: "Ensure PubkeyAuthentication is enabled"
+      ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
-        regexp: '^PubkeyAuthentication'
-        line: 'PubkeyAuthentication yes'
+        regexp: "^PubkeyAuthentication"
+        line: "PubkeyAuthentication yes"
         state: present
-      notify: restartSSH
-    - name: Disable password authentication
-      lineinfile:
+      notify: RestartSSH
+    - name: "Disable password authentication"
+      ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
-        regexp: '^PasswordAuthentication'
-        line: 'PasswordAuthentication no'
+        regexp: "^PasswordAuthentication"
+        line: "PasswordAuthentication no"
         state: present
-        backup: yes
-      notify: restartSSH
-    - name: Disable ChallengeResponseAuthentication
-      lineinfile:
+        backup: true
+      notify: RestartSSH
+    - name: "Disable ChallengeResponseAuthentication"
+      ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
-        regexp: '^ChallengeResponseAuthentication'
-        line: 'ChallengeResponseAuthentication no'
+        regexp: "^ChallengeResponseAuthentication"
+        line: "ChallengeResponseAuthentication no"
         state: present
-      notify: restartSSH
+      notify: RestartSSH
 
 - name: "Unattended-Upgrades"
   hosts: all
-  become: yes
+  become: true
   tasks:
     - name: Install unattended-upgrades
-      apt:
+      ansible.builtin.apt:
         name: unattended-upgrades
         state: present
     - name: Enable unattended upgrades
-      copy:
+      ansible.builtin.copy:
         dest: /etc/apt/apt.conf.d/20auto-upgrades
         content: |
           APT::Periodic::Update-Package-Lists "1";
           APT::Periodic::Unattended-Upgrade "1";
         owner: root
         group: root
-        mode: '0644'
+        mode: "0644"
 
-- name: activate UFW
+- name: "Activate UFW"
   hosts: vserver
-  become: yes
+  become: true
   tasks:
-    - name: ensure ufw installed
-      apt:
+    - name: Ensure ufw installed
+      ansible.builtin.apt:
         name: ufw
         update_cache: true
-    - name: set default allow outgoing
-      ufw:
+    - name: Set default allow outgoing
+      community.general.ufw:
         direction: outgoing
         proto: any
         policy: allow
-    - name: set default deny incoming
-      ufw:
+    - name: Set default deny incoming
+      community.general.ufw:
         direction: incoming
         proto: any
         policy: deny
-    - name: allow SSH (OpenSSH)
-      ufw:
+    - name: Allow SSH (OpenSSH)
+      community.general.ufw:
         rule: allow
         name: OpenSSH
-    - name: allow HTTP (port 80)
-      ufw:
+    - name: Allow HTTP (port 80)
+      community.general.ufw:
         rule: allow
         port: 80
         proto: tcp
-    - name: allow HTTPS (port 443)
-      ufw:
+    - name: Allow HTTPS (port 443)
+      community.general.ufw:
         rule: allow
         port: 443
         proto: tcp
-    - name: enable ufw firewall
-      ufw:
+    - name: Enable ufw firewall
+      community.general.ufw:
         state: enabled

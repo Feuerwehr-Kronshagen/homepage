@@ -1,25 +1,26 @@
-- name: "certificates-vserver"
+---
+- name: "Certificates-vserver"
   hosts: vserver
-  become: yes
+  become: true
   vars:
     ssl_dir: /etc/letsencrypt/live/feuerwehr-kronshagen.de
     cert_file: "{{ ssl_dir }}/localhost.crt"
     key_file: "{{ ssl_dir }}/localhost.key"
   tasks:
     - name: Install certbot
-      apt:
+      ansible.builtin.apt:
         name: certbot
         state: present
-        update_cache: yes
+        update_cache: true
     - name: Install Certbot Nginx plugin (Debian/Ubuntu)
       become: true
-      apt:
+      ansible.builtin.apt:
         name: python3-certbot-nginx
         state: present
-        update_cache: yes
+        update_cache: true
     - name: Obtain certificate using the nginx plugin
       become: true
-      command: >
+      ansible.builtin.command: >
         certbot --nginx
         --non-interactive
         --agree-tos
@@ -29,31 +30,31 @@
       register: certbot_output
       changed_when: "'Congratulations!' in certbot_output.stdout"
     - name: Test automatic certificate renewal
-      command: certbot renew --dry-run
+      ansible.builtin.command: certbot renew --dry-run
       register: renew_test
       changed_when: "false"
     - name: Ensure auto-renew cron job is present
-      cron:
+      ansible.builtin.cron:
         name: "Auto-renew Let's Encrypt certs"
         job: "certbot renew --quiet --nginx && systemctl reload nginx"
         minute: 0
         hour: 3
 
-- name: "certificates-local"
+- name: "Certificates-local"
   hosts: local
-  become: yes
+  become: true
   vars:
     ssl_dir: /etc/letsencrypt/live/localhost
     cert_file: "{{ ssl_dir }}/localhost.crt"
     key_file: "{{ ssl_dir }}/localhost.key"
   tasks:
     - name: Ensure SSL directory exists
-      file:
+      ansible.builtin.file:
         path: "{{ ssl_dir }}"
         state: directory
-        mode: '644'
+        mode: "644"
     - name: Generate self-signed certificate
-      command: >
+      ansible.builtin.command: >
         openssl req
         -x509
         -newkey rsa:4096

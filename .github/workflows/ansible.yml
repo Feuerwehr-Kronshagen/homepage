@@ -1,0 +1,11 @@
+name: ansible.yml
+on:
+  push:
+    branches: [ "*" ]
+
+jobs:
+  ansible-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ansible lint
+        run: make 04-ansible-lint

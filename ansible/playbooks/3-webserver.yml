@@ -1,101 +1,104 @@
-- name: "webserver-default-config"
+---
+- name: "Webserver-default-config"
   hosts: all
-  become: yes
+  become: true
   handlers:
-    - name: Reload nginx
-      service:
+    - name: "Reload nginx"
+      ansible.builtin.service:
         name: nginx
         state: reloaded
   tasks:
-    - name: Install Nginx
-      apt:
+    - name: "Install Nginx"
+      ansible.builtin.apt:
         name: nginx
         state: present
-        update_cache: yes
-    - name: Ensure Nginx is started and enabled
-      service:
+        update_cache: true
+    - name: "Ensure Nginx is started and enabled"
+      ansible.builtin.service:
         name: nginx
         state: started
-        enabled: yes
-    - name: Ensure production directory exists
-      file:
+        enabled: true
+    - name: "Ensure production directory exists"
+      ansible.builtin.file:
         path: /var/www/production
         state: directory
-    - name: Ensure features directory exists
-      file:
+        mode: "0644"
+    - name: "Ensure features directory exists"
+      ansible.builtin.file:
         path: /var/www/features
         state: directory
-    - name: Remove default site from sites-enabled
-      file:
+        mode: "0644"
+    - name: "Remove default site from sites-enabled"
+      ansible.builtin.file:
         path: /etc/nginx/sites-enabled/default
         state: absent
-    - name: Copy nginx main config
-      copy:
+    - name: "Copy nginx main config"
+      ansible.builtin.copy:
         src: nginx/nginx.conf
         dest: /etc/nginx/nginx.conf
         owner: root
         group: root
-        mode: '0644'
+        mode: "0644"
       notify:
         - Reload nginx
 
-- name: "webserver-localhost-config"
+- name: "Webserver-localhost-config"
   hosts: local
-  become: yes
+  become: true
   handlers:
     - name: Reload nginx
-      service:
+      ansible.builtin.service:
         name: nginx
         state: reloaded
   tasks:
     - name: Copy sites-enabled local config
-      copy:
+      ansible.builtin.copy:
         src: nginx/sites-enabled/localhost.conf
         dest: /etc/nginx/sites-enabled/
         owner: root
         group: root
-        mode: '0644'
+        mode: "0644"
       notify:
         - Reload nginx
 
-- name: "webserver-vserver-config"
+- name: "Webserver-vserver-config"
   hosts: vserver
-  become: yes
+  become: true
   handlers:
     - name: Reload nginx
-      service:
+      ansible.builtin.service:
         name: nginx
         state: reloaded
   tasks:
     - name: Copy sites-enabled production config
-      copy:
+      ansible.builtin.copy:
         src: nginx/sites-enabled/production.conf
         dest: /etc/nginx/sites-enabled/
         owner: root
         group: root
-        mode: '0644'
+        mode: "0644"
       notify:
         - Reload nginx
     - name: Copy sites-enabled test config
-      copy:
+      ansible.builtin.copy:
         src: nginx/sites-enabled/test.conf
         dest: /etc/nginx/sites-enabled/
         owner: root
         group: root
-        mode: '0644'
+        mode: "0644"
       notify:
         - Reload nginx
 
-- name: "webserver-upload-files"
+- name: "Webserver-upload-files"
   hosts: all
-  become: yes
+  become: true
   tasks:
     - name: Install rsync
-      apt:
+      ansible.builtin.apt:
         name: rsync
         state: present
-    - name: get current git branch
-      set_fact:
+    - name: Get current git branch
+      ansible.builtin.set_fact:
         branch: "{{ lookup('pipe', 'git rev-parse --abbrev-ref HEAD') }}"
     - name: Sync production files
       when: branch == "main"

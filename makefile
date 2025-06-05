@@ -57,10 +57,16 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 
 30-deploy-vserver-prod: 99-build-vserver-prod 99-ansible-vserver
 
-80-dev-dependencies-mac-os:
-	brew install hugo
-	brew install ansible-lint
-	brew install yamllint
+80-dev-dependencies-macos:
+	brew install hugo \
+	&& brew install ansible \
+	&& brew install ansible-lint \
+	&& brew install yamllint \
+  && ansible-galaxy collection install -r ansible/requirements.yml
+
+81-dev-dependencies-ubuntu:
+	- pip install ansible ansible-lint yamllint \
+    && ansible-galaxy collection install -r ansible/requirements.yml
 
 99-build-local-test-with-branch-name:
 	hugo build -e test --baseURL="https://localhost:8443/features/$(shell git rev-parse --abbrev-ref HEAD)"

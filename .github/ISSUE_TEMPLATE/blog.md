@@ -2,7 +2,7 @@
 name: Blog-Eintrag
 about: Schlage eine Idee für einen Blog-Eintrag vor.
 title: ''
-labels: Blog, Hilfe
+labels: Blog
 assignees: ''
 
 ---

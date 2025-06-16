@@ -30,9 +30,13 @@ flowchart LR
 
 Vorteile:
 
-- **Wir können die technische Grundlage der Website jederzeit ändern, ohne die Inhalte neu erstellen zu müssen.**
+- Wir können die technische Grundlage der Website jederzeit ändern, ohne die Inhalte neu erstellen zu müssen.
 - Die Website ist nicht mehr von einzelnen Personen abhängig - wenn jemand ausscheidet, können andere weitermachen.
 - Alle Informationen sind offen dokumentiert und für alle Beteiligten nachvollziehbar.
+- Die fertige Seite stellt ein geringes Sicherheitsrisiko dar, da es keine dynamischen Inhalte gibt, über die ein
+  Angreifer Zugriff erhalten könnte - beispielsweise über ein Login- oder ein Kommentarfeld.
+- Die fertige Seite wird für Nutzende zügig angezeigt, da keine Daten nachgeladen werden müssen.
+- Statische Inhalte sind grundsätzlich barriereärmer als dynamisch mit JavaScript erzeugte Inhalte.
 
 Nachteile:
 

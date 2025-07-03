@@ -2,7 +2,7 @@
 name: Funktionalität anfragen
 about: Schlage eine Idee für dieses Projekt vor.
 title: ''
-labels: Verbesserung, Hilfe
+labels: Verbesserung
 assignees: ''
 
 ---

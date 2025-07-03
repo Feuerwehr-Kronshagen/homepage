@@ -1,9 +1,9 @@
-# ADR 0013: Kein zusätzliches Sicherheitsprogramm (Fail2Ban) verwenden
+# ADR 0014: Kein zusätzliches Sicherheitsprogramm (Fail2Ban) verwenden
 
 ## Kontext
 
 Unser gemieteter Server bei IONOS ist so eingerichtet, dass man sich nur mit digitalen Schlüsseln anmelden kann (siehe
-ADR 0012). Da wir die Anmeldung mit Passwörtern abgeschaltet haben, gibt es keine Möglichkeit für Angreifer, durch
+ADR 0013). Da wir die Anmeldung mit Passwörtern abgeschaltet haben, gibt es keine Möglichkeit für Angreifer, durch
 wiederholtes Ausprobieren von Passwörtern Zugang zu erhalten. Solche Angriffe würden normalerweise von einem Programm
 namens "Fail2Ban" abgewehrt. Unser Server ist außerdem durch eine Firewall (digitale Schutzwand) und strenge
 Zugriffsregeln geschützt.

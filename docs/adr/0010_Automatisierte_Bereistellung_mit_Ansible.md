@@ -1,4 +1,4 @@
-# ADR 0009: Automatische Einrichtung des Webservers (Automatisierte Bereitstellung) mit Ansible
+# ADR 0010: Automatische Einrichtung des Webservers (Automatisierte Bereitstellung) mit Ansible
 
 ## Kontext
 

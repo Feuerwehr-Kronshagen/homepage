@@ -11,7 +11,7 @@ assignees: ''
 
 Ich habe folgende Idee für einen Blog-Artikel:
 
-- 
+-
 
 # Akzeptanzkriterien
 

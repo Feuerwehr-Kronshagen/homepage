@@ -1,4 +1,4 @@
-# ADR 0003: Inhalte, Seitengenerierungs-Framework und Hosting trennen
+# ADR 0003: GitHub verwenden
 
 ## Kontext
 

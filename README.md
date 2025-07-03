@@ -25,6 +25,8 @@ bekannte Kanäle zurück.
 Das Verzeichnis `/docs/adr` enthält Architekturentscheidungen für dieses Projekt in Form von **Architecture Decision
 Records (ADRs)**.
 
+[Erster ADR](./docs/adr/0001_Architektur-Entscheidungen_dokumentieren.md)
+
 ### Warum ADRs?
 
 In einem Software-Projekt ist es wichtig, dass Architekturentscheidungen nachvollziehbar und dokumentiert sind – nicht
@@ -50,8 +52,9 @@ Entscheidung ab:
 
 ### Bestehende ADRs ändern?
 
-Grundsätzlich sollte eine Änderung vermieden werden. Wenn sich eine Entscheidung ändert, wird ein neuer ADR geschrieben,
-der den alten referenziert. Der alte ADR wird im Dateinamen mit einem `x` nach der ADR-Nummer versehen.
+Grundsätzlich sollte eine Änderung vermieden werden. Klarstellungen nach Rückfragen sind ok. Wenn sich eine Entscheidung
+ändert, wird ein neuer ADR geschrieben, der den alten ADR referenziert. Der alte ADR wird im Dateinamen mit einem `x`
+nach der ADR-Nummer versehen.
 
 ## Design
 
@@ -62,9 +65,5 @@ der den alten referenziert. Der alte ADR wird im Dateinamen mit einem `x` nach d
 ## Entwicklung
 
 ```bash
-hugo server
-```
-
-```bash
-hugo build
+make 01-dev-server
 ```

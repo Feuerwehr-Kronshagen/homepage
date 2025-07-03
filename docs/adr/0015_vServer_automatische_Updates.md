@@ -1,4 +1,4 @@
-# ADR 0014: Automatische Aktualisierungen für den Server einrichten
+# ADR 0015: Automatische Aktualisierungen für den Server einrichten
 
 ## Kontext
 
@@ -10,7 +10,7 @@ ausgestattet ist, ohne dass jemand von uns manuell eingreifen muss.
 ## Entscheidung
 
 Wir werden ein Programm namens "Unattended-Upgrades" (automatische Aktualisierungen ohne Benutzereingriff) auf unserem
-Server installieren und aktivieren. Dies geschieht automatisch durch unser Ansible-System (siehe ADR 0009).
+Server installieren und aktivieren. Dies geschieht automatisch durch unser Ansible-System (siehe ADR 0010).
 
 ## Konsequenzen
 

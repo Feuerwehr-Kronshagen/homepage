@@ -1,4 +1,4 @@
-# ADR 0008: Alle Inhalte als Blogartikel veröffentlichen
+# ADR 0009: Alle Inhalte als Blogartikel veröffentlichen
 
 ## Kontext
 

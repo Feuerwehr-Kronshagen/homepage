@@ -1,8 +1,8 @@
-# ADR 0011: vServer Root-Login über SSH beibehalten
+# ADR 0012: vServer Root-Login über SSH beibehalten
 
 ## Kontext
 
-Unser gemieteter Server bei IONOS (mit Ubuntu-Betriebssystem) wird automatisch mit Ansible verwaltet (siehe ADR 0009).
+Unser gemieteter Server bei IONOS (mit Ubuntu-Betriebssystem) wird automatisch mit Ansible verwaltet (siehe ADR 0010).
 Bei Servern gibt es einen besonderen Zugang mit allen Rechten, den sogenannten "Root-Zugang". Aus Sicherheitsgründen
 wird oft empfohlen, diesen direkten Hauptzugang zu deaktivieren.
 

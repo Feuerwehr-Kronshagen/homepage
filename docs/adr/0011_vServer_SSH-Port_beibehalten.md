@@ -1,8 +1,8 @@
-# ADR 0010: vServer Standard-Zugangsweg (SSH-Port 22) zum Server beibehalten
+# ADR 0011: vServer Standard-Zugangsweg (SSH-Port 22) zum Server beibehalten
 
 ## Kontext
 
-Unser gemieteter Server bei IONOS (mit Ubuntu-Betriebssystem) wird automatisch mit Ansible verwaltet (siehe ADR 0009).
+Unser gemieteter Server bei IONOS (mit Ubuntu-Betriebssystem) wird automatisch mit Ansible verwaltet (siehe ADR 0010).
 Bei der Fernwartung von Servern wird ein Zugangsweg namens SSH verwendet, der standardmäßig über einen bestimmten
 Kanal (Port 22) läuft. Manche Administratoren ändern diesen Kanal, um die Sicherheit zu erhöhen, indem sie den
 Zugangsweg "verstecken".

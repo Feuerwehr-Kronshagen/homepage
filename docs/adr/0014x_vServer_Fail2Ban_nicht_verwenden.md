@@ -1,5 +1,7 @@
 # ADR 0014: Kein zusätzliches Sicherheitsprogramm (Fail2Ban) verwenden
 
+Ersetzt durch [0020 vServer Fail2Ban verwenden](0020_vServer_Fail2Ban_verwenden.md)
+
 ## Kontext
 
 Unser gemieteter Server bei IONOS ist so eingerichtet, dass man sich nur mit digitalen Schlüsseln anmelden kann (siehe

@@ -1,0 +1,90 @@
+name: test
+
+on:
+  push:
+    branches-ignore:
+      - "main"
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build-hugo-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Hugo CLI
+        run: sudo snap install hugo
+      - name: Install Dart Sass
+        run: sudo snap install dart-sass
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Node.js dependencies
+        run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
+      - name: Build with Hugo
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: test
+        run: make 20-build-hugo-vserver-test
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hugo-test-site
+          path: ./public
+
+  ansible-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: make 99-install-ansible-dependencies
+      - name: Ansible lint
+        run: make 04-ansible-lint
+
+  vserver-test:
+    needs:
+      - ansible-lint
+      - build-hugo-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: make 99-install-ansible-dependencies
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: hugo-test-site
+          path: ./public
+      - name: Prepare SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.VSERVER_SSHKEY }}" > ~/.ssh/id_ed25519
+          sudo chmod 600  ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.VSERVER_HOST }} >> ~/.ssh/known_hosts
+      - name: Create Ansible vars file
+        run: |
+          echo "${{ secrets.VSERVER_SUDO_PASSWORD }}" > ~/.ssh/password.txt
+      - name: Ansible deployment
+        run: |
+          ansible-playbook \
+          -i "${{ secrets.VSERVER_HOST }}," \
+          --skip-tags "localhost" \
+          --become-password-file ~/.ssh/password.txt \
+          --user "${{ secrets.VSERVER_SSHUSER }}" \
+          --private-key ~/.ssh/id_ed25519 \
+          ansible/playbooks/*.yml
+      - name: Cleanup sensitive files
+        if: always()
+        run: |
+          rm -f ~/.ssh/id_ed25519*
+          rm -f ~/.ssh/password.txt

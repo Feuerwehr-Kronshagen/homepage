@@ -1,0 +1,27 @@
+---
+- name: "Install and activate Fail2Ban"
+  hosts: all
+  become: true
+  handlers:
+    - name: Restart_fail2ban
+      ansible.builtin.service:
+        name: fail2ban
+        state: restarted
+  tasks:
+    - name: "Install Fail2Ban"
+      ansible.builtin.package:
+        name: fail2ban
+        state: present
+    - name: "Ensure Fail2Ban is enabled and running"
+      ansible.builtin.service:
+        name: fail2ban
+        enabled: yes
+        state: started
+    - name: "Copy jail.local"
+      ansible.builtin.copy:
+        src: files/fail2ban/jail.local
+        dest: /etc/fail2ban/jail.local
+        owner: root
+        group: root
+        mode: '0644'
+      notify: Restart_fail2ban

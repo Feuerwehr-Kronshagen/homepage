@@ -5,9 +5,9 @@
   tasks:
     - name: Get current git branch
       ansible.builtin.set_fact:
-        branch: "{{ lookup('pipe', 'git rev-parse --abbrev-ref HEAD') }}"
+        branch: "{{ lookup('pipe', 'git symbolic-ref -q --short HEAD || git rev-parse --short HEAD') }}"
     - name: Remove feature deployment directory
+      when: branch != "" and branch != "main"
       ansible.builtin.file:
         path: "/var/www/features/{{ branch }}"
         state: absent
-      when: branch != "" and branch != "main"

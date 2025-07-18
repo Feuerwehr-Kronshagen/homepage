@@ -1,0 +1,166 @@
+---
+- name: "Webserver-default-config"
+  hosts: all
+  become: true
+  tasks:
+    - name: Install Nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: true
+    - name: Ensure production directory exists
+      ansible.builtin.file:
+        path: /var/www/production
+        state: directory
+        mode: "0755"
+    - name: Ensure features directory exists
+      ansible.builtin.file:
+        path: /var/www/features
+        state: directory
+        mode: "0755"
+    - name: Remove default site from sites-enabled
+      ansible.builtin.file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+
+- name: Webserver-localhost-config
+  hosts: all
+  tags: ["localhost"]
+  become: true
+  handlers:
+    - name: Reload nginx
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded
+  tasks:
+    - name: Copy nginx main config
+      ansible.builtin.copy:
+        src: nginx/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        mode: "0755"
+      notify:
+        - Reload nginx
+    - name: Copy sites-enabled local config
+      ansible.builtin.copy:
+        src: nginx/sites-enabled/localhost.conf
+        dest: /etc/nginx/sites-enabled/
+        mode: "0755"
+      notify:
+        - Reload nginx
+
+- name: Webserver-vserver-config
+  hosts: all
+  tags: ["vserver"]
+  become: true
+  handlers:
+    - name: Check nginx config
+      ansible.builtin.command: nginx -t
+      changed_when: false
+      register: nginx_config_test
+      failed_when: nginx_config_test.rc != 0
+    - name: Reload nginx
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded
+  tasks:
+    - name: Check if SSL certificate exists
+      ansible.builtin.stat:
+        path: "/etc/letsencrypt/live/test.feuerwehr-kronshagen.de/fullchain.pem"
+      register: ssl_cert
+    - name: Set SSL facts
+      ansible.builtin.set_fact:
+        ssl_enabled: "{{ ssl_cert.stat.exists }}"
+        ssl_cert_path: "/etc/letsencrypt/live/test.feuerwehr-kronshagen.de/fullchain.pem"
+        ssl_key_path: "/etc/letsencrypt/live/test.feuerwehr-kronshagen.de/privkey.pem"
+      when: ssl_cert.stat.exists
+    - name: Copy nginx main config
+      ansible.builtin.copy:
+        src: nginx/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        mode: "0755"
+      notify:
+        - Reload nginx
+    - name: Template sites-enabled production config
+      ansible.builtin.template:
+        src: nginx/sites-enabled/production.conf
+        dest: /etc/nginx/sites-enabled/production.conf
+        mode: "0755"
+      notify:
+        - Reload nginx
+    - name: Template sites-enabled test config
+      ansible.builtin.template:
+        src: nginx/sites-enabled/test.conf
+        dest: /etc/nginx/sites-enabled/test.conf
+        mode: "0755"
+        backup: true
+      notify:
+        - Check nginx config
+        - Reload nginx
+      register: template_result
+      changed_when: >
+        template_result.diff is defined
+        and template_result.diff|length > 0
+
+- name: Webserver-upload-files
+  hosts: all
+  become: true
+  tasks:
+    - name: Install rsync
+      ansible.builtin.apt:
+        name: rsync
+        state: present
+    - name: Get current git branch
+      ansible.builtin.set_fact:
+        branch: "{{ lookup('pipe', 'git symbolic-ref -q --short HEAD || git rev-parse --short HEAD') }}"
+    - name: "Ensure /var is accessible"
+      ansible.builtin.file:
+        path: /var
+        state: directory
+        mode: "0755"
+    - name: "Ensure /var/www is accessible"
+      ansible.builtin.file:
+        path: /var/www
+        state: directory
+        mode: "0755"
+    - name: "Ensure /var/www/features is accessible"
+      when: branch != "main"
+      ansible.builtin.file:
+        path: /var/www/features
+        state: directory
+        mode: "0755"
+    - name: "Ensure directory exists"
+      when: branch != "main"
+      ansible.builtin.file:
+        path: "/var/www/features/{{ branch }}"
+        state: directory
+        mode: "0755"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+    - name: Sync feature files
+      when: branch != "main"
+      ansible.posix.synchronize:
+        src: ../../../public/
+        dest: "/var/www/features/{{ branch }}"
+        delete: true
+        recursive: true
+        rsync_path: "rsync"
+        rsync_opts:
+          - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"
+    - name: "Ensure /var/www/production is accessible"
+      when: branch == "main"
+      ansible.builtin.file:
+        path: /var/www/production
+        state: directory
+        mode: "0755"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+    - name: Sync production files
+      when: branch == "main"
+      ansible.posix.synchronize:
+        src: ../../../public/
+        dest: /var/www/production/
+        delete: true
+        recursive: true
+        rsync_path: "rsync"
+        rsync_opts:
+          - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"

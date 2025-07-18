@@ -1,0 +1,6 @@
+---
+profile: basic
+use_default_rules: true
+enable_list:
+  - yaml
+offline: false

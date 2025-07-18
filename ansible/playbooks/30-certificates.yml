@@ -1,6 +1,7 @@
 ---
-- name: "Certificates-vserver"
-  hosts: vserver
+- name: Certificates-vserver
+  hosts: all
+  tags: ["vserver"]
   become: true
   vars:
     ssl_dir: /etc/letsencrypt/live/feuerwehr-kronshagen.de
@@ -18,14 +19,17 @@
         name: python3-certbot-nginx
         state: present
         update_cache: true
+    - name: Wait for nginx configuration to be active
+      ansible.builtin.wait_for:
+        timeout: 10
     - name: Obtain certificate using the nginx plugin
       become: true
       ansible.builtin.command: >
         certbot --nginx
         --non-interactive
         --agree-tos
+        --redirect
         --email homepage@feuerwehr-kronshagen.de
-        -d feuerwehr-kronshagen.de
         -d test.feuerwehr-kronshagen.de
       register: certbot_output
       changed_when: "'Congratulations!' in certbot_output.stdout"
@@ -33,15 +37,21 @@
       ansible.builtin.command: certbot renew --dry-run
       register: renew_test
       changed_when: "false"
+    - name: Install cron package
+      ansible.builtin.apt:
+        name: cron
+        state: present
+        update_cache: true
     - name: Ensure auto-renew cron job is present
       ansible.builtin.cron:
-        name: "Auto-renew Let's Encrypt certs"
+        name: Auto-renew Let's Encrypt certs
         job: "certbot renew --quiet --nginx && systemctl reload nginx"
         minute: 0
         hour: 3
 
-- name: "Certificates-local"
-  hosts: local
+- name: Certificates-local
+  hosts: all
+  tags: ["localhost"]
   become: true
   vars:
     ssl_dir: /etc/letsencrypt/live/localhost

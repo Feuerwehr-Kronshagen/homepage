@@ -1,5 +1,7 @@
 # ADR 0016: vServer Einfache Firewall (UFW) aktivieren
 
+Ersetzt durch [0021 vServer UFW deaktivieren](0021_vServer_UFW_deaktivieren.md)
+
 ## Kontext
 
 Auf unserem gemieteten Server möchten wir den Zugriff aus dem Internet absichern. Wir haben zwei verschiedene

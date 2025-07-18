@@ -1,5 +1,7 @@
 # ADR 0012: vServer Root-Login über SSH beibehalten
 
+Ersetzt durch [0019_vServer_Root-Login_deaktivieren.md](0019_vServer_Root-Login_deaktivieren.md)
+
 ## Kontext
 
 Unser gemieteter Server bei IONOS (mit Ubuntu-Betriebssystem) wird automatisch mit Ansible verwaltet (siehe ADR 0010).

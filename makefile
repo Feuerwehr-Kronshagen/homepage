@@ -64,11 +64,12 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 	brew install hugo \
 	&& brew install ansible \
 	&& brew install ansible-lint \
+	&& brew install sass/sass/sass \
 	&& brew install yamllint \
   && ansible-galaxy collection install -r ansible/requirements.yml
 
 81-dev-dependencies-ubuntu:
-	- pip install ansible ansible-lint yamllint \
+	- pip install ansible ansible-lint sass yamllint \
     && ansible-galaxy collection install -r ansible/requirements.yml
 
 99-build-local-test-with-branch-name:
@@ -81,7 +82,7 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 	hugo build -e test --baseURL="https://test.feuerwehr-kronshagen.de/$(shell git rev-parse --abbrev-ref HEAD)"
 
 99-build-vserver-prod:
-	hugo build --baseURL="https://feuerwehr-kronshagen.de"
+	hugo build -e test --baseURL="https://feuerwehr-kronshagen.de"
 
 99-ansible-vserver:
 	echo "deployment with ansible on vserver"

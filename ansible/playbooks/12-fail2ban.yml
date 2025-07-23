@@ -1,5 +1,5 @@
 ---
-- name: "Install and activate Fail2Ban"
+- name: Install and activate Fail2Ban
   hosts: all
   become: true
   handlers:
@@ -8,22 +8,27 @@
         name: fail2ban
         state: restarted
   tasks:
-    - name: "Install Fail2Ban"
+    - name: Install Fail2Ban
       ansible.builtin.package:
         name: fail2ban
         state: present
-    - name: "Copy jail.local"
+    - name: Copy jail.local
       ansible.builtin.copy:
-        src: fail2ban/jail.local
+        content: |
+          [DEFAULT]
+          bantime = 3600
+          findtime = 600
+          maxretry = 5
+          allowipv6 = false
+
+          [sshd]
+          enabled = true
+          backend = systemd
         dest: /etc/fail2ban/jail.local
-        mode: '0644'
+        mode: '0755'
       notify: Restart_fail2ban
-    - name: "Ensure Fail2Ban is enabled and running"
-      ansible.builtin.service:
+    - name: Ensure Fail2Ban is enabled and running (systemd)
+      ansible.builtin.systemd:
         name: fail2ban
         enabled: true
         state: started
-      register: fail2ban_status
-      changed_when: >
-        fail2ban_status.status.ActiveState is defined
-        and fail2ban_status.status.ActiveState != "active"

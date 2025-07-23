@@ -30,7 +30,7 @@ jobs:
           HUGO_ENVIRONMENT: test
         run: make 20-build-hugo-vserver-test
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: hugo-test-site
           path: ./public

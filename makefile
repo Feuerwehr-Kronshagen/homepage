@@ -58,9 +58,6 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 
 21-ansible-vserver-test: 99-ansible-vserver
 
-22-delete-vserver-test:
-	echo "deleting test deployment"
-
 30-build-hugo-vserver-prod:
 	hugo build -e test --minify --baseURL="https://feuerwehr-kronshagen.de"
 

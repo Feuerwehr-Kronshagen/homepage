@@ -1,15 +1,14 @@
-name: vserver-test
+name: cleanup-test
+
 on:
-  workflow_run:
-    workflows:
-      - "ansible-lint"
-      - "build-hugo-test"
-    types:
-      - completed
+  delete:
+    branches:
+      - '*'
 
 jobs:
-  vserver-test:
+  cleanup-test:
     runs-on: ubuntu-latest
+    if: github.event.ref != 'main'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -21,10 +20,5 @@ jobs:
         run: |
           pip install ansible ansible-lint yamllint \
           && ansible-galaxy collection install -r ansible/requirements.yml
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: hugo-test-site
-          path: ./public
-      - name: Ansible deployment
-        run: make 21-ansible-vserver-test
+      - name: Ansible delete test deployment
+        run: echo "Deleting test deployment on vserver"

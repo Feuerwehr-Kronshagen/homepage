@@ -73,5 +73,4 @@ jobs:
           name: hugo-prod-site
           path: ./public
       - name: Ansible deployment
-        run: make 31-ansible-vserver-prod
-
+        run: echo "Deploying to production server"

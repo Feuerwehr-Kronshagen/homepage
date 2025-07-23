@@ -56,12 +56,8 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 20-build-hugo-vserver-test:
 	hugo build -e test --baseURL="https://test.feuerwehr-kronshagen.de/$(shell git rev-parse --abbrev-ref HEAD)"
 
-21-ansible-vserver-test: 99-ansible-vserver
-
 30-build-hugo-vserver-prod:
 	hugo build -e test --minify --baseURL="https://feuerwehr-kronshagen.de"
-
-31-ansible-vserver-prod:  99-ansible-vserver
 
 80-dev-dependencies-macos:
 	brew install hugo \
@@ -76,7 +72,3 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 
 99-ansible-local:
 	ansible-playbook --limit local -i ansible/inventory.yml ansible/playbooks/*.yml
-
-99-ansible-vserver:
-	echo "deployment with ansible on vserver"
-	# ansible-playbook --limit vserver -i ansible/inventory.yml ansible/playbooks/*.yml

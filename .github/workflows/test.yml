@@ -72,5 +72,17 @@ jobs:
         with:
           name: hugo-test-site
           path: ./public
+      - name: Prepare SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.VSERVER_SSHKEY }}" > ~/.ssh/id_ed25519
+          sudo chmod 600  ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.VSERVER_HOST }} >> ~/.ssh/known_hosts
       - name: Ansible deployment
-        run: make 21-ansible-vserver-test
+        run: |
+          ansible-playbook \
+          --limit vserver \
+          -i "${{ secrets.VSERVER_HOST }} \
+          --user "${{ secrets.VSERVER_SSHUSER }}" \
+          --private-key ~/.ssh/id_rsa \
+          ansible/playbooks/*.yml

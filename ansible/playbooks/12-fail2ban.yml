@@ -15,7 +15,7 @@
     - name: "Ensure Fail2Ban is enabled and running"
       ansible.builtin.service:
         name: fail2ban
-        enabled: yes
+        enabled: true
         state: started
     - name: "Copy jail.local"
       ansible.builtin.copy:

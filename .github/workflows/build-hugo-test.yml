@@ -1,19 +1,9 @@
-name: Deploy Hugo site to Pages
+name: Build Hugo Test Site
 
 on:
   push:
-    branches: ["main"]
-
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+    branches-ignore:
+      - "main"
 
 defaults:
   run:
@@ -38,23 +28,9 @@ jobs:
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: test
-        run: |
-          hugo \
-            --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: make 20-build-hugo-vserver-test
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          name: hugo-test-site
           path: ./public
-
-  # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4

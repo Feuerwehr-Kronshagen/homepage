@@ -14,11 +14,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: Install Hugo CLI
-        run: sudo snap install hugo
-      - name: Install Dart Sass
-        run: sudo snap install dart-sass
       - name: Install dependencies
-        run: make 81-dev-dependencies-ubuntu
+        run: |
+          pip install ansible ansible-lint yamllint \
+          && ansible-galaxy collection install -r ansible/requirements.yml
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: hugo-test-site
+          path: ./public
       - name: Ansible deployment
-        run: make 20-deploy-vserver-test
+        run: make 21-ansible-vserver-test

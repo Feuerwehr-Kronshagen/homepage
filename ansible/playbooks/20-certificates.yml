@@ -41,7 +41,7 @@
         hour: 3
 
 - name: "Certificates-local"
-  hosts: local
+  hosts: localhost
   become: true
   vars:
     ssl_dir: /etc/letsencrypt/live/localhost

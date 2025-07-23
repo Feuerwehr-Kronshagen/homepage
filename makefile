@@ -71,4 +71,9 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 	hugo build -e test --baseURL="https://localhost:8443/features/$(shell git rev-parse --abbrev-ref HEAD)"
 
 99-ansible-local:
-	ansible-playbook --limit local -i ansible/inventory.yml ansible/playbooks/*.yml
+	ansible-playbook \
+	-i "localhost," \
+	--limit localhost \
+	--user root \
+	--private-key ~/.ssh/id_ed25519 \
+	 ansible/playbooks/*.yml

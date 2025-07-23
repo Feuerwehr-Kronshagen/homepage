@@ -43,7 +43,7 @@
         - Reload nginx
 
 - name: "Webserver-localhost-config"
-  hosts: local
+  hosts: localhost
   become: true
   handlers:
     - name: Reload nginx

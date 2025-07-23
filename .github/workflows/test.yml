@@ -82,7 +82,7 @@ jobs:
         run: |
           ansible-playbook \
           --limit vserver \
-          -i "${{ secrets.VSERVER_HOST }} \
+          -i "${{ secrets.VSERVER_HOST }}" \
           --user "${{ secrets.VSERVER_SSHUSER }}" \
           --private-key ~/.ssh/id_rsa \
           ansible/playbooks/*.yml

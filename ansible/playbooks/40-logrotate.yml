@@ -1,0 +1,44 @@
+---
+- name: "Configure Logrotate for Nginx and SSH logs"
+  hosts: all
+  become: true
+  tasks:
+    - name: "Ensure logrotate is installed"
+      ansible.builtin.package:
+        name: logrotate
+        state: present
+    - name: "Configure logrotate for nginx"
+      ansible.builtin.copy:
+        dest: /etc/logrotate.d/nginx
+        owner: root
+        group: root
+        mode: '0644'
+        content: |
+          /var/log/nginx/*.log {
+              size 20M
+              rotate 5
+              missingok
+              notifempty
+              create 0640 www-data adm
+              sharedscripts
+              postrotate
+                  [ -f /var/run/nginx.pid ] && kill -USR1 $(cat /var/run/nginx.pid)
+              endscript
+          }
+    - name: "Configure logrotate for SSH auth logs"
+      ansible.builtin.copy:
+        dest: /etc/logrotate.d/ssh-auth
+        owner: root
+        group: root
+        mode: '0644'
+        content: |
+          /var/log/auth.log /var/log/secure {
+              size 20M
+              rotate 5
+              missingok
+              notifempty
+              create 0640 syslog adm
+              postrotate
+                  systemctl reload rsyslog >/dev/null 2>&1 || true
+              endscript
+          }

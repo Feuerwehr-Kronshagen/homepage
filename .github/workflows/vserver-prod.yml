@@ -1,13 +1,14 @@
-name: vserver
+name: vserver-prod
 on:
   workflow_run:
-    workflows: [ "build-hugo-prod" ]
+    workflows:
+      - "ansible-lint"
+      - "build-hugo-prod"
     types:
       - completed
-    branches: [ "main" ]
 
 jobs:
-  ansible-deployment-production:
+  vserver-prod:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

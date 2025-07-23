@@ -1,7 +1,8 @@
-name: ansible.yml
+name: ansible-lint
 on:
   push:
-    branches: [ "*" ]
+    branches:
+      - "*"
 
 jobs:
   ansible-lint:

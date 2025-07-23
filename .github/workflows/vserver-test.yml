@@ -1,11 +1,11 @@
 name: vserver-test
 on:
   workflow_run:
-    workflows: [ "build-hugo-test" ]
+    workflows:
+      - "ansible-lint"
+      - "build-hugo-test"
     types:
       - completed
-    branches-ignore:
-      - "main"
 
 jobs:
   vserver-test:

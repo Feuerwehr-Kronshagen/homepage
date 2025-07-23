@@ -68,11 +68,6 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 	&& brew install yamllint \
   && ansible-galaxy collection install -r ansible/requirements.yml
 
-81-dev-dependencies-ubuntu:
-	apt install nodejs npm && npm install -g sass \
-	&& pip install ansible ansible-lint yamllint \
-  && ansible-galaxy collection install -r ansible/requirements.yml
-
 99-build-local-test-with-branch-name:
 	hugo build -e test --baseURL="https://localhost:8443/features/$(shell git rev-parse --abbrev-ref HEAD)"
 

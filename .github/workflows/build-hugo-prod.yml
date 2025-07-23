@@ -1,4 +1,4 @@
-name: Build Hugo Test Site
+name: build-hugo-prod
 
 on:
   push:
@@ -10,7 +10,7 @@ defaults:
     shell: bash
 
 jobs:
-  build:
+  build-hugo-prod:
     runs-on: ubuntu-latest
     steps:
       - name: Install Hugo CLI

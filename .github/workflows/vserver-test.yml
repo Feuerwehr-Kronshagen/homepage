@@ -1,11 +1,14 @@
-name: feature branch deployment
+name: vserver-test
 on:
-  push:
+  workflow_run:
+    workflows: [ "build-hugo-test" ]
+    types:
+      - completed
     branches-ignore:
       - "main"
 
 jobs:
-  ansible-deployment-test:
+  vserver-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

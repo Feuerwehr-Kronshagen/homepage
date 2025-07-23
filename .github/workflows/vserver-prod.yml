@@ -1,6 +1,9 @@
 name: vserver
 on:
-  push:
+  workflow_run:
+    workflows: [ "build-hugo-prod" ]
+    types:
+      - completed
     branches: [ "main" ]
 
 jobs:

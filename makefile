@@ -9,7 +9,7 @@
 
 ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 04-ansible-lint:
-	ansible-playbook ansible/playbooks/*.yml --syntax-check
+	ansible-playbook -i "localhost,vserver," ansible/playbooks/*.yml --syntax-check
 	ansible-lint ansible/*
 	yamllint ansible/*
 

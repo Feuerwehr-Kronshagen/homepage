@@ -78,11 +78,20 @@ jobs:
           echo "${{ secrets.VSERVER_SSHKEY }}" > ~/.ssh/id_ed25519
           sudo chmod 600  ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.VSERVER_HOST }} >> ~/.ssh/known_hosts
+      - name: Create Ansible vars file
+        run: |
+          echo "ansible_become_pass: '${{ secrets.VSERVER_SUDO_PASSWORD }}'" > ~/.ssh/secret.yml
       - name: Ansible deployment
         run: |
           ansible-playbook \
           -i "${{ secrets.VSERVER_HOST }}," \
           --limit "all:!localhost" \
+          --extra-vars "~/.ssh/secret.yml"
           --user "${{ secrets.VSERVER_SSHUSER }}" \
           --private-key ~/.ssh/id_ed25519 \
           ansible/playbooks/*.yml
+      - name: Cleanup sensitive files
+        if: always()
+        run: |
+          rm -f ~/.ssh/id_ed25519*
+          rm -f ~/.ssh/secret.yml

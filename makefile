@@ -75,5 +75,7 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 	-i "localhost," \
 	--limit localhost \
 	--user root \
+	-e "ansible_port=2222" \
 	--private-key ~/.ssh/id_ed25519 \
+	--ssh-extra-arg "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
 	 ansible/playbooks/*.yml

@@ -116,10 +116,11 @@
       ansible.builtin.file:
         path: "/var/www/features/{{ branch }}"
         state: directory
-        mode: "0777"
+        mode: "0755"
+        owner: {{ ansible_user | default('runner') }}
+        group: {{ ansible_user | default('runner') }}
     - name: Sync feature files
       when: branch != "main"
-      become: true
       ansible.posix.synchronize:
         src: ../../../public/
         dest: "/var/www/features/{{ branch }}"

@@ -111,6 +111,21 @@
         rsync_path: "rsync"
         rsync_opts:
           - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"
+    - name: Ensure /var/www is accessible
+      ansible.builtin.file:
+        path: /var
+        state: directory
+        mode: "0755" 
+    - name: Ensure /var/www is accessible
+      ansible.builtin.file:
+        path: /var/www
+        state: directory
+        mode: "0755"
+    - name: Ensure /var/www is accessible
+      ansible.builtin.file:
+        path: /var/www/features
+        state: directory
+        mode: "0755"
     - name: "Ensure directory exists"
       when: branch != "main"
       ansible.builtin.file:

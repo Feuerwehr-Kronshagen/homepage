@@ -114,9 +114,9 @@
     - name: "Ensure directory exists"
       when: branch != "main"
       ansible.builtin.file:
-      path: "/var/www/features/{{ branch }}"
-      state: directory
-      mode: "0644"
+        path: "/var/www/features/{{ branch }}"
+        state: directory
+        mode: "0644"
     - name: Sync feature files
       when: branch != "main"
       ansible.posix.synchronize:

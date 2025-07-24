@@ -19,7 +19,7 @@
         state: started
     - name: "Copy jail.local"
       ansible.builtin.copy:
-        src: files/fail2ban/jail.local
+        src: fail2ban/jail.local
         dest: /etc/fail2ban/jail.local
         owner: root
         group: root

@@ -116,7 +116,7 @@
       ansible.builtin.file:
         path: "/var/www/features/{{ branch }}"
         state: directory
-        mode: "0666"
+        mode: "0744"
     - name: Sync feature files
       when: branch != "main"
       become: true

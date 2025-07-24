@@ -117,8 +117,8 @@
         path: "/var/www/features/{{ branch }}"
         state: directory
         mode: "0755"
-        owner: {{ ansible_user | default('runner') }}
-        group: {{ ansible_user | default('runner') }}
+        owner: "{{ ansible_user | default('runner') }}"
+        group: "{{ ansible_user | default('runner') }}"
     - name: Sync feature files
       when: branch != "main"
       ansible.posix.synchronize:

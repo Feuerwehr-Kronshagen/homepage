@@ -102,7 +102,7 @@
         branch: "{{ lookup('pipe', 'git rev-parse --abbrev-ref HEAD') }}"
     - name: Sync production files
       when: branch == "main"
-      become: false
+      become: true
       ansible.posix.synchronize:
         src: ../../../public/
         dest: /var/www/production/
@@ -119,6 +119,7 @@
         mode: "0644"
     - name: Sync feature files
       when: branch != "main"
+      become: true
       ansible.posix.synchronize:
         src: ../../../public/
         dest: "/var/www/features/{{ branch }}"

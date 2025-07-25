@@ -1,6 +1,7 @@
 ---
 - name: "Certificates-vserver"
-  hosts: vserver
+  hosts: all
+  tags: [ "vserver" ]
   become: true
   vars:
     ssl_dir: /etc/letsencrypt/live/feuerwehr-kronshagen.de
@@ -41,7 +42,8 @@
         hour: 3
 
 - name: "Certificates-local"
-  hosts: localhost
+  hosts: all
+  tags: [ "localhost" ]
   become: true
   vars:
     ssl_dir: /etc/letsencrypt/live/localhost

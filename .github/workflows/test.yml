@@ -85,8 +85,7 @@ jobs:
         run: |
           ansible-playbook \
           -i "${{ secrets.VSERVER_HOST }}," \
-          --limit "!localhost" \
-          --inventory-aliases vserver="${{ secrets.VSERVER_HOST }}" \
+          --skip-tags "localhost" \
           --become-password-file ~/.ssh/password.txt \
           --user "${{ secrets.VSERVER_SSHUSER }}" \
           --private-key ~/.ssh/id_ed25519 \

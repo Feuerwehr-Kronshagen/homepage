@@ -100,17 +100,6 @@
     - name: Get current git branch
       ansible.builtin.set_fact:
         branch: "{{ lookup('pipe', 'git rev-parse --abbrev-ref HEAD') }}"
-    - name: Sync production files
-      when: branch == "main"
-      become: true
-      ansible.posix.synchronize:
-        src: ../../../public/
-        dest: /var/www/production/
-        delete: true
-        recursive: true
-        rsync_path: "rsync"
-        rsync_opts:
-          - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"
     - name: "Ensure /var is accessible"
       ansible.builtin.file:
         path: /var
@@ -122,6 +111,7 @@
         state: directory
         mode: "0755"
     - name: "Ensure /var/www/features is accessible"
+      when: branch != "main"
       ansible.builtin.file:
         path: /var/www/features
         state: directory
@@ -132,13 +122,31 @@
         path: "/var/www/features/{{ branch }}"
         state: directory
         mode: "0755"
-        owner: "{{ ansible_user | default('runner') }}"
-        group: "{{ ansible_user | default('runner') }}"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
     - name: Sync feature files
       when: branch != "main"
       ansible.posix.synchronize:
         src: ../../../public/
         dest: "/var/www/features/{{ branch }}"
+        delete: true
+        recursive: true
+        rsync_path: "rsync"
+        rsync_opts:
+          - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"
+    - name: "Ensure /var/www/production is accessible"
+      when: branch == "main"
+      ansible.builtin.file:
+        path: /var/www/production
+        state: directory
+        mode: "0755"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+    - name: Sync production files
+      when: branch == "main"
+      ansible.posix.synchronize:
+        src: ../../../public/
+        dest: /var/www/production/
         delete: true
         recursive: true
         rsync_path: "rsync"

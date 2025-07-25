@@ -76,7 +76,7 @@
         dest: /etc/nginx/sites-enabled/
         owner: root
         group: root
-        mode: "0644"
+        mode: "0755"
       notify:
         - Reload nginx
     - name: Copy sites-enabled test config
@@ -85,7 +85,7 @@
         dest: /etc/nginx/sites-enabled/
         owner: root
         group: root
-        mode: "0644"
+        mode: "0755"
       notify:
         - Reload nginx
 

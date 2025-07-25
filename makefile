@@ -73,7 +73,7 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 99-ansible-local:
 	ansible-playbook \
 	-i "localhost," \
-	--limit localhost \
+	--limit "!vserver" \
 	--user root \
 	-e "ansible_port=2222" \
 	--private-key ~/.ssh/id_ed25519 \

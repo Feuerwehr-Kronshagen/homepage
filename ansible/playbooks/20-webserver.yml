@@ -3,46 +3,44 @@
   hosts: all
   become: true
   handlers:
-    - name: "Reload nginx"
+    - name: Reload nginx
       ansible.builtin.service:
         name: nginx
         state: reloaded
   tasks:
-    - name: "Install Nginx"
+    - name: Install Nginx
       ansible.builtin.apt:
         name: nginx
         state: present
         update_cache: true
-    - name: "Ensure Nginx is started and enabled"
+    - name: Ensure Nginx is started and enabled
       ansible.builtin.service:
         name: nginx
         state: started
         enabled: true
-    - name: "Ensure production directory exists"
+    - name: Ensure production directory exists
       ansible.builtin.file:
         path: /var/www/production
         state: directory
-        mode: "0644"
-    - name: "Ensure features directory exists"
+        mode: "0755"
+    - name: Ensure features directory exists
       ansible.builtin.file:
         path: /var/www/features
         state: directory
-        mode: "0644"
-    - name: "Remove default site from sites-enabled"
+        mode: "0755"
+    - name: Remove default site from sites-enabled
       ansible.builtin.file:
         path: /etc/nginx/sites-enabled/default
         state: absent
-    - name: "Copy nginx main config"
+    - name: Copy nginx main config
       ansible.builtin.copy:
         src: nginx/nginx.conf
         dest: /etc/nginx/nginx.conf
-        owner: root
-        group: root
-        mode: "0644"
+        mode: "0755"
       notify:
         - Reload nginx
 
-- name: "Webserver-localhost-config"
+- name: Webserver-localhost-config
   hosts: all
   tags: ["localhost"]
   become: true
@@ -56,39 +54,52 @@
       ansible.builtin.copy:
         src: nginx/sites-enabled/localhost.conf
         dest: /etc/nginx/sites-enabled/
-        owner: root
-        group: root
-        mode: "0644"
+        mode: "0755"
       notify:
         - Reload nginx
 
-- name: "Webserver-vserver-config"
+- name: Webserver-vserver-config
   hosts: all
   tags: ["vserver"]
   become: true
+  vars:
+    nginx_config_path: "/etc/nginx/sites-enabled"
   handlers:
+    - name: Check nginx config
+      ansible.builtin.command: nginx -t
+      changed_when: false
+      register: nginx_config_test
+      failed_when: nginx_config_test.rc != 0
     - name: Reload nginx
       ansible.builtin.service:
         name: nginx
         state: reloaded
   tasks:
+    - name: Check if SSL certificate exists
+      ansible.builtin.stat:
+        path: "/etc/letsencrypt/live/test.feuerwehr-kronshagen.de/fullchain.pem"
+      register: ssl_cert
+    - name: Set SSL facts
+      ansible.builtin.set_fact:
+        ssl_enabled: "{{ ssl_cert.stat.exists }}"
+        ssl_cert_path: "/etc/letsencrypt/live/test.feuerwehr-kronshagen.de/fullchain.pem"
+        ssl_key_path: "/etc/letsencrypt/live/test.feuerwehr-kronshagen.de/privkey.pem"
+      when: ssl_cert.stat.exists
     - name: Copy sites-enabled production config
       ansible.builtin.copy:
         src: nginx/sites-enabled/production.conf
         dest: /etc/nginx/sites-enabled/
-        owner: root
-        group: root
         mode: "0755"
       notify:
         - Reload nginx
     - name: Copy sites-enabled test config
-      ansible.builtin.copy:
-        src: nginx/sites-enabled/test.conf
-        dest: /etc/nginx/sites-enabled/
-        owner: root
-        group: root
+      ansible.builtin.template:
+        src: nginx/sites-enabled/test.conf.j2
+        dest:  "{{ nginx_config_path }}/test.conf"
         mode: "0755"
+        backup: yes
       notify:
+        - Check nginx config
         - Reload nginx
 
 - name: "Webserver-upload-files"

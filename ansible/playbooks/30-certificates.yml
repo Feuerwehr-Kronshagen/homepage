@@ -28,6 +28,7 @@
         certbot --nginx
         --non-interactive
         --agree-tos
+        --redirect
         --email homepage@feuerwehr-kronshagen.de
         -d test.feuerwehr-kronshagen.de
       register: certbot_output

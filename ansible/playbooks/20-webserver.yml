@@ -95,9 +95,9 @@
     - name: Copy sites-enabled test config
       ansible.builtin.template:
         src: nginx/sites-enabled/test.conf.j2
-        dest:  "{{ nginx_config_path }}/test.conf"
+        dest: "{{ nginx_config_path }}/test.conf"
         mode: "0755"
-        backup: yes
+        backup: true
       notify:
         - Check nginx config
         - Reload nginx

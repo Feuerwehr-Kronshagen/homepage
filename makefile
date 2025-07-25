@@ -72,7 +72,7 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 
 99-install-ansible-dependencies:
 	pip install ansible ansible-lint yamllint
-	ansible-galaxy collection install -r ansible/requirements.yml
+	ansible-galaxy collection install -r requirements.yml
 
 99-ansible-local:
 	ansible-playbook \

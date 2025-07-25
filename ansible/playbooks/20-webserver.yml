@@ -2,11 +2,6 @@
 - name: "Webserver-default-config"
   hosts: all
   become: true
-  handlers:
-    - name: Reload nginx
-      ansible.builtin.service:
-        name: nginx
-        state: reloaded
   tasks:
     - name: Install Nginx
       ansible.builtin.apt:
@@ -27,13 +22,6 @@
       ansible.builtin.file:
         path: /etc/nginx/sites-enabled/default
         state: absent
-    - name: Copy nginx main config
-      ansible.builtin.copy:
-        src: nginx/nginx.conf
-        dest: /etc/nginx/nginx.conf
-        mode: "0755"
-      notify:
-        - Reload nginx
 
 - name: Webserver-localhost-config
   hosts: all
@@ -45,6 +33,13 @@
         name: nginx
         state: reloaded
   tasks:
+    - name: Copy nginx main config
+      ansible.builtin.copy:
+        src: nginx/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        mode: "0755"
+      notify:
+        - Reload nginx
     - name: Copy sites-enabled local config
       ansible.builtin.copy:
         src: nginx/sites-enabled/localhost.conf
@@ -69,11 +64,6 @@
       ansible.builtin.service:
         name: nginx
         state: reloaded
-    - name: Ensure Nginx is started and enabled
-      ansible.builtin.service:
-        name: nginx
-        state: started
-        enabled: true
   tasks:
     - name: Check if SSL certificate exists
       ansible.builtin.stat:
@@ -85,6 +75,13 @@
         ssl_cert_path: "/etc/letsencrypt/live/test.feuerwehr-kronshagen.de/fullchain.pem"
         ssl_key_path: "/etc/letsencrypt/live/test.feuerwehr-kronshagen.de/privkey.pem"
       when: ssl_cert.stat.exists
+    - name: Copy nginx main config
+      ansible.builtin.copy:
+        src: nginx/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        mode: "0755"
+      notify:
+        - Reload nginx
     - name: Copy sites-enabled production config
       ansible.builtin.copy:
         src: nginx/sites-enabled/production.conf.j2
@@ -92,7 +89,6 @@
         mode: "0755"
       notify:
         - Reload nginx
-        - Ensure Nginx is started and enabled
     - name: Copy sites-enabled test config
       ansible.builtin.template:
         src: nginx/sites-enabled/test.conf.j2
@@ -102,7 +98,6 @@
       notify:
         - Check nginx config
         - Reload nginx
-        - Ensure Nginx is started and enabled
 
 - name: Webserver-upload-files
   hosts: all

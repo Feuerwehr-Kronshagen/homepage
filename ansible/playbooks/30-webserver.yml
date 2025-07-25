@@ -44,7 +44,7 @@
 
 - name: "Webserver-localhost-config"
   hosts: all
-  tags: [ "localhost" ]
+  tags: ["localhost"]
   become: true
   handlers:
     - name: Reload nginx
@@ -64,7 +64,7 @@
 
 - name: "Webserver-vserver-config"
   hosts: all
-  tags: [ "vserver" ]
+  tags: ["vserver"]
   become: true
   handlers:
     - name: Reload nginx

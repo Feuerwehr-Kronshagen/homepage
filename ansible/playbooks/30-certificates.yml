@@ -19,6 +19,9 @@
         name: python3-certbot-nginx
         state: present
         update_cache: true
+    - name: Wait for nginx configuration to be active
+      ansible.builtin.wait_for:
+        timeout: 10
     - name: Obtain certificate using the nginx plugin
       become: true
       ansible.builtin.command: >

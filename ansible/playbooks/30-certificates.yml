@@ -1,6 +1,7 @@
 ---
 - name: "Certificates-vserver"
-  hosts: vserver
+  hosts: all
+  tags: ["vserver"]
   become: true
   vars:
     ssl_dir: /etc/letsencrypt/live/feuerwehr-kronshagen.de
@@ -18,14 +19,17 @@
         name: python3-certbot-nginx
         state: present
         update_cache: true
+    - name: Wait for nginx configuration to be active
+      ansible.builtin.wait_for:
+        timeout: 10
     - name: Obtain certificate using the nginx plugin
       become: true
       ansible.builtin.command: >
         certbot --nginx
         --non-interactive
         --agree-tos
+        --redirect
         --email homepage@feuerwehr-kronshagen.de
-        -d feuerwehr-kronshagen.de
         -d test.feuerwehr-kronshagen.de
       register: certbot_output
       changed_when: "'Congratulations!' in certbot_output.stdout"
@@ -41,7 +45,8 @@
         hour: 3
 
 - name: "Certificates-local"
-  hosts: local
+  hosts: all
+  tags: ["localhost"]
   become: true
   vars:
     ssl_dir: /etc/letsencrypt/live/localhost

@@ -52,8 +52,6 @@
   hosts: all
   tags: ["vserver"]
   become: true
-  vars:
-    nginx_config_path: "/etc/nginx/sites-enabled"
   handlers:
     - name: Check nginx config
       ansible.builtin.command: nginx -t
@@ -82,17 +80,17 @@
         mode: "0755"
       notify:
         - Reload nginx
-    - name: Copy sites-enabled production config
-      ansible.builtin.copy:
+    - name: Template sites-enabled production config.j2
+      ansible.builtin.template:
         src: nginx/sites-enabled/production.conf.j2
-        dest: /etc/nginx/sites-enabled/
+        dest: /etc/nginx/sites-enabled/production.conf
         mode: "0755"
       notify:
         - Reload nginx
-    - name: Copy sites-enabled test config
+    - name: Template sites-enabled test config.j2
       ansible.builtin.template:
         src: nginx/sites-enabled/test.conf.j2
-        dest: "{{ nginx_config_path }}/test.conf"
+        dest: /etc/nginx/sites-enabled/test.conf
         mode: "0755"
         backup: true
       notify:

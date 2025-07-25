@@ -45,9 +45,7 @@ jobs:
         with:
           python-version: '3.x'
       - name: Install dependencies
-        run: |
-          pip install ansible ansible-lint yamllint \
-          && ansible-galaxy collection install -r requirements.yml
+        run: make 99-install-ansible-dependencies
       - name: Ansible lint
         run: make 04-ansible-lint
 
@@ -64,9 +62,7 @@ jobs:
         with:
           python-version: '3.x'
       - name: Install dependencies
-        run: |
-          pip install ansible ansible-lint yamllint \
-          && ansible-galaxy collection install -r ansible/requirements.yml
+        run: make 99-install-ansible-dependencies
       - name: Download Build Artifact
         uses: actions/download-artifact@v4
         with:

@@ -70,6 +70,10 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 99-build-local-test-with-branch-name:
 	hugo build -e test --baseURL="https://localhost:8443/features/$(shell git rev-parse --abbrev-ref HEAD)"
 
+99-install-ansible-dependencies:
+	pip install ansible ansible-lint yamllint
+	ansible-galaxy collection install -r ansible/requirements.yml
+
 99-ansible-local:
 	ansible-playbook \
   -vvv \

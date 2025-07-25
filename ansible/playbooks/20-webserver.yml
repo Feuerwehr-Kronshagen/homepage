@@ -87,7 +87,7 @@
       when: ssl_cert.stat.exists
     - name: Copy sites-enabled production config
       ansible.builtin.copy:
-        src: nginx/sites-enabled/production.conf
+        src: nginx/sites-enabled/production.conf.j2
         dest: /etc/nginx/sites-enabled/
         mode: "0755"
       notify:
@@ -102,7 +102,7 @@
         - Check nginx config
         - Reload nginx
 
-- name: "Webserver-upload-files"
+- name: Webserver-upload-files
   hosts: all
   become: true
   tasks:

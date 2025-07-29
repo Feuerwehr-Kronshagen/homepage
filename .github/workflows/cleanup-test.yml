@@ -5,6 +5,10 @@ on:
     branches-ignore:
       - "main"
 
+permissions:
+  contents: read
+  deployments: write
+
 jobs:
   cleanup-test:
     runs-on: ubuntu-latest
@@ -13,13 +17,6 @@ jobs:
       - name: Echo deleted branch name
         run: |
           echo "Gelöschter Branch: ${{ github.event.ref }}"
-      - name: Delete GitHub Environment
-        run: >
-          gh api
-          -X DELETE
-          /repos/${{ github.repository }}/environments/test/${{ github.event.ref }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Set up Python
@@ -48,6 +45,13 @@ jobs:
           --private-key ~/.ssh/id_ed25519
           -e "deleted_branch=${{ github.event.ref }}"
           ansible/cleanup/*.yml
+      - name: Delete GitHub Environment
+        run: >
+          gh api
+          -X DELETE
+          /repos/${{ github.repository }}/environments/test%2F${{ github.event.ref }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Cleanup sensitive files
         if: always()
         run: |

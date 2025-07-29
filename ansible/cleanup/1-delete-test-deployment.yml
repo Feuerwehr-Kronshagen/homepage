@@ -3,11 +3,8 @@
   hosts: all
   become: true
   tasks:
-    - name: Get current git branch
-      ansible.builtin.set_fact:
-        branch: "{{ lookup('pipe', 'git symbolic-ref -q --short HEAD || git rev-parse --short HEAD') }}"
     - name: Remove feature deployment directory
-      when: branch != "" and branch != "main"
+      when: deleted_branch is defined and deleted_branch != "main"
       ansible.builtin.file:
-        path: "/var/www/features/{{ branch }}"
+        path: "/var/www/features/{{ deleted_branch }}"
         state: absent

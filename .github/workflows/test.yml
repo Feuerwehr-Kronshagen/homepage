@@ -50,6 +50,9 @@ jobs:
     needs:
       - ansible-lint
       - build-hugo-test
+    environment:
+      name: test/${{ github.ref_name }}
+      url: https://test.feuerwehr-kronshagen.de/${{ github.ref_name }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -75,13 +78,13 @@ jobs:
         run: |
           echo "${{ secrets.VSERVER_SUDO_PASSWORD }}" > ~/.ssh/password.txt
       - name: Ansible deployment
-        run: |
-          ansible-playbook \
-          -i "${{ secrets.VSERVER_HOST }}," \
-          --skip-tags "localhost" \
-          --become-password-file ~/.ssh/password.txt \
-          --user "${{ secrets.VSERVER_SSHUSER }}" \
-          --private-key ~/.ssh/id_ed25519 \
+        run: >
+          ansible-playbook
+          -i "${{ secrets.VSERVER_HOST }},"
+          --skip-tags "localhost"
+          --become-password-file ~/.ssh/password.txt
+          --user "${{ secrets.VSERVER_SSHUSER }}"
+          --private-key ~/.ssh/id_ed25519
           ansible/playbooks/*.yml
       - name: Cleanup sensitive files
         if: always()

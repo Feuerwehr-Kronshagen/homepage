@@ -1,12 +1,12 @@
-## Beschreibung
+# Beschreibung
 
 <!-- Beschreiben Sie die Änderungen -->
 
-## Wie wurde getestet?
+# Wie wurde getestet?
 
 <!-- Beschreiben Sie, wie Sie Ihre Änderungen getestet haben -->
 
-## Checkliste
+# Checkliste
 - [ ] Ich habe die Coding Standards eingehalten
 - [ ] Ich habe Tests hinzugefügt
 - [ ] Ich habe die Dokumentation aktualisiert

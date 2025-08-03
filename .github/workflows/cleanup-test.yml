@@ -45,13 +45,6 @@ jobs:
           --private-key ~/.ssh/id_ed25519
           -e "deleted_branch=${{ github.event.ref }}"
           ansible/cleanup/*.yml
-      - name: Delete GitHub Environment
-        run: >
-          gh api
-          -X DELETE
-          /repos/${{ github.repository }}/environments/test%2F${{ github.event.ref }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Cleanup sensitive files
         if: always()
         run: |

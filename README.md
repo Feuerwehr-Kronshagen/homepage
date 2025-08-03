@@ -67,3 +67,24 @@ nach der ADR-Nummer versehen.
 ```bash
 make 01-dev-server
 ```
+
+## Deployment
+
+Die Website wird über GitHub-Actions gebaut und mit Ansible deployed.
+
+### Rollback
+
+Ein Rollback sollte nur im Notfall ausgeführt werden. Lies diese Anleitung zuerst einmal komplett durch.
+
+1. Öffne [die Prod-Deployments](https://github.com/Feuerwehr-Kronshagen/homepage/deployments/production)
+2. Wähle einen Stand aus, auf den ein Rollback stattfinden soll. Graue Haken zeigen an, dass das Deployment in der
+   Vergangenheit erfolgreich war. So ein Deployment sollte gewählt werden. Das aktuelle Deployment wird mit "active"
+   gekennzeichnet.
+3. Klicke die 3 Punkte am Ende der Zeile des ausgesuchten Stands
+4. Klicke "View Workflow run"
+5. Eine neue Seite öffnet sich
+6. Klicke den Button "Re-run all Jobs" oben auf der Seite
+7. Im Modal "Enable debug logging" nicht anhaken und "Re-run jobs" klicken
+8. Zuerst wird die Anwendung gebaut. Deshalb taucht das neue Deployment nicht sofort auf. Nach einer Weile erscheint
+   ein neues Deployment mit "active". Die Commit-Message des neuen Deployments ist identisch zum gewählten
+   ehemaligen Deployment.

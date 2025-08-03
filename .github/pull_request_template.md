@@ -12,4 +12,4 @@
 - [ ] Ich habe die Dokumentation aktualisiert
 - [ ] Ich habe den Code selbst überprüft
 - [ ] Die Commit-Nachrichten sind nach Conventional Commits formatiert
-- [ ] Ich habe gesquasht Commits verwendet, um die Historie sauber zu halten
+- [ ] Ich habe die Commits gesquasht, um die Historie sauber zu halten

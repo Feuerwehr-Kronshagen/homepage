@@ -53,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: test
-      url: https://test.feuerwehr-kronshagen.de
+      url: https://test.feuerwehr-kronshagen.de/${{ github.ref_name }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

@@ -4,22 +4,20 @@ date = 2021-08-28T00:00:00-00:00
 draft = false
 +++
 
-Feuerwehr Kronshagen
+## Kontakt
 
-Nußbaumkoppel 1
-
-24119 Kronshagen
-
+**Feuerwehr Kronshagen**\
+Nußbaumkoppel 1\
+24119 Kronshagen\
 Deutschland
 
-- Tel: +49 (0) 431 5866222
-- Fax: +49 (0) 431 5866201
-- www.feuerwehr-kronshagen.de
-- info@feuerwehr-kronshagen.de
+[Tel: +49 (0) 431 5866222](tel:+494315866222)\
+[Fax: +49 (0) 431 5866201](tel:+494315866201)\
+[info@feuerwehr-kronshagen.de](mailto:info@feuerwehr-kronshagen.de)
 
 ## Gemeindewehrführer
 
-Christian Esselbach (gemeindewehrfuehrer@feuerwehr-kronshagen.de)
+Christian Esselbach ([gemeindewehrfuehrer@feuerwehr-kronshagen.de](mailto:gemeindewehrfuehrer@feuerwehr-kronshagen.de))
 
 ## Haftungsausschluss
 

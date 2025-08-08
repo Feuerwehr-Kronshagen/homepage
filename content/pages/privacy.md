@@ -12,21 +12,16 @@ verweisen wir auf die Definitionen im Art. 4 der Datenschutzgrundverordnung (DSG
 
 ## Verantwortlicher
 
-Christian Esselbach (Gemeindewehrführer)
-
-Freiwillige Feuerwehr Kronshagen
-
-Nußbaumkoppel 1
-
-24119 Kronshagen
-
+Christian Esselbach (Gemeindewehrführer)\
+Freiwillige Feuerwehr Kronshagen\
+Nußbaumkoppel 1\
+24119 Kronshagen\
 Deutschland
 
-E-Mail-Adresse: gemeindewehrfuehrer@feuerwehr-kronshagen.de
-
-Datenschutzbeauftragter: Christian Esselbach (datenschutz@feuerwehr-kronshagen.de)
-
-Link zum Impressum: https://www.feuerwehr-kronshagen.de/impressum
+E-Mail-Adresse: [gemeindewehrfuehrer@feuerwehr-kronshagen.de](mailto:gemeindewehrfuehrer@feuerwehr-kronshagen.de)\
+Datenschutzbeauftragter: Christian
+Esselbach ([datenschutz@feuerwehr-kronshagen.de](mailto:datenschutz@feuerwehr-kronshagen.de))\
+Link zum Impressum: [https://feuerwehr-kronshagen.de/impressum](https://feuerwehr-kronshagen.de/impressum)
 
 ## Arten der verarbeiteten Daten:
 

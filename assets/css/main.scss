@@ -65,6 +65,7 @@ a {
 p {
   font-size: 1rem;
   font-weight: 400;
+  margin-bottom: 0.5rem;
 }
 
 section.content {
@@ -115,4 +116,5 @@ section.content {
 @import 'header';
 @import 'hero';
 @import 'social-media';
+@import 'single';
 @import 'footer';

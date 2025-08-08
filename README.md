@@ -62,15 +62,28 @@ nach der ADR-Nummer versehen.
 
 [Wireframes (erste Skizzen)](docs/design/wireframes.md)
 
-## Entwicklung
-
-```bash
-make 01-dev-server
-```
-
 ## Deployment
 
 Die Website wird über GitHub-Actions gebaut und mit Ansible deployed.
+
+### Zertifikate
+
+Damit die Website mit HTTPS und ohne Sicherheitswarnungen aufgerufen werden kann, müssen SSL-Zertifikate auf dem
+Server hinterlegt sein. Dies geschieht automatisch durch den [Certbot](https://certbot.eff.org/) mit
+[Letsencrypt](https://letsencrypt.org/de/).
+
+Um das Neugenerieren von Zertifikaten anzustoßen, gibt es eine GitHub-Action.
+
+1. Öffne den
+   [Certificates-Workflow](https://github.com/Feuerwehr-Kronshagen/homepage/actions/workflows/certificates.yml)
+2. Klicke oben rechts auf den Button "Run workflow" (wenn sichtbar).
+   Falls du ihn nicht siehst, prüfe, ob du im richtigen Branch bist (z.B. main) und über die nötigen Berechtigungen
+   verfügst.
+3. Wähle (falls vorhanden) den Branch aus, gegen den die Action ausgeführt werden soll (normalerweise main).
+4. Klicke anschließend auf "Run workflow".
+5. Die Action wird gestartet und durchläuft mehrere Schritte.
+6. Es kann einige Minuten dauern, bis das neue Deployment unter den Deployments sichtbar wird.
+7. Das neue Deployment hat denselben Commit wie das vorherige, aber den Status "active".
 
 ### Rollback
 
@@ -88,3 +101,9 @@ Ein Rollback sollte nur im Notfall ausgeführt werden. Lies diese Anleitung zuer
 8. Zuerst wird die Anwendung gebaut. Deshalb taucht das neue Deployment nicht sofort auf. Nach einer Weile erscheint
    ein neues Deployment mit "active". Die Commit-Message des neuen Deployments ist identisch zum gewählten
    ehemaligen Deployment.
+
+## Entwicklung
+
+```bash
+make 01-dev-server
+```

@@ -1,0 +1,13 @@
+content             @Feuerwehr-Kronshagen/vorstand
+LICENSE             @Feuerwehr-Kronshagen/vorstand
+
+hugo.toml           @Feuerwehr-Kronshagen/dev
+makefile            @Feuerwehr-Kronshagen/dev
+requirements.yml    @Feuerwehr-Kronshagen/dev
+assets              @Feuerwehr-Kronshagen/dev
+i18n                @Feuerwehr-Kronshagen/dev
+layout              @Feuerwehr-Kronshagen/dev
+static              @Feuerwehr-Kronshagen/dev
+
+.github/workflows   @Feuerwehr-Kronshagen/ops
+.ansible            @Feuerwehr-Kronshagen/ops

@@ -46,10 +46,41 @@ jobs:
       - name: Ansible lint
         run: make 04-ansible-lint
 
+  check-if-ansible-files-changed:
+    runs-on: ubuntu-latest
+    outputs:
+      ansible_changed: ${{ steps.ansible.outputs.ansible_changed }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: fetch main branch
+        run: git fetch origin main
+      - name: Check if ansible files changed
+        id: ansible
+        run: >
+          echo "ansible_changed=$(git diff --name-only origin/main...HEAD |
+            grep -q '^ansible/' && echo true || echo false)" >> $GITHUB_OUTPUT
+
+  check-if-github-actions-changed:
+    runs-on: ubuntu-latest
+    outputs:
+      github_changed: ${{ steps.github.outputs.github_changed }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: fetch main branch
+        run: git fetch origin main
+      - name: Check if github actions changed
+        id: github
+        run: >
+          echo "github_changed=$(git diff --name-only origin/main...HEAD |
+            grep -q '^.github/' && echo true || echo false)" >> $GITHUB_OUTPUT
+
   vserver-test:
     needs:
       - ansible-lint
       - build-hugo-test
+    if: needs.check.outputs.ansible_changed == 'false' && needs.check.outputs.github_changed == 'false'
     runs-on: ubuntu-latest
     environment:
       name: test

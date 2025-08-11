@@ -7,14 +7,33 @@ gesellschaftlichen Lebens in Kronshagen. Besonders stolz sind wir auf unsere Jug
 Möglichkeit bietet, frühzeitig Verantwortung zu übernehmen. Durch regelmäßige Übungen und spannende Aktivitäten fördern
 wir Teamgeist und Engagement und bereiten die nächste Generation auf ihre zukünftigen Aufgaben vor.
 
-## Erste Schritte (für Kameradinnen und Kameraden)
+## Erste Schritte (für alle Kameradinnen und Kameraden)
 
-Achtung: Alles ist offen einsehbar!
+**Wichtig:** Alles, was hier auf Github steht, ist öffentlich einsehbar!
 
-Alles, was auf Github eingetragen wird, ist und bleibt öffentlich. Bitte greift für interne Kommunikation auf
-bekannte Kanäle zurück.
+Alle Informationen, die hier eingetragen werden, sind öffentlich sichtbar und können nicht wieder versteckt werden.
 
-1. [Grundbegriffe](./docs/erste-schritte/Grundbegriffe.md)
+- Für interne Gespräche nutzt bitte die bekannten Kanäle.
+- [Hier sind die wichtigsten Begriffe erklärt](./docs/erste-schritte/Grundbegriffe.md)
+- Es gibt ein [besonderes Verzeichnis (Repository)](https://github.com/Feuerwehr-Kronshagen/private), auf das nur
+  Mitglieder der [Organisation](https://github.com/Feuerwehr-Kronshagen) Zugriff haben.
+
+### Aufgaben und Planung
+
+Es gibt ein [Projekt](https://github.com/orgs/Feuerwehr-Kronshagen/projects/1), in dem alle Aufgaben
+aufgelistet sind.
+
+Die Aufgaben (Tickets) können entweder
+
+- öffentlich sichtbar sein: [Homepage-Verzeichnis](https://github.com/Feuerwehr-Kronshagen/homepage),
+- oder nur für Mitglieder zugänglich sein: [privates Verzeichnis](https://github.com/Feuerwehr-Kronshagen/private).
+
+Die Aufgaben sind in Phasen eingeteilt, die anzeigen, wann sie erledigt werden sollen. Die Zahlen (1️⃣, 2️⃣, ...) zeigen
+an, wie wichtig eine Phase ist. Phasen mit der gleichen Zahl können gleichzeitig bearbeitet werden.
+
+Die Aufgaben sind außerdem nach Themen sortiert (Kategorien). Wenn eine neue Aufgabe erstellt wird, schaut man von
+oben nach unten, zu welchem Thema sie passt. Wenn kein Thema passt, wird die Aufgabe der Kategorie „DevBizOps“
+zugeordnet. Das umfasst alles rund um Entwicklung, Geschäftsprozesse, Organisation und Betrieb.
 
 ## ADR - Architecture Decision Records - Logbuch für Architektur-Entscheidungen
 
@@ -64,7 +83,11 @@ nach der ADR-Nummer versehen.
 
 ## Deployment
 
-Die Website wird über GitHub-Actions gebaut und mit Ansible deployed.
+Die Website wird über GitHub-Actions gebaut und mit Ansible auf einem vServer deployed.
+
+⚠️Bekannter Fehler: Werden die Ansible-Dateien auf der Testumgebung verändert und die GitHub-Action ausgeführt, würde
+derselbe Server angepasst, auf dem auch die Produktion läuft. Deshalb wird das Deployment verhindert. Ein Test des
+neuen Deployments ist über einen lokalen Server möglich.
 
 ### Zertifikate
 

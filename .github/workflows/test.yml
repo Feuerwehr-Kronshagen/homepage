@@ -80,7 +80,7 @@ jobs:
     needs:
       - ansible-lint
       - build-hugo-test
-    if: needs.check.outputs.ansible_changed == 'false' && needs.check.outputs.github_changed == 'false'
+    if: needs.check.outputs.ansible_changed != 'true' && needs.check.outputs.github_changed != 'true'
     runs-on: ubuntu-latest
     environment:
       name: test

@@ -35,6 +35,52 @@ Die Aufgaben sind außerdem nach Themen sortiert (Kategorien). Wenn eine neue Au
 oben nach unten, zu welchem Thema sie passt. Wenn kein Thema passt, wird die Aufgabe der Kategorie „DevBizOps“
 zugeordnet. Das umfasst alles rund um Entwicklung, Geschäftsprozesse, Organisation und Betrieb.
 
+## Blogartikel
+
+<details>
+  <summary>Prozess-Diagram anzeigen</summary>
+
+```mermaid
+flowchart TD
+  private[Ticket im privaten Repo anlegen]
+  write[Blogartikel schreiben und Fotos hinzufügen]
+  review{Abnahme durch Vorstandsmitglied}
+  code[Blogartikel im Code erstellen]
+  test(Testumgebung zum Anschauen)
+  pr{Abnahme durch EntwicklerIn}
+  prod(Veröffentlichung des Artikels in Produktion)
+  private --> write
+  write --> review
+  review -->|Veröffentlichung ok| code
+  review -->|Änderungswunsch| write
+  code --> test
+  code --> pr
+  pr -->|technisch ok| prod
+  pr -->|Änderungsvorschlag| code
+```
+
+</details>
+
+### Tickets im privaten Repo anlegen
+
+Lege über [diesen Link](https://github.com/Feuerwehr-Kronshagen/private/issues/new?template=blog.md) ein Ticket
+im [privaten Verzeichnis](https://github.com/Feuerwehr-Kronshagen/private) an.
+
+### Blogartikel schreiben und Fotos hinzufügen
+
+Schreibe den Blogartikel oder die Idee unter der Überschrift `# Idee` auf. Du kannst nur die Idee notieren oder den
+Blogartikel direkt ausformulieren. Möchtest du ihn ausformulieren, kannst du Zwischenstände speichern und später
+erneut bearbeiten. Das beugt Datenverlust vor, falls Du den Browser schließen solltest.
+
+Hast du das Ticket gespeichert und möchtest den Artikel bearbeiten, kannst du auf die 3 waagerechten Punkte oberhalb
+rechts des Textfeldes klicken und `Edit` auswählen.
+
+Unter dem Textfeld (im Bearbeitungsmodus) gibt es eine Büroklammer mit `Paste, drop or click to add files`. Hier
+kannst du Bilder hinzufügen.
+
+Jeder Blogartikel sollte mindestens ein Bild haben. Bitte hinterlasse bei mehreren Bildern eine Information, welches
+Bild als Titelbild erscheinen soll.
+
 ## ADR - Architecture Decision Records - Logbuch für Architektur-Entscheidungen
 
 > Der Einsatz von ADR ist eine Methode, Entscheidungen im Entwicklungsprozess nachvollziehbar und kontinuierlich zu

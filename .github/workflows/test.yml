@@ -53,8 +53,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: fetch main branch
-        run: git fetch origin main
+        run: git fetch origin main:main
       - name: Check if ansible files changed
         id: ansible
         run: >
@@ -68,8 +70,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: fetch main branch
-        run: git fetch origin main
+        run: git fetch origin main:main
       - name: Check if github actions changed
         id: github
         run: >

@@ -33,7 +33,7 @@ body {
   color-scheme: light dark;
   background: var(--color-background-1);
   color: var(--color-color-1);
-  line-height: 1;
+  line-height: 1.6;
 }
 
 header, main, footer {
@@ -66,6 +66,16 @@ p {
   font-size: 1rem;
   font-weight: 400;
   margin-bottom: 0.5rem;
+}
+
+ul, ol {
+  margin-left: 1.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+ul li, ol li {
+  margin-bottom: 0.25rem;
 }
 
 section.content {
@@ -109,6 +119,21 @@ section.content {
     margin-left: auto;
     margin-right: auto;
     width: 1040px;
+  }
+}
+
+.primary-btn {
+  background: var(--color-color-primary-btn);
+  color: var(--color-color-primary-btn-text);
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: var(--card-border-radius);
+  display: inline-block;
+
+  &:hover {
+    background: var(--color-color-primary-btn-hover);
+    cursor: pointer;
   }
 }
 

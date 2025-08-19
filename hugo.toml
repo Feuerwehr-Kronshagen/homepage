@@ -7,6 +7,11 @@ name = 'Startseite'
 pageRef = '/'
 weight = 1
 
+[[menus.main]]
+name = 'Kontakt'
+pageRef = '/pages/contact'
+weight = 2
+
 #[[menus.main]]
 #name = 'Posts'
 #pageRef = '/posts'

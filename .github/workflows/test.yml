@@ -60,9 +60,12 @@ jobs:
       - name: Check if ansible files changed
         id: ansible
         run: |
-          echo "ansible_changed=$(git diff --name-only origin/main...HEAD | \
-            grep -q '^ansible/' && echo true || echo false)" >> $GITHUB_OUTPUT \
-          && cat $GITHUB_OUTPUT
+          if git diff --name-only origin/main...HEAD | grep -q '^ansible/'; then
+            echo "ansible_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "ansible_changed=false" >> $GITHUB_OUTPUT
+          fi
+          cat $GITHUB_OUTPUT
 
   check-if-github-actions-changed:
     runs-on: ubuntu-latest
@@ -78,15 +81,22 @@ jobs:
       - name: Check if github actions changed
         id: github
         run: |
-          echo "github_changed=$(git diff --name-only origin/main...HEAD | \
-            grep -q '^.github/' && echo true || echo false)" >> $GITHUB_OUTPUT \
-          && cat $GITHUB_OUTPUT
+          if git diff --name-only origin/main...HEAD | grep -q '^.github/'; then
+            echo "github_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "github_changed=false" >> $GITHUB_OUTPUT
+          fi
+          cat $GITHUB_OUTPUT
 
   vserver-test:
     needs:
       - ansible-lint
       - build-hugo-test
-    if: needs.check.outputs.ansible_changed == 'false' && needs.check.outputs.github_changed == 'false'
+      - check-if-ansible-files-changed
+      - check-if-github-actions-changed
+    if: >
+      needs.check-if-ansible-files-changed.outputs.ansible_changed == 'false'
+      && needs.check-if-github-actions-changed.outputs.github_changed == 'false'
     runs-on: ubuntu-latest
     environment:
       name: test

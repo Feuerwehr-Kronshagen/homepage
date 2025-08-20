@@ -9,8 +9,9 @@ draft = false
 Freiwillige Tätigkeiten sind heute mehr denn je ein unverzichtbarer Bestandteil unserer Gesellschaft.
 
 Die Freiwillige Feuerwehr Kronshagen kommt immer, wenn Du dringend Hilfe brauchst:
+&nbsp;&nbsp;
 
-- wenn Deine Wohnung oder Dein Haus brennt
+- bei Schadfeuer oder Unglück in deinem Haus oder deiner Wohnung
 - wenn Du nach einem Verkehrsunfall aus Deinem Fahrzeug befreit werden musst
 - wenn Dein Keller durch Rohrbruch oder Unwetter vollgelaufen ist
 - wenn Straßen und Bahnstrecken nach Stürmen wieder befahrbar gemacht werden oder Dein Hausdach notdürftig wieder

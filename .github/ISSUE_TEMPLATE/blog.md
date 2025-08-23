@@ -9,9 +9,19 @@ assignees: ''
 
 # Idee
 
-Ich habe folgende Idee für einen Blog-Artikel:
+Ich habe folgende Idee für einen Blog-Artikel: ...
 
--
+## Kurzfassung (ca. 120 bis 200 Zeichen)
+
+## Blog-Text
+
+## Bilder
+
+### Titelbild
+
+### weitere Bilder
+
+## Autoren
 
 # Akzeptanzkriterien
 

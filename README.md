@@ -68,7 +68,7 @@ im [privaten Verzeichnis](https://github.com/Feuerwehr-Kronshagen/private) an.
 
 ### Blogartikel schreiben und Fotos hinzufügen
 
-Schreibe den Blogartikel oder die Idee unter der Überschrift `# Idee` auf. Du kannst nur die Idee notieren oder den
+Schreibe den Blogartikel oder die Idee auf. Du kannst nur die Idee notieren oder den
 Blogartikel direkt ausformulieren. Möchtest du ihn ausformulieren, kannst du Zwischenstände speichern und später
 erneut bearbeiten. Das beugt Datenverlust vor, falls Du den Browser schließen solltest.
 
@@ -80,6 +80,28 @@ kannst du Bilder hinzufügen.
 
 Jeder Blogartikel sollte mindestens ein Bild haben. Bitte hinterlasse bei mehreren Bildern eine Information, welches
 Bild als Titelbild erscheinen soll.
+
+Ist der Blogartikel fertig, kannst du in den Kommentaren @Feuerwehr-Kronshagen/vorstand markieren und fragen, ob der
+Artikel so OK ist.
+
+### Abnahme durch Vorstandsmitglied
+
+Die [Vorstandsmitglieder](https://github.com/orgs/Feuerwehr-Kronshagen/teams/vorstand) sind inhaltlich und rechtlich
+für die Website verantwortlich und geben konstruktives Feedback zum Artikel, bevor er den privaten Bereich verlässt.
+
+Gibt es keine Änderungswünsche oder wurden diese umgesetzt, kann der Artikel veröffentlicht werden.
+
+### Blogartikel im Code erstellen
+
+In [diesem Verzeichnis](https://github.com/Feuerwehr-Kronshagen/homepage/tree/main/content/posts) liegen alle
+Blogartikel der Website.
+
+Lege einen neuen Ordner an. Der Ordnername setzt sich wie folgt zusammen: `<ID>-<Name-des-Blogartikels>`
+
+- Dreistellige ID (fortlaufende Nummer) für den Artikel, führende Nullen
+- Name des Blogartikels mit '-' statt Leerzeichen
+
+Hinterlege die ID im Titel vom Ticket, damit Andere auf einen Blick einsehen können welche IDs schon vergeben sind.
 
 ## ADR - Architecture Decision Records - Logbuch für Architektur-Entscheidungen
 

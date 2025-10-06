@@ -47,7 +47,7 @@ flowchart TD
   review{Abnahme durch Vorstandsmitglied}
   code[Blogartikel im Code erstellen]
   test(Testumgebung zum Anschauen)
-  pr{Abnahme durch EntwicklerIn}
+  pr{Abnahme durch Entwicklungsteam}
   prod(Veröffentlichung des Artikels in Produktion)
   private --> write
   write --> review
@@ -93,7 +93,23 @@ Gibt es keine Änderungswünsche oder wurden diese umgesetzt, kann der Artikel v
 
 ### Blogartikel im Code erstellen
 
-In [diesem Verzeichnis](https://github.com/Feuerwehr-Kronshagen/homepage/tree/main/content/posts) liegen alle
+<details>
+  <summary>Branch anlegen für Non-Techies</summary>
+
+Öffne das Ticket zum Blogartikel und klicke rechts auf "Development".
+
+Über den Pfeil, der nach links zeigt, kannst du das Repository auf `Feuerwehr-Kronshagen/homepage` ändern.
+
+Klicke nun auf "create branch" und wähle den Namen des Branches und erstelle ihn mit lokalem checkout. Schließe
+das Fenster wieder.
+
+Klicke auf den eben erstellten Branch-Namen rechts unter "Development". Du solltest das Repo "homepage sehen"
+
+Nun kannst du mit der Punkt-Taste `.` in den Web-Editor wechseln. Dieser benötigt ein bisschen Zeit zum Laden.
+
+</details>
+
+In [content/posts](https://github.com/Feuerwehr-Kronshagen/homepage/tree/main/content/posts) liegen alle
 Blogartikel der Website.
 
 Lege einen neuen Ordner an. Der Ordnername setzt sich wie folgt zusammen: `<ID>-<Name-des-Blogartikels>`
@@ -102,6 +118,18 @@ Lege einen neuen Ordner an. Der Ordnername setzt sich wie folgt zusammen: `<ID>-
 - Name des Blogartikels mit '-' statt Leerzeichen
 
 Hinterlege die ID im Titel vom Ticket, damit Andere auf einen Blick einsehen können welche IDs schon vergeben sind.
+
+Mit jedem Push wird ein Deployment in der Testumgebung https://test.feuerwehr-kronshagen.de erzeugt. Hier kannst du
+deinen Branch-Namen auswählen und dir deine Änderungen ansehen.
+
+### Abnahme durch Entwicklungsteam
+
+Bist du mit deinen Änderungen zufrieden, kannst du einen Pull-Request stellen. Das
+[Entwicklungsteam](https://github.com/orgs/Feuerwehr-Kronshagen/teams/dev) wird automatisch benachrichtigt und
+schaut sich deine Änderungen an. Du erhältst ein konstruktives Feedback.
+
+Sobald deine Änderungen technisch OK sind, gibt es eine Bestätigung und deine Änderungen können "zusammengeführt"
+werden. Nach dem Zusammenführen (Merge) werden deine Änderungen auf die Produktion veröffentlicht.
 
 ## ADR - Architecture Decision Records - Logbuch für Architektur-Entscheidungen
 

@@ -1,6 +1,8 @@
 title = 'Feuerwehr Kronshagen'
 defaultContentLanguage = 'de'
 
+[outputs]
+home = ["HTML", "Robots"]
 
 [[menus.main]]
 name = 'Startseite'

@@ -85,7 +85,6 @@
         src: nginx/sites-enabled/production.conf
         dest: /etc/nginx/sites-enabled/production.conf
         mode: "0755"
-        backup: true
       notify:
         - Check nginx config
         - Reload nginx
@@ -131,7 +130,6 @@
         src: nginx/sites-enabled/production-www.conf
         dest: /etc/nginx/sites-enabled/production-www.conf
         mode: "0755"
-        backup: true
       notify:
         - Check nginx config
         - Reload nginx
@@ -177,7 +175,6 @@
         src: nginx/sites-enabled/test.conf
         dest: /etc/nginx/sites-enabled/test.conf
         mode: "0755"
-        backup: true
       notify:
         - Check nginx config
         - Reload nginx

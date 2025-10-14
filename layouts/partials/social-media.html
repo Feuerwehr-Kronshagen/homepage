@@ -3,8 +3,12 @@
   <h2>Social Media</h2>
 
   <section class="grid">
-    <a href="https://www.facebook.com/feuerwehr.kronshagen" target="_blank" rel="noopener noreferrer"
-       class="card-link">
+    <a aria-label="Facebook"
+       class="card-link"
+       href="https://www.facebook.com/feuerwehr.kronshagen"
+       rel="noopener noreferrer"
+       target="_blank"
+    >
       <article class="social-media-card">
         {{- $facebook := resources.Get "images/Facebook_Logo_Primary.png" }}
         <img class="headerLogo" src="{{ $facebook.RelPermalink }}" alt="Facebook">
@@ -13,8 +17,12 @@
       </article>
     </a>
 
-    <a href="https://www.instagram.com/feuerwehr.kronshagen" target="_blank" rel="noopener noreferrer"
-       class="card-link">
+    <a aria-label="Instagram"
+       class="card-link"
+       href="https://www.instagram.com/feuerwehr.kronshagen"
+       rel="noopener noreferrer"
+       target="_blank"
+    >
       <article class="social-media-card">
         {{- $instagram := resources.Get "images/Instagram_Glyph_Gradient.png" }}
         <img class="headerLogo" src="{{ $instagram.RelPermalink }}" alt="Facebook">

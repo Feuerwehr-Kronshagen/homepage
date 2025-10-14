@@ -1,5 +1,5 @@
 ---
-- name: "Webserver-default-config"
+- name: Webserver-default-config
   hosts: all
   become: true
   tasks:
@@ -48,7 +48,99 @@
       notify:
         - Reload nginx
 
-- name: Webserver-vserver-config
+- name: Webserver-vserver-config for prod
+  hosts: all
+  tags: ["vserver"]
+  become: true
+  handlers:
+    - name: Check nginx config
+      ansible.builtin.command: nginx -t
+      changed_when: false
+      register: nginx_config_test
+      failed_when: nginx_config_test.rc != 0
+    - name: Reload nginx
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded
+  tasks:
+    - name: Check if SSL certificate exists
+      ansible.builtin.stat:
+        path: "/etc/letsencrypt/live/feuerwehr-kronshagen.de/fullchain.pem"
+      register: ssl_cert
+    - name: Set SSL facts
+      ansible.builtin.set_fact:
+        ssl_enabled: "{{ ssl_cert.stat.exists }}"
+        ssl_cert_path: "/etc/letsencrypt/live/feuerwehr-kronshagen.de/fullchain.pem"
+        ssl_key_path: "/etc/letsencrypt/live/feuerwehr-kronshagen.de/privkey.pem"
+      when: ssl_cert.stat.exists
+    - name: Copy nginx main config
+      ansible.builtin.copy:
+        src: nginx/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        mode: "0755"
+      notify:
+        - Reload nginx
+    - name: Template sites-enabled config
+      ansible.builtin.template:
+        src: nginx/sites-enabled/production.conf
+        dest: /etc/nginx/sites-enabled/production.conf
+        mode: "0755"
+        backup: true
+      notify:
+        - Check nginx config
+        - Reload nginx
+      register: template_result
+      changed_when: >
+        template_result.diff is defined
+        and template_result.diff|length > 0
+
+- name: Webserver-vserver-config for www
+  hosts: all
+  tags: ["vserver"]
+  become: true
+  handlers:
+    - name: Check nginx config
+      ansible.builtin.command: nginx -t
+      changed_when: false
+      register: nginx_config_test
+      failed_when: nginx_config_test.rc != 0
+    - name: Reload nginx
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded
+  tasks:
+    - name: Check if SSL certificate exists
+      ansible.builtin.stat:
+        path: "/etc/letsencrypt/live/www.feuerwehr-kronshagen.de/fullchain.pem"
+      register: ssl_cert
+    - name: Set SSL facts
+      ansible.builtin.set_fact:
+        ssl_enabled: "{{ ssl_cert.stat.exists }}"
+        ssl_cert_path: "/etc/letsencrypt/live/www.feuerwehr-kronshagen.de/fullchain.pem"
+        ssl_key_path: "/etc/letsencrypt/live/www.feuerwehr-kronshagen.de/privkey.pem"
+      when: ssl_cert.stat.exists
+    - name: Copy nginx main config
+      ansible.builtin.copy:
+        src: nginx/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        mode: "0755"
+      notify:
+        - Reload nginx
+    - name: Template sites-enabled config
+      ansible.builtin.template:
+        src: nginx/sites-enabled/production-www.conf
+        dest: /etc/nginx/sites-enabled/production-www.conf
+        mode: "0755"
+        backup: true
+      notify:
+        - Check nginx config
+        - Reload nginx
+      register: template_result
+      changed_when: >
+        template_result.diff is defined
+        and template_result.diff|length > 0
+
+- name: Webserver-vserver-config for test
   hosts: all
   tags: ["vserver"]
   become: true
@@ -80,14 +172,7 @@
         mode: "0755"
       notify:
         - Reload nginx
-    - name: Template sites-enabled production config
-      ansible.builtin.template:
-        src: nginx/sites-enabled/production.conf
-        dest: /etc/nginx/sites-enabled/production.conf
-        mode: "0755"
-      notify:
-        - Reload nginx
-    - name: Template sites-enabled test config
+    - name: Template sites-enabled config
       ansible.builtin.template:
         src: nginx/sites-enabled/test.conf
         dest: /etc/nginx/sites-enabled/test.conf

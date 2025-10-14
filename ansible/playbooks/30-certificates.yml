@@ -30,6 +30,7 @@
         --agree-tos
         --redirect
         --email homepage@feuerwehr-kronshagen.de
+        -d feuerwehr-kronshagen.de
         -d test.feuerwehr-kronshagen.de
       register: certbot_output
       changed_when: "'Congratulations!' in certbot_output.stdout"

@@ -6,7 +6,7 @@ makefile            @Feuerwehr-Kronshagen/dev
 requirements.yml    @Feuerwehr-Kronshagen/dev
 assets              @Feuerwehr-Kronshagen/dev
 i18n                @Feuerwehr-Kronshagen/dev
-layout              @Feuerwehr-Kronshagen/dev
+layouts             @Feuerwehr-Kronshagen/dev
 static              @Feuerwehr-Kronshagen/dev
 
 .github/workflows   @Feuerwehr-Kronshagen/ops

@@ -76,5 +76,5 @@ Postanschrift:\
 Postfach 7121\
 24171 Kiel
 
-Telefon: [+49 431 988 1612](tel:+494319881612))\
+Telefon: [+49 431 988 1612](tel:+494319881612)\
 E-Mail: [bbit@landtag.ltsh.de](mailto:bbit@landtag.ltsh.de)

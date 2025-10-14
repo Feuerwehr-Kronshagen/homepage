@@ -31,6 +31,7 @@
         --redirect
         --email homepage@feuerwehr-kronshagen.de
         -d feuerwehr-kronshagen.de
+        -d www.feuerwehr-kronshagen.de
         -d test.feuerwehr-kronshagen.de
         --expand
       register: certbot_output

@@ -57,7 +57,7 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 	hugo build -e test --baseURL="https://test.feuerwehr-kronshagen.de/$(shell git symbolic-ref -q --short HEAD || git rev-parse --short HEAD)"
 
 30-build-hugo-vserver-prod:
-	hugo build -e test --minify --baseURL="https://feuerwehr-kronshagen.de"
+	hugo build --minify --baseURL="https://feuerwehr-kronshagen.de"
 
 80-dev-dependencies-macos:
 	brew install hugo \

@@ -1,5 +1,5 @@
 User-agent: *
-{{ if eq hugo.Environment "production" -}}
+{{ if hugo.IsProduction -}}
 Allow: /
 Sitemap: {{ .Site.BaseURL }}sitemap.xml
 {{- else -}}

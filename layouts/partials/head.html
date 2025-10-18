@@ -23,7 +23,7 @@
 <meta name="description" content="{{ $description }}">
 
 {{- $robots := "noindex, nofollow" }}
-{{- if and hugo.IsProduction (not .Params.private)}}
+{{- if hugo.IsProduction}}
   {{- $robots = "index, follow" }}
 {{- end }}
 <meta name="robots" content="{{ $robots }}">

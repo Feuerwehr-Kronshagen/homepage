@@ -4,8 +4,8 @@
 02-build-test:
 	hugo build -e test
 
-03-prod-build:
-	hugo build -e production
+03-prod-run:
+	hugo serve -e production --bind 0.0.0.0
 
 ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 04-ansible-lint:

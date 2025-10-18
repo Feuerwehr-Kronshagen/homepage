@@ -24,7 +24,6 @@ jobs:
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
-          HUGO_ENVIRONMENT: test
         run: make 30-build-hugo-vserver-prod
       - name: Upload artifact
         uses: actions/upload-artifact@v4

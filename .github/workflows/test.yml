@@ -132,7 +132,7 @@ jobs:
           --become-password-file ~/.ssh/password.txt
           --user "${{ secrets.VSERVER_SSHUSER }}"
           --private-key ~/.ssh/id_ed25519
-          ansible/playbooks/*.yml
+          ansible/playbooks/21-webserver-upload.yml
       - name: Cleanup sensitive files
         if: always()
         run: |

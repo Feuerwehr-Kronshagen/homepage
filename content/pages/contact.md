@@ -20,7 +20,7 @@ Dann bist du bei uns genau richtig!
 
 **Komm vorbei:**
 
-  - 📅 jeden dritten Montag, 19:00 - 21:30 Uhr
+  - 📅 jeden ersten und dritten Montag, 19:00 - 21:30 Uhr
   - 📍 Feuerwehrhaus, Nußbaumkoppel 1, Kronshagen
 
 **Interesse?**

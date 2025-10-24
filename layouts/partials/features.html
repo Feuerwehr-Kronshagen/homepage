@@ -1,0 +1,54 @@
+<section id="features">
+  <section class="grid">
+    <a aria-label="Aktiv"
+       class="card-link"
+       href="https://www.facebook.com/feuerwehr.kronshagen"
+       rel="noopener noreferrer"
+       target="_blank"
+    >
+      <article class="features-card">
+        {{- $aktiv := resources.Get "images/gray_demo.jpg" }}
+        <img alt="Facebook" class="headerLogo" src="{{ $aktiv.RelPermalink }}">
+        <div class="container">
+          <h2>Aktiv</h2>
+          <p>Einsatz- und Reserveabteilung</p>
+        </div>
+        <p class="cta">Mitmachen</p>
+      </article>
+    </a>
+
+    <a aria-label="Jugend"
+       class="card-link"
+       href="https://www.instagram.com/feuerwehr.kronshagen"
+       rel="noopener noreferrer"
+       target="_blank"
+    >
+      <article class="features-card">
+        {{- $jugend := resources.Get "images/gray_demo.jpg" }}
+        <img alt="Jugend" class="headerLogo" src="{{ $jugend.RelPermalink }}">
+        <div class="container">
+          <h2>Jugend</h2>
+          <p>Nachwuchskräfte zwischen 10 und 18 Jahren lakjsdfölk ölkasdfjölj alksdjf</p>
+        </div>
+        <p class="cta">Mitmachen</p>
+      </article>
+    </a>
+
+    <a aria-label="Passiv"
+       class="card-link"
+       href="https://www.instagram.com/feuerwehr.kronshagen"
+       rel="noopener noreferrer"
+       target="_blank"
+    >
+      <article class="features-card">
+        {{- $passiv := resources.Get "images/gray_demo.jpg" }}
+        <img alt="Facebook" class="headerLogo" src="{{ $passiv.RelPermalink }}">
+        <div class="container">
+          <h2>Passiv</h2>
+          <p>Unterstütze deine Feuerwehr</p>
+        </div>
+        <p class="cta">Mitmachen</p>
+      </article>
+    </a>
+  </section>
+</section>

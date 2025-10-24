@@ -14,6 +14,8 @@
 --color-color-primary-btn-hover:  var(--light-color-primary-btn-hover);
 --color-color-primary-btn-text: var(--light-color-primary-btn-text);
 
+  --color-theme-1: var(--light-color-theme-1);
+
 @media (prefers-color-scheme: dark) {
   --color-background-1: var(--dark-color-background-1);
   --color-background-2: var(--dark-color-background-2);
@@ -28,6 +30,8 @@
   --color-color-primary-btn:  var(--dark-color-primary-btn);
   --color-color-primary-btn-hover:  var(--dark-color-primary-btn-hover);
   --color-color-primary-btn-text: var(--dark-color-primary-btn-text);
+
+  --color-theme-1: var(--dark-color-theme-1);
 }
 
 /* LIGHT THEME */
@@ -41,8 +45,9 @@
 --light-color-color-3: #666;
 --light-color-color-4: gray;
 
+  /* WIP */
 
---light-color-theme-1: #ff3e00;
+  --light-color-theme-1: #af2b1e;
 --light-color-theme-2: #4075a6;
 --light-color-footer: #fff;
 --light-color-bg-footer: #00021A;
@@ -63,6 +68,7 @@
 --dark-color-color-3: #a1a4aa;
 --dark-color-color-4: #878a92;
 
+  /* WIP */
 
 --dark-color-bg-2: #343437;
 --dark-color-theme-1: #ff3e00;

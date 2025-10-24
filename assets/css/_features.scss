@@ -1,0 +1,47 @@
+#features {
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 12rem));
+    justify-content: space-evenly;
+    gap: 1rem;
+    row-gap: 2rem;
+    max-width: 38rem;
+    margin: 0 auto;
+  }
+
+  .features-card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+
+    background-color: var(--color-background-3);
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+
+    img {
+      width: 12rem;
+      margin: 0 auto;
+      border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+      display: block;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      margin: 0.5rem 0.5rem 0 0.5rem;
+    }
+
+    .cta {
+      margin: auto 0.5rem 0 0.5rem;
+      padding: 0.5rem 0;
+      color: var(--color-theme-1);
+      font-weight: bold;
+    }
+  }
+}

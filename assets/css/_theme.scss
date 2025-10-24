@@ -6,6 +6,8 @@
 --color-header-background: var(--light-color-header-background);
 --color-footer-background: var(--light-color-footer-background);
 
+  --color-theme-1: var(--light-color-theme-1);
+
 @media (prefers-color-scheme: dark) {
 --color-body-background: var(--dark-color-body-background);
 --color-secondary-background: var(--dark-color-secondary-background);

@@ -5,26 +5,31 @@
     color: inherit;
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 8rem);
-    justify-items: center;
+  .socials-row {
+    margin-top: 1rem;
+
+    display: flex;
+    flex-direction: row;
     gap: 1rem;
   }
 
   .social-media-card {
+    padding: 0.5rem;
 
     display: flex;
     flex-wrap: wrap;
-    width: 8rem;
 
-    background-color: var(--color-background-3);
+    background-color: var(--color-secondary-background);
     border-radius: var(--card-border-radius);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.15);
+
+    &:hover{
+      box-shadow: none;
+    }
 
     img {
-      width: 4rem;
-      margin: 0.5rem auto;
+      width: 3rem;
+      margin: 0 auto;
       display: block;
     }
 

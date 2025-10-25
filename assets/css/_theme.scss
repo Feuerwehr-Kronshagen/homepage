@@ -1,77 +1,48 @@
-/* THEME COMBINATION until light-dark() is stable */
 :root {
---color-background-1: var(--light-color-background-1);
---color-background-2: var(--light-color-background-2);
---color-background-3: var(--light-color-background-3);
---color-background-4: var(--light-color-background-4);
+--color-body-background: var(--light-color-body-background);
+--color-secondary-background: var(--light-color-secondary-background);
 
---color-color-1: var(--light-color-color-1);
---color-color-2: var(--light-color-color-2);
---color-color-3: var(--light-color-color-3);
---color-color-4: var(--light-color-color-4);
-
---color-color-primary-btn:  var(--light-color-primary-btn);
---color-color-primary-btn-hover:  var(--light-color-primary-btn-hover);
---color-color-primary-btn-text: var(--light-color-primary-btn-text);
+--color-text: var(--light-color-text);
+--color-header-background: var(--light-color-header-background);
+--color-footer-background: var(--light-color-footer-background);
 
 @media (prefers-color-scheme: dark) {
-  --color-background-1: var(--dark-color-background-1);
-  --color-background-2: var(--dark-color-background-2);
-  --color-background-3: var(--dark-color-background-3);
-  --color-background-4: var(--dark-color-background-4);
+--color-body-background: var(--dark-color-body-background);
+--color-secondary-background: var(--dark-color-secondary-background);
 
-  --color-color-1: var(--dark-color-color-1);
-  --color-color-2: var(--dark-color-color-2);
-  --color-color-3: var(--dark-color-color-3);
-  --color-color-4: var(--dark-color-color-4);
-
-  --color-color-primary-btn:  var(--dark-color-primary-btn);
-  --color-color-primary-btn-hover:  var(--dark-color-primary-btn-hover);
-  --color-color-primary-btn-text: var(--dark-color-primary-btn-text);
+--color-text: var(--dark-color-text);
+--color-header-background: var(--dark-color-header-background);
+--color-footer-background: var(--dark-color-footer-background);
 }
 
+--color-primary-btn-bg: var(--color-primary);
+--color-primary-btn-bg-hover: var(--color-secondary);
+--color-primary-btn-text: var(--color-white);
+
+--color-secondary-btn-bg: var(--color-primary);
+--color-secondary-btn-bg-hover: var(--color-secondary);
+--color-secondary-btn-text: var(--color-primary);
+
+/* COMMON */
+--color-primary: #AF2B1E;
+--color-secondary: #E85D04;
+--color-white: #FFFFFF;
+--color-black: #000000;
+
 /* LIGHT THEME */
---light-color-background-1: #ffffff;
---light-color-background-2: #fdfdfd;
---light-color-background-3: #fafafa;
---light-color-background-4: #f2f2f2;
+--light-color-body-background: var(--color-white);
+--light-color-secondary-background: #FAFAFA;
 
---light-color-color-1: #141414;
---light-color-color-2: #262626;
---light-color-color-3: #666;
---light-color-color-4: gray;
-
-
---light-color-theme-1: #ff3e00;
---light-color-theme-2: #4075a6;
---light-color-footer: #fff;
---light-color-bg-footer: #00021A;
-
---light-color-primary-btn: #212121;
---light-color-primary-btn-hover: #4f4f4f;
---light-color-primary-btn-text: #ffffff;
+--light-color-header-background: var(--color-white);
+--light-color-footer-background: var(--light-color-secondary-background);
+--light-color-text: var(--color-black);
 
 
 /* DARK THEME */
---dark-color-background-1: #1c1e22;
---dark-color-background-2: #1f2228;
---dark-color-background-3: #23272f;
---dark-color-background-4: #2e333e;
+--dark-color-body-background: #3C3C3C;
+--dark-color-secondary-background: #303030;
 
---dark-color-color-1: #e5e5e6;
---dark-color-color-2: #cacbce;
---dark-color-color-3: #a1a4aa;
---dark-color-color-4: #878a92;
-
-
---dark-color-bg-2: #343437;
---dark-color-theme-1: #ff3e00;
---dark-color-theme-2: #4075a6;
---dark-color-footer: #fff;
---dark-color-bg-footer: #00021A;
-
---dark-color-primary-btn: #ebebeb;
---dark-color-primary-btn-hover: #9e9e9e;
---dark-color-primary-btn-text: #000000;
-
+--dark-color-header-background: var(--dark-color-secondary-background);
+--dark-color-footer-background: var(--dark-color-secondary-background);
+--dark-color-text: var(--color-white);
 }

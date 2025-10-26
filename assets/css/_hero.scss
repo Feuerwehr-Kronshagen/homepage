@@ -2,14 +2,17 @@
   .hero-image {
     margin-left: -1rem;
     margin-right: -1rem;
-    width:calc(100% + 2rem);
+    width:calc(100% + 4rem);
     height: 300px;
     object-position: 70%;
     object-fit: cover;
 
     @media screen and (min-width: 600px) {
       width:100%;
+      margin-left: 0;
+      margin-right: 0;
       height: auto;
+
       border-radius: var(--card-border-radius);
       box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 

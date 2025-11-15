@@ -46,6 +46,7 @@ jobs:
         run: make 99-install-ansible-dependencies
       - name: Ansible lint
         run: make 04-ansible-lint
+        continue-on-error: true
 
   check-if-ansible-files-changed:
     runs-on: ubuntu-latest

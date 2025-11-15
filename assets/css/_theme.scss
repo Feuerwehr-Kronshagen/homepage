@@ -25,7 +25,11 @@
 
 /* COMMON */
 --color-primary: #AF2B1E;
---color-secondary: #E85D04;
+  --color-secondary: #E85D04;
+  @media (prefers-color-scheme: dark) {
+    --color-primary: #E85D04;
+    --color-secondary: #AF2B1E;
+  }
 --color-white: #FFFFFF;
 --color-black: #000000;
 
@@ -37,10 +41,9 @@
 --light-color-footer-background: var(--light-color-secondary-background);
 --light-color-text: var(--color-black);
 
-
 /* DARK THEME */
---dark-color-body-background: #3C3C3C;
---dark-color-secondary-background: #303030;
+  --dark-color-body-background: #343434;
+  --dark-color-secondary-background: #252525;
 
 --dark-color-header-background: var(--dark-color-secondary-background);
 --dark-color-footer-background: var(--dark-color-secondary-background);

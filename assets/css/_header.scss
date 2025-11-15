@@ -1,6 +1,6 @@
 header {
-  background-color: var(--color-background-3);
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.08);
+  background-color: var(--color-header-background);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
 
   .container {
 
@@ -20,6 +20,15 @@ header {
     text-decoration: none;
     padding: 0.5rem 0.5rem 0.5rem 0;
     width: fit-content;
+    color: var(--color-text);
+
+    @media screen and (min-width: 600px) {
+      font-size: 1.3rem;
+    }
+
+    &:hover {
+      color: var(--color-primary);
+    }
   }
 
   .headerLogo {

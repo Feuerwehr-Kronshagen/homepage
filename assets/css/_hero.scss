@@ -1,8 +1,40 @@
 #hero {
   .hero-image {
-    width: 100%;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
-    border-radius: var(--card-border-radius);
+    margin-left: -1rem;
+    margin-right: -1rem;
+    width:calc(100% + 4rem);
+    height: 300px;
+    object-position: 70%;
+    object-fit: cover;
+
+    @media screen and (min-width: 600px) {
+      width:100%;
+      margin-left: 0;
+      margin-right: 0;
+      height: auto;
+
+      border-radius: var(--card-border-radius);
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+
+    }
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+
+    @media screen and (min-width: 600px) {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+  }
+
+  .hero-title-highlight {
+    color: var(--color-primary);
+  }
+
+  .hero-sub-title {
+    font-size: 1.1rem;
   }
 
   .hero-content {

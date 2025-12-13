@@ -28,6 +28,6 @@ Dann bist du bei uns genau richtig!
 Melde dich bei Fragen einfach unter:
 
 E-Mail: [info@feuerwehr-kronshagen.de](mailto:info@feuerwehr-kronshagen.de)\
-Telefon: [Tel: +49 (0) 431 5866222](tel:+494315866222)
+Telefon: [Tel: +49 (0) 431 205056-0](tel:+494312050560)
 
 **Werde Teil unseres starken Teams!**

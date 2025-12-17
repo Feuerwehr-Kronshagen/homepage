@@ -2,6 +2,10 @@
 title = 'Impressum'
 date = 2021-08-28T00:00:00-00:00
 draft = false
+description = """
+Impressum der Feuerwehr Kronshagen: Anschrift, Kontaktdaten, Gemeindewehrführer sowie rechtliche Hinweise und \
+Haftungsausschluss.
+"""
 +++
 
 ## Kontakt

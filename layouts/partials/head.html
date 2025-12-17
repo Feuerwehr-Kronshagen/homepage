@@ -10,13 +10,13 @@
 
 {{- $description := "" }}
 {{- with .Description }}
-  {{- $description := . }}
+{{- $description = . }}
 {{- else }}
   {{- if .IsPage }}
-    {{- $description := .Summary }}
+{{- $description = .Summary }}
   {{- else }}
     {{- with .Site.Params.description }}
-      {{- $description := . }}
+{{- $description = . }}
     {{- end }}
   {{- end }}
 {{- end }}
@@ -30,7 +30,7 @@
 
 {{- $canonical := .Permalink }}
 {{- if .Params.canonicalUrl }}
-  {{- $canonical := .Params.canonicalUrl }}
+{{- $canonical = .Params.canonicalUrl }}
 {{- end }}
 <link rel="canonical" href="{{ $canonical }}">
 

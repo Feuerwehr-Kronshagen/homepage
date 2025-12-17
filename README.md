@@ -181,9 +181,43 @@ nach der ADR-Nummer versehen.
 
 Die Website wird über GitHub-Actions gebaut und mit Ansible auf einem vServer deployed.
 
-⚠️Bekannter Fehler: Werden die Ansible-Dateien auf der Testumgebung verändert und die GitHub-Action ausgeführt, würde
-derselbe Server angepasst, auf dem auch die Produktion läuft. Deshalb wird das Deployment verhindert. Ein Test des
-neuen Deployments ist über einen lokalen Server möglich.
+### Template: Anlegen von Test- und Prod-Usern für Deployments
+
+Dieses Template beschreibt die Schritte, um neue Deployment-User auf einem Linux-Server anzulegen und mit SSH-Key
+auszustatten. Anschließend übernimmt Ansible die Rechte und Verzeichnisstruktur. Siehe ADR 24.
+
+---
+
+#### 1. User anlegen
+
+```bash
+# Pro User
+sudo useradd -m username
+```
+
+- usernames ändern!
+
+#### 2. SSH-Keys generieren
+
+```bash
+# Pro User:
+sudo -u username ssh-keygen -t ed25519 -N ""
+# enter
+sudo cat /home/username/.ssh/id_ed25519.pub | sudo tee -a /home/username/.ssh/authorized_keys
+```
+
+- usernames ändern!
+- Schlüssel werden im Standardpfad `.ssh/id_ed25519` abgelegt
+- `-N ""` -> kein Passwort, Nutzung in CI/CD möglich
+- Die private Keys in GitHub Secrets für GitHub Actions hochladen und vom Server löschen
+
+```bash
+# Pro User:
+sudo cat /home/username/.ssh/id_ed25519
+# Inhalt in GitHub-Action kopieren
+sudo rm /home/username/.ssh/id_ed25519
+sudo rm /home/username/.ssh/id_ed25519.pub
+```
 
 ### Zertifikate
 

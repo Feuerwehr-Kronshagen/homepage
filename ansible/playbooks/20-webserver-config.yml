@@ -23,6 +23,51 @@
         path: /etc/nginx/sites-enabled/default
         state: absent
 
+- name: Set up directories and install rsync
+  hosts: all
+  become: true
+  tasks:
+    - name: "Ensure /var is accessible"
+      ansible.builtin.file:
+        path: /var
+        state: directory
+        mode: "0755"
+    - name: "Ensure /var/www is accessible"
+      ansible.builtin.file:
+        path: /var/www
+        state: directory
+        mode: "0755"
+    - name: "Ensure /var/www/features is accessible"
+      when: branch != "main"
+      ansible.builtin.file:
+        path: /var/www/features
+        state: directory
+        mode: "0755"
+    - name: Install rsync
+      ansible.builtin.apt:
+        name: rsync
+        state: present
+
+- name: Set up user auths
+  hosts: all
+  tags: ["vserver"]
+  become: true
+  tasks:
+    - name: "Ensure /var/www/production is accessible to prod user"
+      ansible.builtin.file:
+        path: /var/www/production
+        state: directory
+        mode: "0755"
+        owner: "{{ prod_user }}"
+        group: "{{ prod_user }}"
+    - name: "Ensure /var/www/features/ is accessible to test user"
+      ansible.builtin.file:
+        path: /var/www/features/
+        state: directory
+        mode: "2775"
+        owner: "{{ test_user }}"
+        group: "{{ test_user }}"
+
 - name: Webserver-localhost-config
   hosts: all
   tags: ["localhost"]

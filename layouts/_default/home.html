@@ -1,5 +1,6 @@
-{{- define "main" }}
+{{- define "home" }}
   {{- partial "hero.html" . }}
   <section class="content">{{ .Content }}</section>
+{{- partial "features.html" . }}
   {{- partial "social-media.html" . }}
 {{ end }}

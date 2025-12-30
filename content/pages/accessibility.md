@@ -15,17 +15,16 @@ Diese Erklärung zur Barrierefreiheit gilt für die Homepage der Feurwehr Kronsh
 
 ## Stand der Vereinbarkeit mit den Anforderungen
 
-Diese Webseite ist teilweise mit § 13 Absatz 3 LBGG vereinbar.
+Diese Webseite ist vollständig <!-- teilweise --> mit § 13 Absatz 3 LBGG vereinbar.
 
+<!-- Falls teilweise vereinbar: (+Datum der Erstellung ändern)
 ## Nicht barrierefreie Bereiche
 
 Die nachstehend aufgeführten Inhalte sind nicht barrierefrei:
 
-1. Der Button "Mitmachen" wird nicht hervorgehoben, wenn er durch beispielsweise durch die Tab-Taste fokussiert wird.
-   [Bearbeitungsstatus](https://github.com/Feuerwehr-Kronshagen/homepage/issues/105)
-
 Wir werden die Seiten und Inhalte fortlaufend prüfen und die Erklärung entsprechend anpassen.
 Ein höchstmögliches Maß an Barrierefreiheit wird dabei angestrebt.
+-->
 
 ## Über die gesetzlichen Anforderungen hinausgehende barrierefreie Inhalte
 
@@ -42,7 +41,7 @@ Inhalte führen.
 
 ## Erstellung dieser Erklärung zur Barrierefreiheit
 
-Diese Erklärung wurde am 14.10.2025 erstellt.
+Diese Erklärung wurde am 17.12.2025 erstellt.
 
 Die Aussagen bezüglich der Vereinbarkeit mit den Barrierefreiheitsanforderungen in dieser Erklärung beruhen auf einer
 Selbstbewertung.

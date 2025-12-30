@@ -11,7 +11,7 @@ Nußbaumkoppel 1\
 24119 Kronshagen\
 Deutschland
 
-[Tel: +49 (0) 431 205056-0 ](tel:+49431 2050560)\
+[Tel: +49 (0) 431 205056-0 ](tel:+494312050560)\
 [info@feuerwehr-kronshagen.de](mailto:info@feuerwehr-kronshagen.de)
 
 ## Gemeindewehrführer

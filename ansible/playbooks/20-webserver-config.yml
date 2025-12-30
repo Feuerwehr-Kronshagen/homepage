@@ -38,7 +38,6 @@
         state: directory
         mode: "0755"
     - name: "Ensure /var/www/features is accessible"
-      when: branch != "main"
       ansible.builtin.file:
         path: /var/www/features
         state: directory

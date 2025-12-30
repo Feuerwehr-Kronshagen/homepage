@@ -2,6 +2,10 @@
 title = 'Erklärung zur Barrierefreiheit'
 date = 2025-10-14T00:00:00-00:00
 draft = false
+description = """
+Erklärung zur Barrierefreiheit der Feuerwehr Kronshagen gemäß den gesetzlichen Anforderungen des Landes \
+Schleswig-Holstein.
+"""
 +++
 
 ## Erklärung zur Barrierefreiheit

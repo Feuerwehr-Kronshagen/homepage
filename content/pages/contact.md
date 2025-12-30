@@ -2,6 +2,10 @@
 title = 'Werde Teil unseres Teams!'
 date = 2025-08-19T00:00:00-00:00
 draft = false
+description = """
+Jetzt Kontakt aufnehmen und Teil der Freiwilligen Feuerwehr Kronshagen werden. Ehrenamt, Teamarbeit, moderne Technik \
+und Hilfe für andere.
+"""
 +++
 
 Du möchtest moderne Technik erleben, echte Teamarbeit spüren und Menschen in Not helfen?

@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Hugo CLI
-        run: sudo apt install hugo
+        run: sudo apt-get install hugo
       - name: Install Dart Sass
         run: sudo snap install dart-sass
       - name: Checkout

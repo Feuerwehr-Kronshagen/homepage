@@ -1,5 +1,5 @@
 01-dev-server:
-	hugo serve --bind 0.0.0.0
+	hugo serve
 
 02-build-test:
 	hugo build -e test

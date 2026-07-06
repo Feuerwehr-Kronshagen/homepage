@@ -1,0 +1,13 @@
+<section class="social-card ">
+  <a aria-label="Instagram"
+     class="card-link"
+     href="https://www.instagram.com/feuerwehr.kronshagen"
+     rel="noopener noreferrer"
+     target="_blank"
+  >
+    <article class="social-media-card">
+      {{- $instagram := resources.Get "images/Instagram_Glyph_Gradient.png" }}
+      <img alt="Instagram" class="headerLogo" src="{{ $instagram.RelPermalink }}">
+    </article>
+  </a>
+</section>

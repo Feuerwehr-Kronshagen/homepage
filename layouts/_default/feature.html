@@ -1,12 +1,10 @@
 {{ define "main" }}
 <h1>{{ .Title }}</h1>
 {{ .Content }}
+{{ $category := .Params.filter_by }}
 {{ $posts := where site.Pages "Section" "posts" }}
+{{ $posts = where $posts "Params.categories" "intersect" (slice $category) }}
 {{ range $posts }}
-<h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-{{ end }}
-<hr>
-{{ range hugo.Data }}
-<h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
 {{ end }}
 {{ end }}

@@ -46,6 +46,7 @@ make 01-dev-server                  # lokaler Hugo-Server
 make 02-build-test                  # Build mit Environment "test"
 make 03-prod-run                    # lokaler Server mit Environment "production"
 make 04-ansible-lint                # Ansible Syntax-Check, ansible-lint, yamllint
+make 05-check-branch-name           # Branch-Name gegen ADR 0026 prüfen (läuft auch im Test-Workflow)
 make 99-install-ansible-dependencies
 make 80-dev-dependencies-macos      # hugo, ansible, sass, yamllint via brew
 ```
@@ -95,13 +96,13 @@ Ansible-Collections aus `requirements.yml`.
 ## Deployment
 
 - Push auf beliebigen Branch ≠ `main` → Workflow `test` → `https://test.feuerwehr-kronshagen.de/<branch>`
-  (Server-Pfad `/var/www/features/<branch>`, ADR 0025).
+  (Server-Pfad `/var/www/features/<branch>`, ADR 0026).
 - Push auf `main` → Workflow `prod` → `/var/www/production`.
 - Branch löschen → `cleanup-test` entfernt das Test-Deployment.
 - `admin` läuft nächtlich und provisioniert den Server; `certificates` manuell (Certbot/Let's Encrypt).
 - Getrennte Server-User für Admin, Test- und Prod-Deployment (ADR 0024). Änderungen an Playbooks, Workflows
   oder Rechten sind sicherheitsrelevant und brauchen besondere Sorgfalt.
-- Branch-Namen landen in URLs und Server-Pfaden: nur `a-z`, `0-9` und `-`, keine `/` (ADR 0025).
+- Branch-Namen landen in URLs und Server-Pfaden: nur `a-z`, `0-9` und `-`, keine `/` (ADR 0026).
 
 ## ADRs
 

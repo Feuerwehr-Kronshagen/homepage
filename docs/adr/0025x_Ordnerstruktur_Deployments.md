@@ -1,6 +1,6 @@
-# ADR 0025: Ordnerstruktur für Deployments und Regeln für Branch-Namen
+# ADR 0025: Ordnerstruktur für verschiedene Versionen der Website (Deployments)
 
-Ersetzt [0018x Ordnerstruktur Deployments](0018x_Ordnerstruktur_Deployments.md)
+Ersetzt durch [0026 Ordnerstruktur Deployments und Branch-Namen](0026_Ordnerstruktur_Deployments_und_Branch-Namen.md)
 
 ## Kontext
 
@@ -43,17 +43,6 @@ Diese Entscheidung haben wir getroffen, weil:
 - Testversionen in Unterordnern der Live-Version speichern (zu riskant)
 - Einen eigenen Server nur für Testversionen einrichten (zu teuer)
 
-### Branch-Namen
-
-Der Name eines Branches wird unverändert als Ordnername unter `/var/www/features/` und als Teil der Internetadresse
-der Testversion verwendet. Deshalb gelten für Branch-Namen folgende Regeln:
-
-1. Erlaubt sind nur Kleinbuchstaben (`a-z`), Ziffern (`0-9`) und Bindestriche (`-`)
-2. Keine Schrägstriche (`/`), da sonst verschachtelte Ordner entstehen (z.B. `feature/neue-startseite`), die beim
-   Löschen des Branches nicht vollständig aufgeräumt werden
-3. Keine Leerzeichen, Umlaute, Punkte oder sonstigen Sonderzeichen
-4. Der Name beschreibt kurz die Änderung, z.B. `neue-startseite` oder `007-jahreshauptversammlung`
-
 ## Konsequenzen
 
 1. Jede Testversion hat eine eindeutige Internetadresse (z.B. test.feuerwehr-kronshagen.de/features/neue-startseite)
@@ -61,5 +50,3 @@ der Testversion verwendet. Deshalb gelten für Branch-Namen folgende Regeln:
 3. Bei der Veröffentlichung müssen wir den Namen der neuen Funktion als Ordnernamen verwenden
 4. Wir müssen regelmäßig alte, nicht mehr benötigte Testversionen löschen
 5. Die Einstellungen unseres Webservers müssen so gestaltet sein, dass sie mit dieser Struktur funktionieren
-6. Branch-Namen, die nicht den Regeln entsprechen, können zu fehlerhaften Adressen oder nicht
-   aufgeräumten Ordnern auf dem Server führen

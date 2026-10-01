@@ -16,6 +16,7 @@
         rsync_path: "rsync"
         rsync_opts:
           - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"
+          - "--mkpath"
     - name: Sync production files
       when: branch == "main"
       ansible.posix.synchronize:

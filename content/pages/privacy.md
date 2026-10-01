@@ -45,7 +45,6 @@ Besucher und Nutzer des Onlineangebotes (Nachfolgend bezeichnen wir die betroffe
 - Zurverfügungstellung des Onlineangebotes, seiner Funktionen und Inhalte.
 - Beantwortung von Kontaktanfragen und Kommunikation mit Nutzern.
 - Sicherheitsmaßnahmen.
-- Reichweitenmessung/Marketing
 
 ## Verwendete Begrifflichkeiten
 
@@ -126,7 +125,7 @@ Ihrer Einwilligung, aufgrund einer rechtlichen Verpflichtung oder auf Grundlage 
 geschieht. Vorbehaltlich gesetzlicher oder vertraglicher Erlaubnisse, verarbeiten oder lassen wir die Daten in einem
 Drittland nur beim Vorliegen der besonderen Voraussetzungen der Art. 44 ff. DSGVO verarbeiten. D.h. die Verarbeitung
 erfolgt z.B. auf Grundlage besonderer Garantien, wie der offiziell anerkannten Feststellung eines der EU entsprechenden
-Datenschutzniveaus (z.B. für die USA durch das „Privacy Shield“) oder Beachtung offiziell anerkannter spezieller
+Datenschutzniveaus (Angemessenheitsbeschluss) oder Beachtung offiziell anerkannter spezieller
 vertraglicher Verpflichtungen (so genannte „Standardvertragsklauseln“).
 
 ## Rechte der betroffenen Personen
@@ -154,32 +153,10 @@ Sie haben das Recht, erteilte Einwilligungen gem. Art. 7 Abs. 3 DSGVO mit Wirkun
 Sie können der künftigen Verarbeitung der Sie betreffenden Daten nach Maßgabe des Art. 21 DSGVO jederzeit widersprechen.
 Der Widerspruch kann insbesondere gegen die Verarbeitung für Zwecke der Direktwerbung erfolgen.
 
-## Cookies und Widerspruchsrecht bei Direktwerbung
+## Cookies und Tracking
 
-Als „Cookies“ werden kleine Dateien bezeichnet, die auf Rechnern der Nutzer gespeichert werden. Innerhalb der Cookies
-können unterschiedliche Angaben gespeichert werden. Ein Cookie dient primär dazu, die Angaben zu einem Nutzer (bzw. dem
-Gerät auf dem das Cookie gespeichert ist) während oder auch nach seinem Besuch innerhalb eines Onlineangebotes zu
-speichern. Als temporäre Cookies, bzw. „Session-Cookies“ oder „transiente Cookies“, werden Cookies bezeichnet, die
-gelöscht werden, nachdem ein Nutzer ein Onlineangebot verlässt und seinen Browser schließt. In einem solchen Cookie kann
-z.B. der Inhalt eines Warenkorbs in einem Onlineshop oder ein Login-Status gespeichert werden. Als „permanent“ oder
-„persistent“ werden Cookies bezeichnet, die auch nach dem Schließen des Browsers gespeichert bleiben. So kann z.B. der
-Login-Status gespeichert werden, wenn die Nutzer diese nach mehreren Tagen aufsuchen. Ebenso können in einem solchen
-Cookie die Interessen der Nutzer gespeichert werden, die für Reichweitenmessung oder Marketingzwecke verwendet werden.
-Als „Third-Party-Cookie“ werden Cookies bezeichnet, die von anderen Anbietern als dem Verantwortlichen, der das
-Onlineangebot betreibt, angeboten werden (andernfalls, wenn es nur dessen Cookies sind spricht man von „First-Party
-Cookies“).
-
-Wir können temporäre und permanente Cookies einsetzen und klären hierüber im Rahmen unserer Datenschutzerklärung auf.
-
-Falls die Nutzer nicht möchten, dass Cookies auf ihrem Rechner gespeichert werden, werden sie gebeten die entsprechende
-Option in den Systemeinstellungen ihres Browsers zu deaktivieren. Gespeicherte Cookies können in den Systemeinstellungen
-des Browsers gelöscht werden. Der Ausschluss von Cookies kann zu Funktionseinschränkungen dieses Onlineangebotes führen.
-
-Ein genereller Widerspruch gegen den Einsatz der zu Zwecken des Onlinemarketing eingesetzten Cookies kann bei einer
-Vielzahl der Dienste, vor allem im Fall des Trackings, über die US-amerikanische Seite http://www.aboutads.info/choices/
-oder die EU-Seite http://www.youronlinechoices.com/ erklärt werden. Des Weiteren kann die Speicherung von Cookies
-mittels deren Abschaltung in den Einstellungen des Browsers erreicht werden. Bitte beachten Sie, dass dann
-gegebenenfalls nicht alle Funktionen dieses Onlineangebotes genutzt werden können.
+Dieses Onlineangebot setzt keine Cookies ein und speichert keine Informationen auf den Endgeräten der Nutzer (z.B. im
+Local Storage). Es findet keine Reichweitenmessung und kein Tracking statt.
 
 ## Löschung von Daten
 
@@ -194,12 +171,6 @@ werden müssen.
 Nach gesetzlichen Vorgaben in Deutschland, erfolgt die Aufbewahrung insbesondere für 10 Jahre gemäß §§ 147 Abs. 1 AO,
 257 Abs. 1 Nr. 1 und 4, Abs. 4 HGB (Bücher, Aufzeichnungen, Lageberichte, Buchungsbelege, Handelsbücher, für Besteuerung
 relevanter Unterlagen, etc.) und 6 Jahre gemäß § 257 Abs. 1 Nr. 2 und 3, Abs. 4 HGB (Handelsbriefe).
-
-Nach gesetzlichen Vorgaben in Österreich erfolgt die Aufbewahrung insbesondere für 7 J gemäß § 132 Abs. 1 BAO (
-Buchhaltungsunterlagen, Belege/Rechnungen, Konten, Belege, Geschäftspapiere, Aufstellung der Einnahmen und Ausgaben,
-etc.), für 22 Jahre im Zusammenhang mit Grundstücken und für 10 Jahre bei Unterlagen im Zusammenhang mit elektronisch
-erbrachten Leistungen, Telekommunikations-, Rundfunk- und Fernsehleistungen, die an Nichtunternehmer in
-EU-Mitgliedstaaten erbracht werden und für die der Mini-One-Stop-Shop (MOSS) in Anspruch genommen wird.
 
 ## Erbringung unserer satzungs- und geschäftsgemäßen Leistungen
 
@@ -245,17 +216,11 @@ erforderlich ist, sind bis zur endgültigen Klärung des jeweiligen Vorfalls von
 
 ## Einbindung von Diensten und Inhalten Dritter
 
-Wir setzen innerhalb unseres Onlineangebotes auf Grundlage unserer berechtigten Interessen (d.h. Interesse an der
-Analyse, Optimierung und wirtschaftlichem Betrieb unseres Onlineangebotes im Sinne des Art. 6 Abs. 1 lit. f. DSGVO)
-Inhalts- oder Serviceangebote von Drittanbietern ein, um deren Inhalte und Services, wie z.B. Videos oder Schriftarten
-einzubinden (nachfolgend einheitlich bezeichnet als “Inhalte”).
+Wir binden keine Inhalte oder Dienste von Drittanbietern (z.B. Videos, Karten oder Schriftarten) ein. Alle Inhalte
+dieses Onlineangebotes werden von unserem eigenen Server ausgeliefert.
 
-Dies setzt immer voraus, dass die Drittanbieter dieser Inhalte, die IP-Adresse der Nutzer wahrnehmen, da sie ohne die
-IP-Adresse die Inhalte nicht an deren Browser senden könnten. Die IP-Adresse ist damit für die Darstellung dieser
-Inhalte erforderlich. Wir bemühen uns nur solche Inhalte zu verwenden, deren jeweilige Anbieter die IP-Adresse lediglich
-zur Auslieferung der Inhalte verwenden. Drittanbieter können ferner so genannte Pixel-Tags (unsichtbare Grafiken, auch
-als "Web Beacons" bezeichnet) für statistische oder Marketingzwecke verwenden. Durch die "Pixel-Tags" können
-Informationen, wie der Besucherverkehr auf den Seiten dieser Website ausgewertet werden. Die pseudonymen Informationen
-können ferner in Cookies auf dem Gerät der Nutzer gespeichert werden und unter anderem technische Informationen zum
-Browser und Betriebssystem, verweisende Webseiten, Besuchszeit sowie weitere Angaben zur Nutzung unseres Onlineangebotes
-enthalten, als auch mit solchen Informationen aus anderen Quellen verbunden werden.
+## Links zu Social-Media-Profilen
+
+Auf unsere Profile bei Facebook und Instagram verweisen wir lediglich mit einfachen Links. Beim Aufruf dieses
+Onlineangebotes werden dadurch keine Daten an die Betreiber der Plattformen übermittelt. Erst wenn Sie einem Link folgen,
+gelten die Datenschutzbestimmungen des jeweiligen Anbieters.

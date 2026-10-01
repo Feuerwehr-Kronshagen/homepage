@@ -1,7 +1,6 @@
 ---
 - name: Delete feature deployment for given branch
   hosts: all
-  become: true
   tasks:
     - name: Remove feature deployment directory
       when: deleted_branch is defined and deleted_branch != "main"

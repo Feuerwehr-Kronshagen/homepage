@@ -1,4 +1,6 @@
-# ADR 0019: Ordnerstruktur für verschiedene Versionen der Website (Deployments)
+# ADR 0018: Ordnerstruktur für verschiedene Versionen der Website (Deployments)
+
+Ersetzt durch [0025 Ordnerstruktur Deployments und Branch-Namen](0025_Ordnerstruktur_Deployments_und_Branch-Namen.md)
 
 ## Kontext
 

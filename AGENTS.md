@@ -95,13 +95,13 @@ Ansible-Collections aus `requirements.yml`.
 ## Deployment
 
 - Push auf beliebigen Branch ≠ `main` → Workflow `test` → `https://test.feuerwehr-kronshagen.de/<branch>`
-  (Server-Pfad `/var/www/features/<branch>`).
+  (Server-Pfad `/var/www/features/<branch>`, ADR 0025).
 - Push auf `main` → Workflow `prod` → `/var/www/production`.
 - Branch löschen → `cleanup-test` entfernt das Test-Deployment.
 - `admin` läuft nächtlich und provisioniert den Server; `certificates` manuell (Certbot/Let's Encrypt).
 - Getrennte Server-User für Admin, Test- und Prod-Deployment (ADR 0024). Änderungen an Playbooks, Workflows
   oder Rechten sind sicherheitsrelevant und brauchen besondere Sorgfalt.
-- Branch-Namen landen in URLs und Server-Pfaden – URL-taugliche Namen ohne Sonderzeichen wählen.
+- Branch-Namen landen in URLs und Server-Pfaden: nur `a-z`, `0-9` und `-`, keine `/` (ADR 0025).
 
 ## ADRs
 

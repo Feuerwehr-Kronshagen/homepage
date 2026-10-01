@@ -7,6 +7,15 @@
 03-prod-run:
 	hugo serve -e production --bind 0.0.0.0
 
+05-check-branch-name:
+	@branch="$${BRANCH_NAME:-$$(git symbolic-ref -q --short HEAD || git rev-parse --short HEAD)}"; \
+	if printf '%s' "$$branch" | grep -Eqx '[a-z0-9-]+'; then \
+		echo "Branch-Name ok: $$branch"; \
+	else \
+		echo "Ungueltiger Branch-Name: $$branch (erlaubt: a-z, 0-9, -; siehe ADR 0026)"; \
+		exit 1; \
+	fi
+
 ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 04-ansible-lint:
 	ansible-playbook -i "localhost,vserver," ansible/playbooks/*.yml --syntax-check

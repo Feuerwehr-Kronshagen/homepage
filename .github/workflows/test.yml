@@ -15,13 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Hugo CLI
-        run: sudo snap install hugo
+        run: sudo apt-get install hugo
       - name: Install Dart Sass
         run: sudo snap install dart-sass
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
+      - name: Hugo version
+        run: hugo version
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache

@@ -42,7 +42,6 @@ jobs:
         run: >
           ansible-playbook
           -i "${{ secrets.VSERVER_HOST }},"
-          --become-password-file ~/.ssh/password.txt
           --user "${{ secrets.VSERVER_SSHUSER }}"
           --private-key ~/.ssh/id_ed25519
           -e "deleted_branch=${{ github.event.ref }}"

@@ -13,6 +13,16 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 	ansible-lint ansible/*
 	yamllint ansible/*
 
+05-e2e-test:
+	cd e2e && npx playwright test
+
+# Nur nach bewusster Änderung ausführen – die geänderten Snapshots im PR prüfen lassen (ADR 0026)
+06-e2e-update-snapshots:
+	cd e2e && npx playwright test --update-snapshots
+
+07-e2e-report:
+	cd e2e && npx playwright show-report
+
 10-docker-local-server-start:
 	docker rm -f ubuntu-ssh 2>/dev/null || true \
 	&& docker run \
@@ -66,6 +76,9 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 	&& brew install sass/sass/sass \
 	&& brew install yamllint \
   && ansible-galaxy collection install -r requirements.yml
+
+81-e2e-dependencies:
+	cd e2e && npm ci && npx playwright install --with-deps chromium
 
 99-build-local-test-with-branch-name:
 	hugo build -e test --baseURL="https://localhost:8443/features/$(shell git rev-parse --abbrev-ref HEAD)"

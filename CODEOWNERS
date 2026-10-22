@@ -1,1 +1,3 @@
 * @Feuerwehr-Kronshagen/dev
+# Abgenommene Stände der E2E-Tests: Änderungen nur nach Review (ADR 0026)
+/e2e/tests/__snapshots__/ @Feuerwehr-Kronshagen/dev

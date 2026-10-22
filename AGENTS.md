@@ -36,6 +36,7 @@ Leitfaden für KI-Agenten (und Menschen), die in diesem Repository arbeiten.
 | `docs/adr/` | Architecture Decision Records |
 | `docs/design/` | Design Brief, Wireframes |
 | `docs/erste-schritte/` | Einstieg für Nicht-Techniker |
+| `e2e/` | End-to-End-Tests mit Playwright, Snapshots in `e2e/tests/__snapshots__/` |
 
 ## Befehle
 
@@ -46,18 +47,36 @@ make 01-dev-server                  # lokaler Hugo-Server
 make 02-build-test                  # Build mit Environment "test"
 make 03-prod-run                    # lokaler Server mit Environment "production"
 make 04-ansible-lint                # Ansible Syntax-Check, ansible-lint, yamllint
+make 05-e2e-test                    # E2E-Tests (Playwright, startet Hugo selbst)
+make 06-e2e-update-snapshots        # abgenommene Stände neu erzeugen – nur auf ausdrückliche Anweisung
+make 07-e2e-report                  # HTML-Report des letzten Laufs
+make 81-e2e-dependencies            # npm ci + Chromium für Playwright
 make 99-install-ansible-dependencies
 make 80-dev-dependencies-macos      # hugo, ansible, sass, yamllint via brew
 ```
 
 Voraussetzungen: Hugo (extended, SCSS via libsass), Dart Sass, Python mit `ansible`, `ansible-lint`, `yamllint`,
-Ansible-Collections aus `requirements.yml`.
+Ansible-Collections aus `requirements.yml`, Node.js 22 für die E2E-Tests.
 
 ## Prüfen vor dem Commit
 
 - Hugo-Änderungen: `make 02-build-test` muss fehlerfrei bauen.
 - Ansible-/YAML-Änderungen: `make 04-ansible-lint` muss sauber durchlaufen (im Prod-Workflow blockierend).
-- Es gibt keine automatisierten Tests; visuelle Prüfung über die Testumgebung.
+- Template-, Inhalts- oder SCSS-Änderungen: `make 05-e2e-test` muss grün sein.
+- Visuelle Prüfung zusätzlich über die Testumgebung.
+
+## E2E-Tests
+
+- Playwright in `e2e/` (ADR 0026). Haupttreiber sind ARIA-Snapshots (`toMatchAriaSnapshot`): Sie halten die
+  Struktur jeder Seite fest (Überschriften, Links, Listen, Landmarks) – also das, was Screenreader sehen.
+- `e2e/tests/__snapshots__/*.aria.yml` sind die **abgenommenen Stände**. Sie werden nur von Menschen freigegeben.
+- **Regel für KI-Agenten:** Snapshots niemals selbstständig aktualisieren (`--update-snapshots`,
+  `make 06-e2e-update-snapshots`, Bearbeiten der YAML-Dateien), um einen roten Test grün zu machen. Schlägt ein
+  Snapshot fehl, den Diff melden und erklären, ob die Änderung beabsichtigt ist. Aktualisieren nur, wenn der
+  Mensch es ausdrücklich verlangt.
+- Neue dauerhafte Seite → in `e2e/tests/pages.ts` eintragen; der Snapshot entsteht beim ersten lokalen Lauf und wird
+  im PR geprüft.
+- Desktop und Mobil teilen sich dieselben Snapshots: Responsive Layouts dürfen keine Inhalte verstecken.
 
 ## Code-Stil
 

@@ -3,10 +3,13 @@
 title = 'Passive Mitgliedschaft'
 date = 2021-08-28T00:00:00-00:00
 draft = false
+layout = 'feature'
 description = """
 Werde passives Mitglied der Freiwilligen Feuerwehr Kronshagen und unterstütze das Ehrenamt in deiner Gemeinde – \
 ganz ohne Einsatzdienst.
 """
+[params]
+filter_by = 'Passive Mitgliedschaft'
 +++
 
 ## Passive Mitgliedschaft

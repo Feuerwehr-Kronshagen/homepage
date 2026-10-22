@@ -1,6 +1,6 @@
 <section id="features">
   <section class="grid">
-    <a aria-label="Einsatzabteilung"
+    <a aria-label="Einsatzabteilung: Jetzt einsteigen"
        class="card-link"
        href='{{ ref . "pages/Einsatzabteilung" }}'
     >
@@ -9,28 +9,28 @@
         <img alt="Einsatzabteilung" class="headerLogo" src="{{ $aktiv.RelPermalink }}">
         <div class="container">
           <h2>Aktiv</h2>
-          <p>Einsatz- und Reserveabteilung der freiwilligen Feuerwehr Kronshagen</p>
+          <p>Löschen, retten, helfen: Werde Teil der Einsatz- und Reserveabteilung.</p>
         </div>
-        <p class="cta">Mitmachen</p>
+        <p class="cta">Jetzt einsteigen</p>
       </article>
     </a>
 
-    <a aria-label="Jugend"
+    <a aria-label="Jugendfeuerwehr: Jugendfeuerwehr entdecken"
        class="card-link"
        href='{{ ref . "pages/Jugendfeuerwehr" }}'
     >
       <article class="features-card">
         {{- $jugend := resources.Get "images/gray_demo.jpg" }}
-        <img alt="Jugend" class="headerLogo" src="{{ $jugend.RelPermalink }}">
+        <img alt="Jugendfeuerwehr" class="headerLogo" src="{{ $jugend.RelPermalink }}">
         <div class="container">
           <h2>Jugend</h2>
-          <p>Nachwuchskräfte zwischen 10 und 18 Jahren</p>
+          <p>Für alle zwischen 10 und 18 Jahren: Technik, Teamgeist und jede Menge Spaß.</p>
         </div>
-        <p class="cta">Mitmachen</p>
+        <p class="cta">Jugendfeuerwehr entdecken</p>
       </article>
     </a>
 
-    <a aria-label="Passiv"
+    <a aria-label="Passive Mitgliedschaft: Mitglied werden"
        class="card-link"
        href='{{ ref . "pages/Passive Mitgliedschaft" }}'
     >
@@ -39,9 +39,9 @@
         <img alt="Passive Mitgliedschaft" class="headerLogo" src="{{ $passiv.RelPermalink }}">
         <div class="container">
           <h2>Passiv</h2>
-          <p>Unterstütze deine Feuerwehr</p>
+          <p>Ohne Einsatzdienst, mit Wirkung: Unterstütze deine Feuerwehr als passives Mitglied.</p>
         </div>
-        <p class="cta">Mitmachen</p>
+        <p class="cta">Mitglied werden</p>
       </article>
     </a>
   </section>

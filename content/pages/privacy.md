@@ -16,7 +16,7 @@ verweisen wir auf die Definitionen im Art. 4 der Datenschutzgrundverordnung (DSG
 
 ## Verantwortlicher
 
-Christian Esselbach (Gemeindewehrführer)\
+HBM Christian Esselbach (Gemeindewehrführer)\
 Freiwillige Feuerwehr Kronshagen\
 Nußbaumkoppel 1\
 24119 Kronshagen\

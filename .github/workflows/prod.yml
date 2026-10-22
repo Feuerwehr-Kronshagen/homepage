@@ -26,7 +26,7 @@ jobs:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
         run: make 30-build-hugo-vserver-prod
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: hugo-prod-site
           path: ./public
@@ -63,7 +63,7 @@ jobs:
       - name: Install dependencies
         run: make 99-install-ansible-dependencies
       - name: Download Build Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: hugo-prod-site
           path: ./public

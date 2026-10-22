@@ -16,7 +16,7 @@ weight = 2
 
 [[menus.main]]
 name = 'Passive Mitgliedschaft'
-pageRef = '/pages/passiv'
+pageRef = '/pages/Passive Mitgliedschaft'
 weight = 2
 
 #[[menus.main]]

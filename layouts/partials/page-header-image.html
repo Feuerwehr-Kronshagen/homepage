@@ -11,9 +11,9 @@
   {{- if not $img }}
     {{- errorf "header_image: Bild %q nicht unter assets/ gefunden (%s)" .src $.File.Path }}
   {{- end }}
-  {{- $small := $img.Resize "800x webp q75" }}
-  {{- $medium := $img.Resize "1400x webp q75" }}
-  {{- $large := $img.Resize "2080x webp q75" }}
+  {{- $small := $img.Resize "800x webp" }}
+  {{- $medium := $img.Resize "1400x webp" }}
+  {{- $large := $img.Resize "2080x webp" }}
   <img
     class="page-header-image"
     src="{{ $large.RelPermalink }}"

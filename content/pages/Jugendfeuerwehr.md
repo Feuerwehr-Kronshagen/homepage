@@ -8,6 +8,8 @@ description = """
 Die Jugendfeuerwehr Kronshagen für Kinder und Jugendliche zwischen 10 und 18 Jahren: Feuerwehrtechnik, Teamgeist \
 und gemeinsame Erlebnisse.
 """
+[params.header_image]
+src = 'images/pages/Jugendfeuerwehr_wide.jpg'
 +++
 
 ## Die Jugend

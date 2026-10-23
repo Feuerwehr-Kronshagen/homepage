@@ -8,6 +8,8 @@ description = """
 Die Einsatzabteilung der Freiwilligen Feuerwehr Kronshagen: Brandbekämpfung, technische Hilfeleistung und \
 Ausbildung im Ehrenamt. Jetzt mitmachen!
 """
+[params.header_image]
+src = 'images/pages/Einsatzabteilung_wide.jpg'
 +++
 
 ## Aktive freiwillige Feuerwehrleute

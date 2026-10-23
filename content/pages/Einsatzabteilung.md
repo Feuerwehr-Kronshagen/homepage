@@ -8,8 +8,6 @@ description = """
 Die Einsatzabteilung der Freiwilligen Feuerwehr Kronshagen: Brandbekämpfung, technische Hilfeleistung und \
 Ausbildung im Ehrenamt. Jetzt mitmachen!
 """
-[params]
-filter_by = 'Einsatzabteilung'
 +++
 
 ## Aktive freiwillige Feuerwehrleute

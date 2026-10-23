@@ -13,3 +13,4 @@ resources
 # Hugo
 .hugo_build.lock
 hugo_stats.json
+.lighthouseci/

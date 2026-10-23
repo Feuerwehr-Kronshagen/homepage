@@ -89,3 +89,43 @@ jobs:
         run: |
           rm -f ~/.ssh/id_ed25519*
           rm -f ~/.ssh/password.txt
+
+  # Issue #4: Lighthouse prüft die gerade bereitgestellte Testumgebung (gleicher NGINX wie Produktion).
+  # Schwellenwerte stehen in lighthouserc.json, geprüfte Seiten im makefile (LIGHTHOUSE_PATHS).
+  lighthouse:
+    needs:
+      - vserver-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 'lts/*'
+      - name: Run Lighthouse CI
+        run: make 21-lighthouse-vserver-test
+      - name: Write job summary
+        if: always()
+        run: |
+          manifest=.lighthouseci/reports/manifest.json
+          [[ -f "$manifest" ]] || exit 0
+          {
+            echo "## Lighthouse (Median aus 3 Läufen)"
+            echo
+            echo "| Seite | Performance | Barrierefreiheit | Best Practices | SEO |"
+            echo "|---|---|---|---|---|"
+            jq -r '.[] | select(.isRepresentativeRun)
+              | "| \(.url) | \(.summary | [.performance, .accessibility, ."best-practices", .seo]
+              | map(. * 100 | round | tostring) | join(" | ")) |"' "$manifest"
+            echo
+            echo "SEO ist auf der Testumgebung durch \`noindex\` immer reduziert und wird nicht bewertet."
+            echo "Vollständige Berichte: Artefakt \`lighthouse-reports\`."
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci/reports
+          if-no-files-found: ignore

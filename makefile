@@ -13,6 +13,17 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 	ansible-lint ansible/*
 	yamllint ansible/*
 
+# Lighthouse (Issue #4): Version und geprüfte Seiten zentral hier pflegen
+LHCI = npx --yes @lhci/cli@0.15.1
+LIGHTHOUSE_PATHS = / /pages/contact/
+BRANCH = $(shell git symbolic-ref -q --short HEAD || git rev-parse --short HEAD)
+
+05-lighthouse-local:
+	$(LHCI) autorun \
+		--collect.startServerCommand="hugo serve -e production --minify --disableLiveReload --port 1313 --baseURL http://localhost:1313/" \
+		--collect.startServerReadyPattern="Web Server is available" \
+		$(foreach p,$(LIGHTHOUSE_PATHS),--collect.url=http://localhost:1313$(p))
+
 10-docker-local-server-start:
 	docker rm -f ubuntu-ssh 2>/dev/null || true \
 	&& docker run \
@@ -55,6 +66,9 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 
 20-build-hugo-vserver-test:
 	hugo build -e test --baseURL="https://test.feuerwehr-kronshagen.de/$(shell git symbolic-ref -q --short HEAD || git rev-parse --short HEAD)"
+
+21-lighthouse-vserver-test:
+	$(LHCI) autorun $(foreach p,$(LIGHTHOUSE_PATHS),--collect.url=https://test.feuerwehr-kronshagen.de/$(BRANCH)$(p))
 
 30-build-hugo-vserver-prod:
 	hugo build -e production --minify --baseURL="https://feuerwehr-kronshagen.de"

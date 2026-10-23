@@ -1,0 +1,22 @@
+- main:
+  - heading "Impressum" [level=1]
+  - time: /\d+\. August \d+/
+  - heading "Kontakt" [level=2]
+  - paragraph:
+    - strong: Feuerwehr Kronshagen
+    - text: /Nußbaumkoppel 1 \d+ Kronshagen Deutschland/
+  - paragraph:
+    - 'link /Tel: \+\d+ \(0\) \d+ \d+-0/':
+      - /url: tel:+494312050560
+    - link "info@feuerwehr-kronshagen.de":
+      - /url: mailto:info@feuerwehr-kronshagen.de
+  - heading "Gemeindewehrführer" [level=2]
+  - paragraph:
+    - text: Christian Esselbach (
+    - link "gemeindewehrfuehrer@feuerwehr-kronshagen.de":
+      - /url: mailto:gemeindewehrfuehrer@feuerwehr-kronshagen.de
+    - text: )
+  - heading "Haftungsausschluss" [level=2]
+  - paragraph: Alle Angaben unseres Internetangebotes wurden sorgfältig geprüft. Wir bemühen uns, dieses Informationsangebot aktuell und inhaltlich richtig sowie vollständig anzubieten. Dennoch ist das Auftreten von Fehlern nicht völlig auszuschließen. Eine Garantie für die Vollständigkeit, Richtigkeit und letzte Aktualität kann daher nicht übernommen werden.
+  - paragraph: Der Zugang und die Benutzung dieser Website geschehen auf eigene Gefahr des Benutzers. Die Feuerwehr Kronshagen ist nicht verantwortlich und übernimmt keinerlei Haftung für Schäden, u.a. für direkte, indirekte, zufällige, vorab konkret zu bestimmende oder Folgeschäden, die angeblich durch den oder in Verbindung mit dem Zugang und/oder der Benutzung dieser Website aufgetreten sind.
+  - paragraph: Die Betreiberin übernimmt keine Verantwortung für die Inhalte und die Verfügbarkeit von Websites Dritter, die über externe Links dieses Informationsangebotes erreicht werden. Die Herausgeberin distanziert sich ausdrücklich von allen Inhalten, die möglicherweise straf- oder haftungsrechtlich relevant sind oder gegen die guten Sitten verstoßen.

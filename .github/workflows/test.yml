@@ -33,6 +33,33 @@ jobs:
           name: hugo-test-site
           path: ./public
 
+  # End-to-End-Tests (ADR 0026). Blockiert das Test-Deployment bewusst nicht,
+  # damit Änderungen auch bei roten Tests auf der Testumgebung angeschaut werden können.
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Hugo CLI
+        run: sudo snap install hugo
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: e2e/package-lock.json
+      - name: Install Playwright
+        run: make 81-e2e-dependencies
+      - name: Run E2E tests
+        run: make 05-e2e-test
+      - name: Upload Playwright report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: e2e/playwright-report
+          retention-days: 14
+
   ansible-lint:
     runs-on: ubuntu-latest
     steps:

@@ -1,0 +1,46 @@
+- main:
+  - heading "Erklärung zur Barrierefreiheit" [level=1]
+  - time: /\d+\. Oktober \d+/
+  - heading "Erklärung zur Barrierefreiheit" [level=2]
+  - paragraph: /Die Feuerwehr Kronshagen ist bemüht, ihre Websites im Einklang mit § \d+ Absatz 1 Landesbehindertengleichstellungsgesetz \(LBGG\) sowie den Anforderungen der Barrierefreiheit gemäß § \d+ Absatz 3 LBGG barrierefrei zugänglich zu machen\./
+  - paragraph:
+    - text: Diese Erklärung zur Barrierefreiheit gilt für die Homepage der Feurwehr Kronshagen (
+    - link "https://feuerwehr-kronshagen.de":
+      - /url: https://feuerwehr-kronshagen.de
+    - text: ).
+  - heading "Stand der Vereinbarkeit mit den Anforderungen" [level=2]
+  - paragraph: /Diese Webseite ist vollständig mit § \d+ Absatz 3 LBGG vereinbar\./
+  - heading "Über die gesetzlichen Anforderungen hinausgehende barrierefreie Inhalte" [level=2]
+  - paragraph: "Folgende Inhalte sind aufgrund der Absicht, ein höheres Maß an digitaler Barrierefreiheit als gesetzlich gefordert umzusetzen, realisiert:"
+  - list:
+    - listitem: "- Die visuelle Präsentation von Text hat ein Kontrastverhältnis von mindestens 7:1"
+    - listitem: /- Der interaktive Bereich von Bedienelementen umfasst mindestens \d+ x \d+ CSS-Pixel/
+  - heading "Weitere Anmerkungen" [level=2]
+  - paragraph: Verlinkungen zu externen Dokumenten oder Webseiten außerhalb dieses Internetauftritts können auf nicht barrierefreie Inhalte führen.
+  - heading "Erstellung dieser Erklärung zur Barrierefreiheit" [level=2]
+  - paragraph: /Diese Erklärung wurde am \d+\.\d+\.\d+ erstellt\./
+  - paragraph: Die Aussagen bezüglich der Vereinbarkeit mit den Barrierefreiheitsanforderungen in dieser Erklärung beruhen auf einer Selbstbewertung.
+  - heading "Feedback und Kontaktangaben" [level=2]
+  - paragraph:
+    - text: Sie möchten uns bestehende Barrieren mitteilen oder Informationen zur Umsetzung der Barrierefreiheit erfragen? Für Ihr Feedback sowie alle weiteren Informationen sprechen Sie unsere verantwortlichen Kontaktpersonen unter
+    - link "info@feuerwehr-kronshagen.de":
+      - /url: mailto:info@feuerwehr-kronshagen.de
+    - text: an.
+  - heading "Beschwerdeverfahren" [level=2]
+  - paragraph: Die Beschwerdestelle hat die Aufgabe, Konflikte zum Thema digitale Barrierefreiheit zwischen Menschen mit Behinderungen und öffentlichen Stellen in Schleswig-Holstein zu lösen. Dabei geht es nicht darum, Gewinner oder Verlierer zu finden. Vielmehr ist es das Ziel, mit Hilfe der Beschwerdestelle gemeinsam und außergerichtlich eine Lösung für ein Problem zu finden. Das Beschwerdeverfahren ist kostenlos. Es muss kein Rechtsbeistand eingeschaltet werden.
+  - paragraph:
+    - text: Auf der
+    - link "Internetseite der Beschwerdestelle":
+      - /url: https://www.inklusion.sh/unsere-aufgaben/beschwerdestelle/
+    - text: finden Sie alle Informationen zum Beschwerdeverfahren. Dort können Sie nachlesen, wie ein Beschwerdeverfahren abläuft.
+  - paragraph: "Sie erreichen die Beschwerdestelle unter folgender Adresse:"
+  - paragraph: Beschwerdestelle nach dem Behindertengleichstellungsgesetz bei der oder dem Landesbeauftragten für Menschen mit Behinderungen.
+  - paragraph: "/Büroanschrift: Karolinenweg 1 \\d+ Kiel/"
+  - paragraph: "/Postanschrift: Postfach \\d+ \\d+ Kiel/"
+  - paragraph:
+    - text: "Telefon:"
+    - link /\+\d+ \d+ \d+ \d+/:
+      - /url: tel:+494319881612
+    - text: "E-Mail:"
+    - link "bbit@landtag.ltsh.de":
+      - /url: mailto:bbit@landtag.ltsh.de

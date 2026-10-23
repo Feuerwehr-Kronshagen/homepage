@@ -1,0 +1,22 @@
+- contentinfo:
+  - navigation "Hauptnavigation":
+    - heading "Inhalt" [level=2]
+    - list:
+      - listitem:
+        - link "Startseite":
+          - /url: /
+      - listitem:
+        - link "Kontakt":
+          - /url: /pages/contact/
+  - navigation "Footer-Navigation":
+    - heading "Rechtliches" [level=2]
+    - list:
+      - listitem:
+        - link "Impressum":
+          - /url: /pages/impressum/
+      - listitem:
+        - link "Barrierefreiheit":
+          - /url: /pages/accessibility/
+      - listitem:
+        - link "Datenschutz":
+          - /url: /pages/privacy/

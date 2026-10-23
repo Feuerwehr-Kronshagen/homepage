@@ -1,0 +1,23 @@
+- main:
+  - text: Wir suchen Dich! Du lebst oder arbeitest in Kronshagen? Komm vorbei und lerne uns kennen.
+  - button "Mitmachen"
+  - heading "Ehrenamtlich für Dich im Einsatz!" [level=2]
+  - paragraph: Freiwillige Tätigkeiten sind heute mehr denn je ein unverzichtbarer Bestandteil unserer Gesellschaft.
+  - paragraph: "Die Freiwillige Feuerwehr Kronshagen kommt immer, wenn Du dringend Hilfe brauchst:"
+  - list:
+    - listitem: "- bei Schadfeuer oder Unglück in deinem Haus oder deiner Wohnung"
+    - listitem: "- wenn Du nach einem Verkehrsunfall aus Deinem Fahrzeug befreit werden musst"
+    - listitem: "- wenn Dein Keller durch Rohrbruch oder Unwetter vollgelaufen ist"
+    - listitem: "- wenn Straßen und Bahnstrecken nach Stürmen wieder befahrbar gemacht werden oder Dein Hausdach notdürftig wieder abgedeckt werden muss"
+    - listitem: "- wenn Du hilflos in Deiner Wohnung bist"
+  - paragraph: Um dies zu gewährleisten, sind die Kameradinnen und Kameraden der Freiwilligen Feuerwehr Kronshagen jederzeit bereit, ihre Ehepartner und Kinder oder auch ihren Arbeitsplatz zu verlassen, um Dir zu helfen!
+  - heading "Social Media" [level=2]
+  - paragraph: "Einsätze, Veranstaltungen, Bilder und Einblicke direkt aus dem Feuerwehralltag findest du unter:"
+  - link "Facebook":
+    - /url: https://www.facebook.com/feuerwehr.kronshagen
+    - article:
+      - img "Facebook"
+  - link "Instagram":
+    - /url: https://www.instagram.com/feuerwehr.kronshagen
+    - article:
+      - img "Instagram"

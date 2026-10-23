@@ -1,0 +1,34 @@
+- main:
+  - heading "Werde Teil unseres Teams!" [level=1]
+  - time: /\d+\. August \d+/
+  - paragraph: Du möchtest moderne Technik erleben, echte Teamarbeit spüren und Menschen in Not helfen? Dann bist du bei uns genau richtig!
+  - paragraph:
+    - strong: "Was wir bieten:"
+  - list:
+    - listitem: "- Spannende Einsätze und abwechslungsreiche Aufgaben"
+    - listitem: "- Gemeinschaft und Zusammenhalt"
+    - listitem: "- Professionelle Aus- und Weiterbildung"
+    - listitem: "- Modernste Ausrüstung"
+  - paragraph:
+    - strong: "Dein Profil:"
+  - list:
+    - listitem: "- Wohnst oder arbeitest in Kronshagen"
+    - listitem: /- Mindestens \d+ Jahre alt/
+    - listitem: "- Teamgeist und Engagement"
+  - paragraph:
+    - strong: "Komm vorbei:"
+  - list:
+    - listitem: /- 📅 jeden ersten und dritten Montag, \d+:\d+ - \d+:\d+ Uhr/
+    - listitem: "- 📍 Feuerwehrhaus, Nußbaumkoppel 1, Kronshagen"
+  - paragraph:
+    - strong: Interesse?
+  - paragraph: "Melde dich bei Fragen einfach unter:"
+  - paragraph:
+    - text: "E-Mail:"
+    - link "info@feuerwehr-kronshagen.de":
+      - /url: mailto:info@feuerwehr-kronshagen.de
+    - text: "Telefon:"
+    - 'link /Tel: \+\d+ \(0\) \d+ \d+-0/':
+      - /url: tel:+494312050560
+  - paragraph:
+    - strong: Werde Teil unseres starken Teams!

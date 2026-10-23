@@ -4,21 +4,20 @@ footer {
   padding: 1.5rem 0;
 
   // Bündig zum Seiteninhalt (.frame): auf Mobile untereinander,
-  // ab 600 px nebeneinander mit "Rechtliches" am rechten Rand
+  // ab 600 px linksbündige Spalten mit fester Breite
   > .frame {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem 2rem;
 
     @media screen and (min-width: 600px) {
-      flex-direction: row;
-      justify-content: space-between;
+      grid-template-columns: repeat(auto-fill, 12rem);
     }
   }
 
   h2 {
-    font-size: 1rem;
-    margin: 0 0 0.25rem;
+    font-size: 1.25rem;
+    margin: 0 0 0.75rem;
   }
 
   // Globale Listen-Einrückung aus main.scss aufheben

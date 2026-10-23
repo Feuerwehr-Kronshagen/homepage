@@ -1,0 +1,25 @@
+{{- /*
+  Breites Kopfbild für Seiten mit Layout "feature".
+  Front Matter:
+    [params.header_image]
+    src = 'images/pages/Einsatzabteilung.jpg'   # Pfad unterhalb von assets/
+    alt = ''                                    # optional, leer = dekorativ
+    position = '70% 50%'                        # optional, Bildausschnitt auf Mobilgeräten
+*/ -}}
+{{- with .Params.header_image }}
+  {{- $img := resources.Get .src }}
+  {{- if not $img }}
+    {{- errorf "header_image: Bild %q nicht unter assets/ gefunden (%s)" .src $.File.Path }}
+  {{- end }}
+  {{- $small := $img.Resize "800x webp" }}
+  {{- $medium := $img.Resize "1400x webp" }}
+  {{- $large := $img.Resize "2080x webp" }}
+  <img
+    class="page-header-image"
+    src="{{ $large.RelPermalink }}"
+    srcset="{{ $small.RelPermalink }} 800w, {{ $medium.RelPermalink }} 1400w, {{ $large.RelPermalink }} 2080w"
+    sizes="(min-width: 1440px) 1040px, 100vw"
+    alt="{{ .alt | default "" }}"
+    {{- with .position }} style="object-position: {{ . | safeCSS }}"{{ end }}
+  >
+{{- end }}

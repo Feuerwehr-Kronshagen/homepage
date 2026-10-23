@@ -3,8 +3,6 @@ footer {
   color: inherit;
   padding: 1.5rem 0;
 
-  // Bündig zum Seiteninhalt (.frame): auf Mobile untereinander,
-  // ab 600 px linksbündige Spalten mit fester Breite
   > .frame {
     display: grid;
     grid-template-columns: 1fr;

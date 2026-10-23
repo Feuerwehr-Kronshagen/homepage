@@ -1,31 +1,42 @@
 footer {
   background-color: var(--color-footer-background);
-
   color: inherit;
+  padding: 1.5rem 0;
 
-  nav {
-    padding: 1rem;
+  // Spalten bündig zum Seiteninhalt (.frame), auf schmalen Viewports untereinander
+  > .frame {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 1rem 2rem;
   }
 
   h2 {
     font-size: 1rem;
-    margin-top: 0;
+    margin: 0 0 0.25rem;
   }
 
-  > div {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-  }
-
+  // Globale Listen-Einrückung aus main.scss aufheben
   ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin: 0;
   }
 
   li > a {
-    display: block;
-    padding: 0.5rem;
+    display: inline-block;
+    padding: 0.5rem 0;
     text-decoration: underline;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+
+    &.active {
+      font-weight: 600;
+    }
   }
 }

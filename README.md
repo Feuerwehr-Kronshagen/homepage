@@ -263,7 +263,7 @@ make 01-dev-server
 
 ### Lighthouse
 
-Nach jedem Test-Deployment prüft der Job `lighthouse` die Testumgebung (ADR 0026). Ergebnisse stehen in der
+Nach jedem Test-Deployment prüft der Job `lighthouse` alle Seiten aus der `sitemap.xml` der Testumgebung (ADR 0026). Ergebnisse stehen in der
 Zusammenfassung des Workflow-Laufs, vollständige Berichte im Artefakt `lighthouse-reports`. Lokal:
 
 ```bash

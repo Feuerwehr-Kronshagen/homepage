@@ -91,11 +91,12 @@ jobs:
           rm -f ~/.ssh/password.txt
 
   # Issue #4: Lighthouse prüft die gerade bereitgestellte Testumgebung (gleicher NGINX wie Produktion).
-  # Schwellenwerte stehen in lighthouserc.json, geprüfte Seiten im makefile (LIGHTHOUSE_PATHS).
+  # Geprüft werden alle Seiten aus der sitemap.xml, Schwellenwerte stehen in lighthouserc.json.
   lighthouse:
     needs:
       - vserver-test
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Checkout code
         uses: actions/checkout@v7

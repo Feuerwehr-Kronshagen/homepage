@@ -58,8 +58,8 @@ Ansible-Collections aus `requirements.yml`.
 
 - Hugo-Änderungen: `make 02-build-test` muss fehlerfrei bauen.
 - Ansible-/YAML-Änderungen: `make 04-ansible-lint` muss sauber durchlaufen (im Prod-Workflow blockierend).
-- Automatisiert läuft nur Lighthouse CI (Job `lighthouse` im Workflow `test`, ADR 0026) gegen die Testumgebung;
-  Schwellenwerte in `lighthouserc.json`. Sonst visuelle Prüfung über die Testumgebung.
+- Automatisiert läuft nur Lighthouse CI (Job `lighthouse` im Workflow `test`, ADR 0026) gegen alle Seiten der
+  `sitemap.xml` der Testumgebung; Schwellenwerte in `lighthouserc.json`. Sonst visuelle Prüfung über die Testumgebung.
 - Neue Bilder web-optimiert einbinden (moderne Formate, passende Größe), sonst schlägt Lighthouse fehl.
 
 ## Code-Stil

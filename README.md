@@ -260,3 +260,12 @@ Ein Rollback sollte nur im Notfall ausgeführt werden. Lies diese Anleitung zuer
 ```bash
 make 01-dev-server
 ```
+
+### Lighthouse
+
+Nach jedem Test-Deployment prüft der Job `lighthouse` alle Seiten aus der `sitemap.xml` der Testumgebung (ADR 0026). Ergebnisse stehen in der
+Zusammenfassung des Workflow-Laufs, vollständige Berichte im Artefakt `lighthouse-reports`. Lokal:
+
+```bash
+make 05-lighthouse-local
+```

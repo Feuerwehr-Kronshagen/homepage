@@ -46,6 +46,7 @@ make 01-dev-server                  # lokaler Hugo-Server
 make 02-build-test                  # Build mit Environment "test"
 make 03-prod-run                    # lokaler Server mit Environment "production"
 make 04-ansible-lint                # Ansible Syntax-Check, ansible-lint, yamllint
+make 05-lighthouse-local            # Lighthouse CI gegen lokalen Production-Server (benötigt Chrome)
 make 99-install-ansible-dependencies
 make 80-dev-dependencies-macos      # hugo, ansible, sass, yamllint via brew
 ```
@@ -57,7 +58,9 @@ Ansible-Collections aus `requirements.yml`.
 
 - Hugo-Änderungen: `make 02-build-test` muss fehlerfrei bauen.
 - Ansible-/YAML-Änderungen: `make 04-ansible-lint` muss sauber durchlaufen (im Prod-Workflow blockierend).
-- Es gibt keine automatisierten Tests; visuelle Prüfung über die Testumgebung.
+- Automatisiert läuft nur Lighthouse CI (Job `lighthouse` im Workflow `test`, ADR 0026) gegen alle Seiten der
+  `sitemap.xml` der Testumgebung; Schwellenwerte in `lighthouserc.json`. Sonst visuelle Prüfung über die Testumgebung.
+- Neue Bilder web-optimiert einbinden (moderne Formate, passende Größe), sonst schlägt Lighthouse fehl.
 
 ## Code-Stil
 

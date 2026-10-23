@@ -13,6 +13,22 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 	ansible-lint ansible/*
 	yamllint ansible/*
 
+# Lighthouse (Issue #4): Geprüft werden alle Seiten aus der sitemap.xml der jeweiligen Umgebung
+LHCI = npx --yes @lhci/cli@0.15.1
+LHCI_LOCAL_URL = http://localhost:1313/
+BRANCH = $(shell git symbolic-ref -q --short HEAD || git rev-parse --short HEAD)
+# Filter: sitemap.xml (stdin) -> ein --collect.url=... je Seite
+SITEMAP_TO_LHCI_URLS = grep -o '<loc>[^<]*</loc>' | sed -e 's:<loc>:--collect.url=:' -e 's:</loc>::'
+
+05-lighthouse-local:
+	tmp=$$(mktemp -d); trap 'rm -rf "$$tmp"' EXIT; \
+	hugo build -e production --quiet --baseURL $(LHCI_LOCAL_URL) -d "$$tmp"; \
+	urls=$$(cat "$$tmp/sitemap.xml" | $(SITEMAP_TO_LHCI_URLS)); \
+	[ -n "$$urls" ] || { echo "Keine URLs in der Sitemap gefunden"; exit 1; }; \
+	$(LHCI) autorun $$urls \
+		--collect.startServerCommand="exec hugo serve -e production --minify --disableLiveReload --port 1313" \
+		--collect.startServerReadyPattern="Web Server is available"
+
 10-docker-local-server-start:
 	docker rm -f ubuntu-ssh 2>/dev/null || true \
 	&& docker run \
@@ -55,6 +71,11 @@ ANSIBLE_COLLECTIONS_PATH=	~/.ansible/collections
 
 20-build-hugo-vserver-test:
 	hugo build -e test --baseURL="https://test.feuerwehr-kronshagen.de/$(shell git symbolic-ref -q --short HEAD || git rev-parse --short HEAD)"
+
+21-lighthouse-vserver-test:
+	urls=$$(curl -fsS "https://test.feuerwehr-kronshagen.de/$(BRANCH)/sitemap.xml" | $(SITEMAP_TO_LHCI_URLS)); \
+	[ -n "$$urls" ] || { echo "Keine URLs in der Sitemap gefunden"; exit 1; }; \
+	$(LHCI) autorun $$urls
 
 30-build-hugo-vserver-prod:
 	hugo build -e production --minify --baseURL="https://feuerwehr-kronshagen.de"

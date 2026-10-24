@@ -6,7 +6,8 @@
       href='{{ ref . "pages/Einsatzabteilung" }}'
     >
       <article class="features-card">
-        {{- $aktiv := resources.Get "images/features/Einsatzabteilung.jpg" }}
+        {{- $aktiv := resources.Get "images/features/Einsatzabteilung.png" }}
+        {{- $aktiv := $aktiv.Process "webp" }}
         <img
           alt="Einsatzabteilung"
           class="headerLogo"
@@ -29,7 +30,8 @@
       href='{{ ref . "pages/Jugendfeuerwehr" }}'
     >
       <article class="features-card">
-        {{- $jugend := resources.Get "images/features/Jugendfeuerwehr.jpg" }}
+        {{- $jugend := resources.Get "images/features/Jugendfeuerwehr.png" }}
+        {{- $jugend := $jugend.Process "q50 webp" }}
         <img
           alt="Jugendfeuerwehr"
           class="headerLogo"

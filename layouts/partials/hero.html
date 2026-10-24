@@ -1,14 +1,20 @@
 <section id="hero">
   {{- $image := resources.Get "images/hero.jpg" }}
-  {{- $image := $image.Resize "7152x2480 q10" }}
-  <img class="hero-image" src="{{ $image.RelPermalink }}" alt="">
+  {{- $image := $image.Resize "1730x600 q50 webP" }}
+  <img class="hero-image" src="{{ $image.RelPermalink }}" alt="" />
   <div class="hero-content">
-    <div class="hero-title">Wir suchen
+    <div class="hero-title">
+      Wir suchen
       <span class="hero-title-highlight">Dich!</span>
     </div>
     <div class="hero-sub-title">Du lebst oder arbeitest in Kronshagen?</div>
     <div class="hero-sub-title">Komm vorbei und lerne uns kennen.</div>
-    <br>
-    <button class="primary-btn" onclick="window.location.href='{{ ref . `pages/contact` }}'">Mitmachen</button>
+    <br />
+    <button
+      class="primary-btn"
+      onclick="window.location.href='{{ ref . `pages/contact` }}'"
+    >
+      Mitmachen
+    </button>
   </div>
 </section>

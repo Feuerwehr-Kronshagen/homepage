@@ -13,6 +13,7 @@
     >
       <article class="social-media-card">
         {{- $facebook := resources.Get "images/Facebook_Logo_Primary.png" }}
+        {{- $facebook := $facebook.Resize "96x96 webP" }}
         <img class="headerLogo" src="{{ $facebook.RelPermalink }}" alt="Facebook">
       </article>
     </a>
@@ -25,6 +26,7 @@
     >
       <article class="social-media-card">
         {{- $instagram := resources.Get "images/Instagram_Glyph_Gradient.png" }}
+        {{- $instagram := $instagram.Resize "96x96 webP" }}
         <img class="headerLogo" src="{{ $instagram.RelPermalink }}" alt="Facebook">
       </article>
     </a>
